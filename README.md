@@ -84,8 +84,9 @@ https://share.streamlit.io/deploy?repository=chidex-coder/ls2-facility-survey-an
 
 See [`docs/DECISION_BRIEF.md`](docs/DECISION_BRIEF.md) for the headline findings and recommended actions,
 [`docs/ANALYSIS.md`](docs/ANALYSIS.md) for all thirty questions with their SQL, and
-[`notebooks/ls2_analysis.ipynb`](notebooks/ls2_analysis.ipynb) for the same thirty questions worked through as an
-executed Jupyter notebook (SQL → result table → interactive figure → answer for each).
+[`notebooks/ls2_analysis.ipynb`](notebooks/ls2_analysis.ipynb) for an executed Jupyter notebook that works through the
+thirty questions (SQL → result table → figure → answer), trains and evaluates the predictive models, and ends with an
+in-notebook filterable dashboard built on the same chart module as the hosted apps.
 
 ## Repository layout
 
