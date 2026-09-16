@@ -21,16 +21,24 @@ questionnaire (xlsx) ──▶ survey workbook ──▶ ETL ──▶ SQLite wa
 
 **Live dashboard:** https://chidex-coder.github.io/ls2-facility-survey-analytics/ (the static build in `docs/index.html`).
 
-The dashboard ships in two editions with the same tabs, filters and charts:
+The dashboard ships in three editions with the same tabs, filters, sliders and charts:
 
 | Edition | File | How it works |
 |---|---|---|
 | Static (GitHub Pages) | `docs/index.html`, built by `src/dashboard/build_dashboard.py` | data embedded in the page; charts recomputed in the browser; no server needed |
-| Pure Python (Dash) | `src/dashboard/dash_app.py` | every component, filter, slider and chart is Python; callbacks query the SQLite warehouse live |
+| Pure Python — Dash | `src/dashboard/dash_app.py` | every component, filter, slider and chart is Python; callbacks query the SQLite warehouse live |
+| Pure Python — Streamlit | `streamlit_app.py` | same charts via `src/dashboard/charts.py`, rendered with Streamlit widgets; deployable on Streamlit Community Cloud |
 
 ```bash
-python src/dashboard/dash_app.py          # then open http://127.0.0.1:8050
+python src/dashboard/dash_app.py          # Dash edition      -> http://127.0.0.1:8050
+streamlit run streamlit_app.py            # Streamlit edition -> http://localhost:8501
 ```
+
+**Deploy the Streamlit edition** (Streamlit Community Cloud): sign in at https://share.streamlit.io with the GitHub account that
+owns this repository, choose *Create app → Deploy a public app from GitHub*, and point it at `chidex-coder/ls2-facility-survey-analytics`,
+branch `main`, main file `streamlit_app.py`. Everything the app needs (`outputs/ls2_survey.db`, model outputs, `requirements.txt`,
+`.streamlit/config.toml`) is committed, so no secrets or extra settings are required. One-click link:
+https://share.streamlit.io/deploy?repository=chidex-coder/ls2-facility-survey-analytics&branch=main&mainModule=streamlit_app.py
 
 ## What you can decide with it
 
@@ -53,7 +61,10 @@ src/etl/                                extract (workbook) → transform (clean,
 src/analysis/questions.py               30 decision questions answered with SQL, each with a Plotly figure
 src/ml/predict.py                       stock-out risk, at-risk facility, attendance driver and segmentation models
 src/dashboard/build_dashboard.py        builder + template.html for the self-contained static dashboard
-src/dashboard/dash_app.py               the same dashboard as a pure-Python Plotly Dash application
+src/dashboard/charts.py                 shared filtering + Plotly figure builders used by both Python editions
+src/dashboard/dash_app.py               the dashboard as a Plotly Dash application
+streamlit_app.py                        the dashboard as a Streamlit application (Streamlit Community Cloud entry point)
+.streamlit/config.toml                  Streamlit theme/server settings
 outputs/ls2_survey.db                   SQLite warehouse (16 tables, 6 analytic views, ETL log)
 outputs/figures/*.html                  one interactive figure per question / model
 outputs/ml/                             metrics, predictions (facility and commodity level), fitted models
