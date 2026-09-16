@@ -82,8 +82,10 @@ https://share.streamlit.io/deploy?repository=chidex-coder/ls2-facility-survey-an
 * **How much attendance a salary or roster fix would buy** — counterfactual expected attendance per facility if salaries are paid on time or rosters are kept current.
 * **Which LGAs, cadres, commodities and vaccines are the weakest links** — every cut is filterable by LGA, facility type, urban/rural, security-risk status, visit round and readiness band.
 
-See [`docs/DECISION_BRIEF.md`](docs/DECISION_BRIEF.md) for the headline findings and recommended actions, and
-[`docs/ANALYSIS.md`](docs/ANALYSIS.md) for all thirty questions with their SQL.
+See [`docs/DECISION_BRIEF.md`](docs/DECISION_BRIEF.md) for the headline findings and recommended actions,
+[`docs/ANALYSIS.md`](docs/ANALYSIS.md) for all thirty questions with their SQL, and
+[`notebooks/ls2_analysis.ipynb`](notebooks/ls2_analysis.ipynb) for the same thirty questions worked through as an
+executed Jupyter notebook (SQL → result table → interactive figure → answer for each).
 
 ## Repository layout
 
@@ -94,6 +96,8 @@ src/config.py                           vocabularies lifted from the questionnai
 src/generate_survey_data.py             builds the survey workbook from the questionnaire structure
 src/etl/                                extract (workbook) → transform (clean, flags, derived indicators, readiness score) → load (SQLite + views)
 src/analysis/questions.py               30 decision questions answered with SQL, each with a Plotly figure
+src/analysis/build_notebook.py          generates + executes notebooks/ls2_analysis.ipynb from those questions
+notebooks/ls2_analysis.ipynb            executed analytics notebook (one section per question, figures embedded)
 src/ml/predict.py                       stock-out risk, at-risk facility, attendance driver and segmentation models
 src/dashboard/build_dashboard.py        builder + template.html for the self-contained static dashboard
 src/dashboard/charts.py                 shared filtering + Plotly figure builders used by both Python editions

@@ -18,6 +18,7 @@ STEPS = [
     ("Analysis: SQL questions + Plotly figures", "src/analysis/questions.py"),
     ("Predictive models", "src/ml/predict.py"),
     ("Interactive dashboard", "src/dashboard/build_dashboard.py"),
+    ("Analytics notebook", "src/analysis/build_notebook.py"),
 ]
 
 if __name__ == "__main__":
