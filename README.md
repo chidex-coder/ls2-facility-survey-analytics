@@ -19,7 +19,18 @@ questionnaire (xlsx) ──▶ survey workbook ──▶ ETL ──▶ SQLite wa
                                                              └──▶ interactive HTML dashboard with filters and sliders
 ```
 
-**Live dashboard:** open `docs/index.html` (or the GitHub Pages site for this repository).
+**Live dashboard:** https://chidex-coder.github.io/ls2-facility-survey-analytics/ (the static build in `docs/index.html`).
+
+The dashboard ships in two editions with the same tabs, filters and charts:
+
+| Edition | File | How it works |
+|---|---|---|
+| Static (GitHub Pages) | `docs/index.html`, built by `src/dashboard/build_dashboard.py` | data embedded in the page; charts recomputed in the browser; no server needed |
+| Pure Python (Dash) | `src/dashboard/dash_app.py` | every component, filter, slider and chart is Python; callbacks query the SQLite warehouse live |
+
+```bash
+python src/dashboard/dash_app.py          # then open http://127.0.0.1:8050
+```
 
 ## What you can decide with it
 
@@ -41,7 +52,8 @@ src/generate_survey_data.py             builds the survey workbook from the ques
 src/etl/                                extract (workbook) → transform (clean, flags, derived indicators, readiness score) → load (SQLite + views)
 src/analysis/questions.py               30 decision questions answered with SQL, each with a Plotly figure
 src/ml/predict.py                       stock-out risk, at-risk facility, attendance driver and segmentation models
-src/dashboard/                          builder + template for the self-contained interactive dashboard
+src/dashboard/build_dashboard.py        builder + template.html for the self-contained static dashboard
+src/dashboard/dash_app.py               the same dashboard as a pure-Python Plotly Dash application
 outputs/ls2_survey.db                   SQLite warehouse (16 tables, 6 analytic views, ETL log)
 outputs/figures/*.html                  one interactive figure per question / model
 outputs/ml/                             metrics, predictions (facility and commodity level), fitted models
@@ -58,7 +70,8 @@ python run_pipeline.py          # ~1 minute end to end
 python -m pytest -q             # optional smoke tests
 ```
 
-Individual stages can be run on their own (`python src/etl/pipeline.py`, `python src/analysis/questions.py`, …).
+Individual stages can be run on their own (`python src/etl/pipeline.py`, `python src/analysis/questions.py`, …), and
+`python src/dashboard/dash_app.py` serves the Dash edition of the dashboard on http://127.0.0.1:8050 once the pipeline has run.
 To use real survey exports, drop a workbook with the same sheet layout into `data/survey/` and run with `--skip-generate`.
 
 ## About the data
