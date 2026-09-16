@@ -29,10 +29,9 @@ INTRO = """# LS 2.0 Facility Survey — Analytics & Visualisation
 
 Thirty decision questions the LS 2.0 questionnaire was designed to answer, each worked end to end:
 the **SQL** run against the SQLite warehouse built by the ETL (`outputs/ls2_survey.db`), the **result table**,
-an **interactive Plotly figure**, and the **answer** in plain language.
+a **Plotly figure** (interactive when the cell is run), and the **answer** in plain language.
 
-The notebook is generated from `src/analysis/questions.py`, so the code shown in each cell is exactly the code the
-pipeline runs. Re-run all cells after `python run_pipeline.py` to refresh every answer.
+Re-run all cells after `python run_pipeline.py` to refresh every answer.
 
 > The dataset is generated from the structure of the questionnaire (184 facilities × 6 bi-weekly rounds).
 > The pipeline, SQL and charts run unchanged on a real export with the same sheet layout.
@@ -66,8 +65,9 @@ import config as C
 from analysis import theme as T                       # shared Plotly template (registered as "ls2")
 from analysis.questions import Result, q, pct, hbar   # helpers used by every question below
 
-# Interactive figure in Jupyter / VS Code / nbviewer, plus a static PNG so GitHub renders it
+# Interactive figures when the notebook is run live; a static PNG is what gets saved so every viewer (GitHub included) shows the charts
 pio.renderers.default = "notebook_connected+png"
+pio.defaults.default_width, pio.defaults.default_height, pio.defaults.default_scale = 900, 500, 1.5
 pio.templates.default = "ls2"
 pd.set_option("display.max_columns", 30); pd.set_option("display.width", 160); pd.set_option("display.float_format", "{:.3f}".format)
 
@@ -124,6 +124,20 @@ def build() -> nbformat.NotebookNode:
     return nb
 
 
+def _keep_static_figures(nb) -> None:
+    """Save figures as PNG only. Viewers such as GitHub prefer the HTML output but strip its scripts,
+    which leaves a blank cell; with a single PNG representation every viewer shows the chart."""
+    for c in nb.cells:
+        if c.cell_type != "code":
+            continue
+        for o in c.get("outputs", []):
+            d = o.get("data", {})
+            if "image/png" in d:
+                for k in [k for k in d if k != "image/png"]:
+                    d.pop(k)
+                o.get("metadata", {}).pop("text/html", None)
+
+
 def _meta(src: str) -> dict:
     """Pull section and question text out of the Result(...) literal in a question function."""
     import re
@@ -139,6 +153,7 @@ def main():
     NB_PATH.parent.mkdir(exist_ok=True)
     if not a.no_execute:
         NotebookClient(nb, timeout=600, kernel_name="python3", resources={"metadata": {"path": str(NB_PATH.parent)}}).execute()
+        _keep_static_figures(nb)
     nbformat.write(nb, NB_PATH)
     n_fig = sum(1 for c in nb.cells if c.cell_type == "code" for o in c.get("outputs", []) if "image/png" in o.get("data", {}))
     print(f"notebook written to {NB_PATH} ({NB_PATH.stat().st_size/1e6:.1f} MB, {len(nb.cells)} cells, {n_fig} figures rendered)")
