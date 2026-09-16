@@ -1,0 +1,318 @@
+{
+  "stockout": {
+    "name": "Stock-out risk (next visit)",
+    "task": "classification",
+    "best_model": "random_forest",
+    "candidates": {
+      "logistic_regression": {
+        "roc_auc": 0.8439248218585811,
+        "avg_precision": 0.6980153619600615
+      },
+      "random_forest": {
+        "roc_auc": 0.8585009364654452,
+        "avg_precision": 0.7279602822800744
+      },
+      "gradient_boosting": {
+        "roc_auc": 0.8554620495215174,
+        "avg_precision": 0.7210057792285851
+      }
+    },
+    "train_rows": 15928,
+    "test_rows": 3982,
+    "positive_rate_test": 0.38548468106479156,
+    "recommended_threshold": 0.3216201642690691,
+    "features": [
+      "commodity",
+      "category",
+      "facility_type",
+      "supplier",
+      "requisition_receipt_status",
+      "knows_min_stock_calculation",
+      "urban_rural",
+      "stock_balance",
+      "stock_adequacy_ratio",
+      "quantity_received",
+      "stockout_days_est",
+      "requisition_submitted_last_cycle_flag",
+      "requisition_complete_on_time_flag",
+      "security_risk_lga",
+      "distance_to_lga_hq_km",
+      "readiness_score",
+      "attendance_rate",
+      "prev_stockout_flag",
+      "round_number"
+    ],
+    "importance": [
+      {
+        "feature": "stock_adequacy_ratio",
+        "importance": 0.06971525327163877
+      },
+      {
+        "feature": "stock_balance",
+        "importance": 0.036222510046869785
+      },
+      {
+        "feature": "prev_stockout_flag",
+        "importance": 0.005597440993358793
+      },
+      {
+        "feature": "commodity",
+        "importance": 0.005137634462993201
+      },
+      {
+        "feature": "stockout_days_est",
+        "importance": 0.005130898833777731
+      },
+      {
+        "feature": "knows_min_stock_calculation",
+        "importance": 0.002638609531847069
+      },
+      {
+        "feature": "readiness_score",
+        "importance": 0.001643866251169701
+      },
+      {
+        "feature": "attendance_rate",
+        "importance": 0.001454150465437265
+      },
+      {
+        "feature": "quantity_received",
+        "importance": 0.0012836565148575563
+      },
+      {
+        "feature": "distance_to_lga_hq_km",
+        "importance": 0.0008998055186900222
+      },
+      {
+        "feature": "category",
+        "importance": 0.0007669033011238113
+      },
+      {
+        "feature": "requisition_receipt_status",
+        "importance": 0.00039929235958666707
+      }
+    ]
+  },
+  "attendance": {
+    "name": "Permanent staff attendance drivers",
+    "task": "regression",
+    "best_model": "gradient_boosting",
+    "metrics": {
+      "grouped_cv_r2": 0.263874006037494,
+      "grouped_cv_r2_headcount_weighted": 0.4046836955047056,
+      "grouped_cv_mae": 0.13880720951303072,
+      "naive_global_mean_mae": 0.16900262517712586,
+      "mean_gain_salary_on_time": 0.03600181814284617,
+      "mean_gain_roster_updated": 0.04053583971618064
+    },
+    "train_rows": 1096,
+    "validation": "GroupKFold(5) by facility",
+    "features": [
+      "facility_type",
+      "urban_rural",
+      "lga",
+      "hours_of_operation",
+      "salary_delay_length",
+      "staff_leave_facility_for_salary_frequency",
+      "salary_paid_on_time_last_3_months_flag",
+      "salary_issues_past_6_months_flag",
+      "roster_updated_this_week_flag",
+      "has_duty_roster_flag",
+      "maintains_attendance_register_flag",
+      "attendance_register_updated_daily_flag",
+      "distance_to_lga_hq_km",
+      "total_health_workers",
+      "permanent_health_workers",
+      "security_risk_lga",
+      "security_incident_reported_flag"
+    ],
+    "importance": [
+      {
+        "feature": "security_incident_reported_flag",
+        "importance": 0.014299505187806375
+      },
+      {
+        "feature": "roster_updated_this_week_flag",
+        "importance": 0.010590079130025645
+      },
+      {
+        "feature": "permanent_health_workers",
+        "importance": 0.010181912473180435
+      },
+      {
+        "feature": "salary_delay_length",
+        "importance": 0.008886145206187555
+      },
+      {
+        "feature": "lga",
+        "importance": 0.007361629802739087
+      },
+      {
+        "feature": "salary_paid_on_time_last_3_months_flag",
+        "importance": 0.006230840450936084
+      },
+      {
+        "feature": "staff_leave_facility_for_salary_frequency",
+        "importance": 0.00467241963525363
+      },
+      {
+        "feature": "distance_to_lga_hq_km",
+        "importance": 0.004055291450409651
+      },
+      {
+        "feature": "total_health_workers",
+        "importance": 0.0019116452997118894
+      },
+      {
+        "feature": "facility_type",
+        "importance": 0.000446884421797239
+      },
+      {
+        "feature": "urban_rural",
+        "importance": 0.00043267987820669595
+      },
+      {
+        "feature": "maintains_attendance_register_flag",
+        "importance": 0.00041462758667309697
+      }
+    ]
+  },
+  "at_risk": {
+    "name": "Facility at risk (readiness < 65 next visit)",
+    "task": "classification",
+    "best_model": "random_forest",
+    "metrics": {
+      "roc_auc": 0.8650847457627119,
+      "avg_precision": 0.783249377123026,
+      "positive_rate_test": 0.32065217391304346
+    },
+    "train_rows": 736,
+    "test_rows": 184,
+    "features": [
+      "facility_type",
+      "urban_rural",
+      "requisition_frequency",
+      "vaccine_stock_status",
+      "readiness_score",
+      "attendance_rate",
+      "stockout_rate",
+      "vaccine_availability_rate",
+      "session_completion_rate",
+      "cce_functionality_rate",
+      "facility_open_on_arrival_flag",
+      "salary_paid_on_time_last_3_months_flag",
+      "requisition_submitted_last_cycle_flag",
+      "roster_updated_this_week_flag",
+      "cold_chain_interruption_since_last_visit_flag",
+      "security_risk_lga",
+      "security_incident_reported_flag",
+      "distance_to_lga_hq_km",
+      "total_health_workers",
+      "commodities_below_min",
+      "round_number"
+    ],
+    "importance": [
+      {
+        "feature": "cce_functionality_rate",
+        "importance": 0.04645423728813565
+      },
+      {
+        "feature": "readiness_score",
+        "importance": 0.03137627118644071
+      },
+      {
+        "feature": "stockout_rate",
+        "importance": 0.02370169491525429
+      },
+      {
+        "feature": "vaccine_availability_rate",
+        "importance": 0.014752542372881372
+      },
+      {
+        "feature": "total_health_workers",
+        "importance": 0.009816949152542342
+      },
+      {
+        "feature": "vaccine_stock_status",
+        "importance": 0.0026305084745762873
+      },
+      {
+        "feature": "requisition_frequency",
+        "importance": 0.002169491525423739
+      },
+      {
+        "feature": "attendance_rate",
+        "importance": 0.0020881355932203414
+      },
+      {
+        "feature": "security_risk_lga",
+        "importance": 0.0020610169491525276
+      },
+      {
+        "feature": "cold_chain_interruption_since_last_visit_flag",
+        "importance": 0.0018711864406780077
+      },
+      {
+        "feature": "facility_open_on_arrival_flag",
+        "importance": 0.0008406779661017216
+      },
+      {
+        "feature": "session_completion_rate",
+        "importance": 0.0008406779661016995
+      }
+    ]
+  },
+  "segmentation": {
+    "k": 3,
+    "silhouette": 0.18039441164758616,
+    "segment_sizes": {
+      "High performers": 71,
+      "Multi-constraint / priority": 69,
+      "Stock-constrained": 44
+    },
+    "centres": [
+      {
+        "segment_id": "High performers",
+        "facility_open_on_arrival_flag": 0.845,
+        "attendance_rate": 0.759,
+        "stockout_rate": 0.19,
+        "vaccine_availability_rate": 0.755,
+        "session_completion_rate": 0.834,
+        "cce_functionality_rate": 0.834,
+        "salary_paid_on_time_last_3_months_flag": 0.711,
+        "requisition_submitted_last_cycle_flag": 0.829
+      },
+      {
+        "segment_id": "Stock-constrained",
+        "facility_open_on_arrival_flag": 0.841,
+        "attendance_rate": 0.719,
+        "stockout_rate": 0.463,
+        "vaccine_availability_rate": 0.717,
+        "session_completion_rate": 0.79,
+        "cce_functionality_rate": 0.811,
+        "salary_paid_on_time_last_3_months_flag": 0.777,
+        "requisition_submitted_last_cycle_flag": 0.235
+      },
+      {
+        "segment_id": "Multi-constraint / priority",
+        "facility_open_on_arrival_flag": 0.729,
+        "attendance_rate": 0.596,
+        "stockout_rate": 0.346,
+        "vaccine_availability_rate": 0.611,
+        "session_completion_rate": 0.717,
+        "cce_functionality_rate": 0.738,
+        "salary_paid_on_time_last_3_months_flag": 0.589,
+        "requisition_submitted_last_cycle_flag": 0.643
+      }
+    ]
+  },
+  "figures": {
+    "stockout_roc": "figures/ml_stockout_roc.html",
+    "stockout_importance": "figures/ml_stockout_importance.html",
+    "attendance_scatter": "figures/ml_attendance_scatter.html",
+    "attendance_importance": "figures/ml_attendance_importance.html",
+    "at_risk_roc": "figures/ml_at_risk_roc.html",
+    "at_risk_importance": "figures/ml_at_risk_importance.html",
+    "segments": "figures/ml_segments.html"
+  }
+}

@@ -1,0 +1,139 @@
+sheet,column,questionnaire_module,dtype,non_null,distinct_values,example
+facilities,facility_id,Module 1,str,184,184,KD-001
+facilities,facility_name,Module 1,str,184,152,Kudan Rimi PHC
+facilities,facility_alternate_name,Module 1,str,184,11,Kasuwan Clinic
+facilities,lga,Module 1,str,184,23,Birnin Gwari
+facilities,ward,Module 1,str,184,58,Sabon Kanawa
+facilities,facility_type,Module 1,str,184,4,Primary Health Centre
+facilities,urban_rural,Module 1,str,184,2,Rural
+facilities,security_risk_lga,Module 1,bool,184,2,True
+facilities,latitude,Module 1,float64,184,184,10.77593
+facilities,longitude,Module 1,float64,184,184,6.49
+facilities,distance_to_lga_hq_km,Module 1,float64,184,88,9.9
+facilities,facility_phone,Module 1,str,184,184,08199076254
+facilities,data_champion,Module 1,str,184,43,Bala Danladi
+facility_visits,visit_id,Modules 1-3,str,1104,1104,KD-001-R1
+facility_visits,facility_id,Modules 1-3,str,1104,184,KD-001
+facility_visits,round_number,Modules 1-3,int64,1104,6,1
+facility_visits,round_name,Modules 1-3,str,1104,6,Baseline
+facility_visits,visit_date,Modules 1-3,str,1104,24,2026-03-02
+facility_visits,data_champion,Modules 1-3,str,1104,43,Bala Danladi
+facility_visits,respondent_name,Modules 1-3,str,1104,136,Zainab Ishaya
+facility_visits,respondent_cadre,Modules 1-3,str,1104,7,Pharmacy Technician
+facility_visits,respondent_position,Modules 1-3,str,1104,5,OIC
+facility_visits,hours_of_operation,Modules 1-3,str,1104,4,24 hours
+facility_visits,days_open_per_week,Modules 1-3,int64,1104,3,7
+facility_visits,facility_open_on_arrival,Modules 1-3,str,1104,2,No
+facility_visits,arrival_time,Modules 1-3,str,1104,174,10:13
+facility_visits,facility_opened_time,Modules 1-3,str,220,140,11:41
+facility_visits,wait_minutes,Modules 1-3,int64,1104,97,41
+facility_visits,reason_closed_on_arrival,Modules 1-3,str,220,7,Staff at LGA meeting or training
+facility_visits,can_refer_emergencies,Modules 1-3,str,1104,2,Yes
+facility_visits,emergency_transport_available_2wks,Modules 1-3,str,863,2,No
+facility_visits,total_staff,Modules 1-3,int64,1104,85,28
+facility_visits,permanent_staff,Modules 1-3,int64,1104,66,18
+facility_visits,adhoc_a_staff,Modules 1-3,int64,1104,14,3
+facility_visits,adhoc_b_staff,Modules 1-3,int64,1104,10,1
+facility_visits,volunteer_staff,Modules 1-3,int64,1104,11,5
+facility_visits,total_health_workers,Modules 1-3,int64,1104,51,23
+facility_visits,male_health_workers,Modules 1-3,int64,1104,44,16
+facility_visits,female_health_workers,Modules 1-3,int64,1104,61,7
+facility_visits,permanent_health_workers,Modules 1-3,int64,1104,43,15
+facility_visits,has_cold_chain_equipment,Modules 1-3,str,1104,2,Yes
+facility_visits,cce_types_available,Modules 1-3,str,828,45,Temperature Monitoring Devices;Cold Boxes (6L);GioStyle (4L)
+facility_visits,vaccine_fridge_functional,Modules 1-3,str,828,2,No
+facility_visits,cold_chain_interruption_since_last_visit,Modules 1-3,str,828,2,Yes
+facility_visits,cold_chain_interruption_reason,Modules 1-3,str,171,5,Power failure / no electricity
+facility_visits,services_provided,Modules 1-3,str,1104,44,Immunization;Nutrition;Antenatal Care;Postnatal Care;IMCI;Ma
+facility_visits,staff_trained_past_2_years,Modules 1-3,str,1104,2,Yes
+facility_visits,has_dedicated_service_days,Modules 1-3,str,1104,2,Yes
+facility_visits,immunization_sessions_all_conducted,Modules 1-3,str,894,2,No
+facility_visits,maintains_attendance_register,Modules 1-3,str,1104,2,Yes
+facility_visits,attendance_register_type,Modules 1-3,str,768,4,Paper-based
+facility_visits,attendance_register_updated_daily,Modules 1-3,str,768,2,Yes
+facility_visits,no_register_reason,Modules 1-3,str,336,7,Staff register not supplied by LGA/authority
+facility_visits,has_duty_roster,Modules 1-3,str,1104,2,Yes
+facility_visits,roster_development_frequency,Modules 1-3,str,834,5,Quarterly
+facility_visits,roster_update_frequency,Modules 1-3,str,834,2,Weekly
+facility_visits,roster_updated_this_week,Modules 1-3,str,834,2,Yes
+facility_visits,salary_paid_on_time_last_3_months,Modules 1-3,str,1104,2,Yes
+facility_visits,salary_delay_length,Modules 1-3,str,1104,4,No delay
+facility_visits,salary_issues_past_6_months,Modules 1-3,str,1104,2,Yes
+facility_visits,salary_issue_types,Modules 1-3,str,416,15,Delayed payment
+facility_visits,salary_issue_frequency,Modules 1-3,str,416,3,Every month
+facility_visits,salary_issue_service_effect,Modules 1-3,str,416,5,Staff absent to chase payment
+facility_visits,staff_leave_facility_for_salary_frequency,Modules 1-3,str,1104,4,Weekly
+facility_visits,leave_for_salary_reason,Modules 1-3,str,947,5,No bank or ATM nearby
+facility_visits,stocks_essential_medicines,Modules 1-3,str,1104,2,Yes
+facility_visits,requisition_frequency,Modules 1-3,str,1104,4,Monthly
+facility_visits,requisition_submitted_last_cycle,Modules 1-3,str,1104,2,No
+facility_visits,requisition_system,Modules 1-3,str,681,5,Electronic LMIS (eLMIS/NHLMIS)
+facility_visits,requisition_commodity_types,Modules 1-3,str,681,15,Essential medicines;Vaccines;Laboratory commodities
+facility_visits,requisition_complete_on_time,Modules 1-3,str,681,2,Yes
+facility_visits,requisition_not_submitted_reason,Modules 1-3,str,423,6,Facility had sufficient stock
+facility_visits,requisition_receipt_status,Modules 1-3,str,681,3,"Yes, some items received"
+facility_visits,requisition_partial_reason,Modules 1-3,str,348,4,Stock-out at the source/KADHSMA
+facility_visits,commodity_sources,Modules 1-3,str,596,93,Free MNCH;Zipline
+facility_visits,delivery_documentation_provided,Modules 1-3,str,596,2,Yes
+facility_visits,knows_min_stock_calculation,Modules 1-3,str,1104,3,"Yes, I know how to calculate"
+facility_visits,vaccine_stock_status,Modules 1-3,str,1104,3,Yes
+facility_visits,vaccines_available_during_sessions,Modules 1-3,str,990,2,Yes
+facility_visits,vaccine_sources,Modules 1-3,str,990,7,LGA
+facility_visits,vaccines_most_dispensed_this_week,Modules 1-3,str,714,508,BCG;HPV;MR;MEN A;MCV;PENTA;ROTA;PCV
+facility_visits,security_incident_reported,Modules 1-3,str,1104,2,No
+staffing_by_cadre,visit_id,Module 2,str,9936,1104,KD-001-R1
+staffing_by_cadre,cadre,Module 2,str,9936,9,Medical Officer
+staffing_by_cadre,total_staff,Module 2,int64,9936,29,2
+staffing_by_cadre,permanent,Module 2,int64,9936,24,1
+staffing_by_cadre,adhoc_a,Module 2,int64,9936,9,1
+staffing_by_cadre,adhoc_b,Module 2,int64,9936,5,0
+staffing_by_cadre,volunteer,Module 2,int64,9936,5,0
+staffing_by_cadre,scheduled_morning,Module 2,int64,9936,31,1
+staffing_by_cadre,scheduled_afternoon,Module 2,int64,9936,8,0
+staffing_by_cadre,scheduled_evening,Module 2,int64,9936,7,0
+staffing_by_cadre,scheduled_off,Module 2,int64,9936,8,0
+staffing_by_cadre,scheduled_leave,Module 2,int64,9936,5,0
+staffing_by_cadre,present_today,Module 2,int64,9936,32,1
+staffing_by_cadre,permanent_present_today,Module 2,int64,9936,28,1
+staffing_by_cadre,permanent_absent_unscheduled,Module 2,int64,9936,14,0
+absence_reasons,visit_id,Module 2,str,4262,988,KD-001-R1
+absence_reasons,cadre,Module 2,str,4262,9,CHO
+absence_reasons,reason,Module 2,str,4262,20,"Leave (Study, Annual, Maternity, etc.)"
+absence_reasons,staff_count,Module 2,int64,4262,5,1
+cold_chain_equipment,visit_id,Module 1,str,7728,1104,KD-001-R1
+cold_chain_equipment,cce_type,Module 1,str,7728,7,Solar Refrigerators and Freezers
+cold_chain_equipment,available,Module 1,str,7728,2,No
+cold_chain_equipment,functional,Module 1,str,3756,2,Yes
+service_sessions,visit_id,Module 1,str,8832,1104,KD-001-R1
+service_sessions,service,Module 1,str,8832,8,Immunization
+service_sessions,offered,Module 1,str,8832,2,Yes
+service_sessions,dedicated_days,Module 1,str,7470,4,MTWTF
+service_sessions,all_planned_sessions_conducted,Module 1,str,7470,2,No
+service_sessions,reason_not_conducted,Module 1,str,1639,10,Weather or environmental conditions
+trainings,visit_id,Module 1,str,618,140,KD-001-R1
+trainings,facility_id,Module 1,str,618,140,KD-001
+trainings,training,Module 1,str,618,15,Postpartum Family Planning
+commodity_stock,visit_id,Module 3,str,25392,1104,KD-001-R1
+commodity_stock,commodity,Module 3,str,25392,23,Oxytocin
+commodity_stock,category,Module 3,str,25392,4,Maternal
+commodity_stock,unit,Module 3,str,25392,9,ampoule
+commodity_stock,facility_stocks_item,Module 3,str,25392,2,Yes
+commodity_stock,stockout_duration,Module 3,str,25392,5,No stock-out
+commodity_stock,stockout_reason,Module 3,str,7501,12,High demand or unexpected increase in consumption
+commodity_stock,quantity_received,Module 3,float64,23892,1425,28.0
+commodity_stock,not_received_reason,Module 3,str,14963,4,Stock-out at the source/KADHSMA
+commodity_stock,minimum_stock_level,Module 3,float64,18723,2310,56.0
+commodity_stock,stock_balance,Module 3,float64,23892,2034,25.0
+commodity_stock,supplier,Module 3,str,23892,8,Free MNCH
+commodity_stock,physically_verified,Module 3,str,23892,2,Yes
+vaccine_stock,visit_id,Module 3,str,7854,714,KD-001-R1
+vaccine_stock,vaccine,Module 3,str,7854,11,BCG
+vaccine_stock,in_stock,Module 3,str,7854,2,No
+vaccine_stock,opening_balance_doses,Module 3,int64,7854,373,0
+vaccine_stock,doses_received,Module 3,int64,7854,178,0
+vaccine_stock,current_balance_doses,Module 3,int64,7854,376,0
+vaccine_stock,doses_used,Module 3,int64,7854,135,0
+vaccine_stock,supplier,Module 3,str,7854,3,KDHSMA
+vaccine_stock,physically_verified,Module 3,str,7854,2,No
+vaccine_stock,most_dispensed_this_week,Module 3,str,7854,2,Yes
+vaccine_stock,reason_most_dispensed,Module 3,str,5070,5,Outreach session held this week

@@ -1,0 +1,619 @@
+visit_id,facility_id,training
+KD-001-R1,KD-001,Postpartum Family Planning
+KD-001-R1,KD-001,Vaccine Management
+KD-001-R1,KD-001,IMCI
+KD-001-R1,KD-001,Nutrition / IYCF
+KD-001-R1,KD-001,Infection Prevention and Control
+KD-003-R1,KD-003,Basic Emergency Obstetric and Newborn Care
+KD-003-R1,KD-003,Modified Life Saving Skills
+KD-003-R1,KD-003,Family Planning (LARC)
+KD-003-R1,KD-003,Vaccine Management
+KD-003-R1,KD-003,"New Vaccine Introduction (HPV, MR)"
+KD-003-R1,KD-003,Data Management (DHIS2)
+KD-004-R1,KD-004,Basic Emergency Obstetric and Newborn Care
+KD-004-R1,KD-004,Modified Life Saving Skills
+KD-004-R1,KD-004,Post Abortion Care
+KD-004-R1,KD-004,Postpartum Family Planning
+KD-004-R1,KD-004,RI Refresher Training Modules
+KD-004-R1,KD-004,Vaccine Management
+KD-004-R1,KD-004,IMCI
+KD-004-R1,KD-004,Nutrition / IYCF
+KD-004-R1,KD-004,Malaria Case Management
+KD-004-R1,KD-004,Data Management (DHIS2)
+KD-004-R1,KD-004,Infection Prevention and Control
+KD-005-R1,KD-005,Family Planning (Short term)
+KD-005-R1,KD-005,"New Vaccine Introduction (HPV, MR)"
+KD-005-R1,KD-005,Nutrition / IYCF
+KD-005-R1,KD-005,Infection Prevention and Control
+KD-006-R1,KD-006,Vaccine Management
+KD-006-R1,KD-006,Malaria Case Management
+KD-007-R1,KD-007,Life Saving Skills
+KD-007-R1,KD-007,Basic Emergency Obstetric and Newborn Care
+KD-007-R1,KD-007,Family Planning (LARC)
+KD-007-R1,KD-007,Postpartum Family Planning
+KD-007-R1,KD-007,RI Refresher Training Modules
+KD-007-R1,KD-007,Vaccine Management
+KD-008-R1,KD-008,Life Saving Skills
+KD-008-R1,KD-008,Modified Life Saving Skills
+KD-008-R1,KD-008,Postpartum Family Planning
+KD-008-R1,KD-008,"New Vaccine Introduction (HPV, MR)"
+KD-008-R1,KD-008,IMCI
+KD-008-R1,KD-008,Nutrition / IYCF
+KD-008-R1,KD-008,Infection Prevention and Control
+KD-009-R1,KD-009,Modified Life Saving Skills
+KD-009-R1,KD-009,Post Abortion Care
+KD-009-R1,KD-009,RI Refresher Training Modules
+KD-009-R1,KD-009,"New Vaccine Introduction (HPV, MR)"
+KD-009-R1,KD-009,Infection Prevention and Control
+KD-012-R1,KD-012,Family Planning (LARC)
+KD-012-R1,KD-012,Infection Prevention and Control
+KD-013-R1,KD-013,Life Saving Skills
+KD-013-R1,KD-013,Basic Emergency Obstetric and Newborn Care
+KD-013-R1,KD-013,Postpartum Family Planning
+KD-013-R1,KD-013,Malaria Case Management
+KD-013-R1,KD-013,Infection Prevention and Control
+KD-014-R1,KD-014,Basic Emergency Obstetric and Newborn Care
+KD-014-R1,KD-014,Family Planning (Short term)
+KD-014-R1,KD-014,Postpartum Family Planning
+KD-014-R1,KD-014,RI Refresher Training Modules
+KD-014-R1,KD-014,"New Vaccine Introduction (HPV, MR)"
+KD-014-R1,KD-014,Malaria Case Management
+KD-015-R1,KD-015,Life Saving Skills
+KD-015-R1,KD-015,Post Abortion Care
+KD-015-R1,KD-015,Vaccine Management
+KD-015-R1,KD-015,Malaria Case Management
+KD-015-R1,KD-015,Data Management (DHIS2)
+KD-016-R1,KD-016,Basic Emergency Obstetric and Newborn Care
+KD-016-R1,KD-016,IMCI
+KD-016-R1,KD-016,Nutrition / IYCF
+KD-017-R1,KD-017,Basic Emergency Obstetric and Newborn Care
+KD-017-R1,KD-017,Family Planning (LARC)
+KD-017-R1,KD-017,RI Refresher Training Modules
+KD-018-R1,KD-018,Family Planning (LARC)
+KD-018-R1,KD-018,Postpartum Family Planning
+KD-019-R1,KD-019,Basic Emergency Obstetric and Newborn Care
+KD-019-R1,KD-019,Post Abortion Care
+KD-019-R1,KD-019,Family Planning (Short term)
+KD-019-R1,KD-019,Vaccine Management
+KD-020-R1,KD-020,Life Saving Skills
+KD-020-R1,KD-020,Basic Emergency Obstetric and Newborn Care
+KD-020-R1,KD-020,Modified Life Saving Skills
+KD-020-R1,KD-020,Vaccine Management
+KD-020-R1,KD-020,"New Vaccine Introduction (HPV, MR)"
+KD-020-R1,KD-020,IMCI
+KD-021-R1,KD-021,Modified Life Saving Skills
+KD-021-R1,KD-021,Family Planning (Short term)
+KD-021-R1,KD-021,Postpartum Family Planning
+KD-021-R1,KD-021,"New Vaccine Introduction (HPV, MR)"
+KD-021-R1,KD-021,Malaria Case Management
+KD-021-R1,KD-021,Data Management (DHIS2)
+KD-021-R1,KD-021,Infection Prevention and Control
+KD-022-R1,KD-022,Basic Emergency Obstetric and Newborn Care
+KD-022-R1,KD-022,Modified Life Saving Skills
+KD-022-R1,KD-022,"New Vaccine Introduction (HPV, MR)"
+KD-025-R1,KD-025,Life Saving Skills
+KD-025-R1,KD-025,Family Planning (LARC)
+KD-025-R1,KD-025,Postpartum Family Planning
+KD-025-R1,KD-025,Malaria Case Management
+KD-025-R1,KD-025,Data Management (DHIS2)
+KD-026-R1,KD-026,Life Saving Skills
+KD-026-R1,KD-026,Data Management (DHIS2)
+KD-028-R1,KD-028,"New Vaccine Introduction (HPV, MR)"
+KD-031-R1,KD-031,Postpartum Family Planning
+KD-031-R1,KD-031,Data Management (DHIS2)
+KD-032-R1,KD-032,Basic Emergency Obstetric and Newborn Care
+KD-032-R1,KD-032,Modified Life Saving Skills
+KD-032-R1,KD-032,"New Vaccine Introduction (HPV, MR)"
+KD-032-R1,KD-032,Data Management (DHIS2)
+KD-033-R1,KD-033,Life Saving Skills
+KD-033-R1,KD-033,Modified Life Saving Skills
+KD-033-R1,KD-033,Postpartum Family Planning
+KD-033-R1,KD-033,RI Refresher Training Modules
+KD-033-R1,KD-033,Nutrition / IYCF
+KD-034-R1,KD-034,Family Planning (LARC)
+KD-034-R1,KD-034,Postpartum Family Planning
+KD-034-R1,KD-034,Vaccine Management
+KD-034-R1,KD-034,"New Vaccine Introduction (HPV, MR)"
+KD-034-R1,KD-034,Data Management (DHIS2)
+KD-035-R1,KD-035,Life Saving Skills
+KD-035-R1,KD-035,Basic Emergency Obstetric and Newborn Care
+KD-035-R1,KD-035,Modified Life Saving Skills
+KD-035-R1,KD-035,Family Planning (Short term)
+KD-035-R1,KD-035,Vaccine Management
+KD-035-R1,KD-035,"New Vaccine Introduction (HPV, MR)"
+KD-035-R1,KD-035,Malaria Case Management
+KD-035-R1,KD-035,Infection Prevention and Control
+KD-036-R1,KD-036,Life Saving Skills
+KD-036-R1,KD-036,Family Planning (Short term)
+KD-036-R1,KD-036,Postpartum Family Planning
+KD-036-R1,KD-036,"New Vaccine Introduction (HPV, MR)"
+KD-036-R1,KD-036,Data Management (DHIS2)
+KD-040-R1,KD-040,Family Planning (Short term)
+KD-040-R1,KD-040,"New Vaccine Introduction (HPV, MR)"
+KD-040-R1,KD-040,Data Management (DHIS2)
+KD-041-R1,KD-041,Postpartum Family Planning
+KD-041-R1,KD-041,"New Vaccine Introduction (HPV, MR)"
+KD-041-R1,KD-041,Data Management (DHIS2)
+KD-041-R1,KD-041,Infection Prevention and Control
+KD-042-R1,KD-042,Life Saving Skills
+KD-042-R1,KD-042,Family Planning (LARC)
+KD-042-R1,KD-042,Family Planning (Short term)
+KD-042-R1,KD-042,RI Refresher Training Modules
+KD-042-R1,KD-042,Data Management (DHIS2)
+KD-043-R1,KD-043,Life Saving Skills
+KD-043-R1,KD-043,Post Abortion Care
+KD-043-R1,KD-043,Postpartum Family Planning
+KD-043-R1,KD-043,IMCI
+KD-043-R1,KD-043,Malaria Case Management
+KD-044-R1,KD-044,Life Saving Skills
+KD-044-R1,KD-044,Basic Emergency Obstetric and Newborn Care
+KD-044-R1,KD-044,Family Planning (LARC)
+KD-044-R1,KD-044,RI Refresher Training Modules
+KD-044-R1,KD-044,"New Vaccine Introduction (HPV, MR)"
+KD-044-R1,KD-044,Malaria Case Management
+KD-048-R1,KD-048,Life Saving Skills
+KD-048-R1,KD-048,RI Refresher Training Modules
+KD-048-R1,KD-048,Vaccine Management
+KD-048-R1,KD-048,Malaria Case Management
+KD-049-R1,KD-049,Life Saving Skills
+KD-049-R1,KD-049,Basic Emergency Obstetric and Newborn Care
+KD-049-R1,KD-049,Modified Life Saving Skills
+KD-049-R1,KD-049,Post Abortion Care
+KD-049-R1,KD-049,Family Planning (LARC)
+KD-049-R1,KD-049,RI Refresher Training Modules
+KD-049-R1,KD-049,Vaccine Management
+KD-049-R1,KD-049,Infection Prevention and Control
+KD-050-R1,KD-050,Post Abortion Care
+KD-050-R1,KD-050,Family Planning (LARC)
+KD-050-R1,KD-050,RI Refresher Training Modules
+KD-050-R1,KD-050,Nutrition / IYCF
+KD-050-R1,KD-050,Malaria Case Management
+KD-051-R1,KD-051,Life Saving Skills
+KD-051-R1,KD-051,Family Planning (Short term)
+KD-051-R1,KD-051,Vaccine Management
+KD-051-R1,KD-051,Malaria Case Management
+KD-051-R1,KD-051,Infection Prevention and Control
+KD-054-R1,KD-054,"New Vaccine Introduction (HPV, MR)"
+KD-054-R1,KD-054,Malaria Case Management
+KD-056-R1,KD-056,Basic Emergency Obstetric and Newborn Care
+KD-056-R1,KD-056,Modified Life Saving Skills
+KD-056-R1,KD-056,Family Planning (Short term)
+KD-056-R1,KD-056,RI Refresher Training Modules
+KD-056-R1,KD-056,Infection Prevention and Control
+KD-057-R1,KD-057,Family Planning (Short term)
+KD-057-R1,KD-057,Postpartum Family Planning
+KD-057-R1,KD-057,IMCI
+KD-057-R1,KD-057,Infection Prevention and Control
+KD-059-R1,KD-059,Life Saving Skills
+KD-059-R1,KD-059,Basic Emergency Obstetric and Newborn Care
+KD-059-R1,KD-059,Modified Life Saving Skills
+KD-059-R1,KD-059,Post Abortion Care
+KD-059-R1,KD-059,Nutrition / IYCF
+KD-059-R1,KD-059,Data Management (DHIS2)
+KD-060-R1,KD-060,Basic Emergency Obstetric and Newborn Care
+KD-060-R1,KD-060,Postpartum Family Planning
+KD-060-R1,KD-060,Vaccine Management
+KD-060-R1,KD-060,Infection Prevention and Control
+KD-061-R1,KD-061,Postpartum Family Planning
+KD-061-R1,KD-061,RI Refresher Training Modules
+KD-061-R1,KD-061,IMCI
+KD-061-R1,KD-061,Data Management (DHIS2)
+KD-061-R1,KD-061,Infection Prevention and Control
+KD-062-R1,KD-062,Modified Life Saving Skills
+KD-062-R1,KD-062,Family Planning (Short term)
+KD-062-R1,KD-062,Vaccine Management
+KD-063-R1,KD-063,Modified Life Saving Skills
+KD-063-R1,KD-063,Post Abortion Care
+KD-063-R1,KD-063,IMCI
+KD-063-R1,KD-063,Nutrition / IYCF
+KD-064-R1,KD-064,Family Planning (LARC)
+KD-065-R1,KD-065,Postpartum Family Planning
+KD-065-R1,KD-065,"New Vaccine Introduction (HPV, MR)"
+KD-065-R1,KD-065,IMCI
+KD-065-R1,KD-065,Malaria Case Management
+KD-065-R1,KD-065,Data Management (DHIS2)
+KD-066-R1,KD-066,Family Planning (Short term)
+KD-066-R1,KD-066,Vaccine Management
+KD-067-R1,KD-067,Basic Emergency Obstetric and Newborn Care
+KD-067-R1,KD-067,Family Planning (Short term)
+KD-067-R1,KD-067,Nutrition / IYCF
+KD-067-R1,KD-067,Infection Prevention and Control
+KD-068-R1,KD-068,Life Saving Skills
+KD-068-R1,KD-068,Basic Emergency Obstetric and Newborn Care
+KD-068-R1,KD-068,Postpartum Family Planning
+KD-068-R1,KD-068,"New Vaccine Introduction (HPV, MR)"
+KD-068-R1,KD-068,Malaria Case Management
+KD-069-R1,KD-069,Family Planning (LARC)
+KD-069-R1,KD-069,RI Refresher Training Modules
+KD-069-R1,KD-069,Vaccine Management
+KD-069-R1,KD-069,"New Vaccine Introduction (HPV, MR)"
+KD-069-R1,KD-069,IMCI
+KD-069-R1,KD-069,Nutrition / IYCF
+KD-069-R1,KD-069,Infection Prevention and Control
+KD-070-R1,KD-070,Family Planning (Short term)
+KD-070-R1,KD-070,Postpartum Family Planning
+KD-070-R1,KD-070,Nutrition / IYCF
+KD-071-R1,KD-071,Basic Emergency Obstetric and Newborn Care
+KD-071-R1,KD-071,Post Abortion Care
+KD-071-R1,KD-071,Family Planning (LARC)
+KD-071-R1,KD-071,Postpartum Family Planning
+KD-071-R1,KD-071,Malaria Case Management
+KD-071-R1,KD-071,Infection Prevention and Control
+KD-072-R1,KD-072,Family Planning (Short term)
+KD-072-R1,KD-072,"New Vaccine Introduction (HPV, MR)"
+KD-072-R1,KD-072,IMCI
+KD-072-R1,KD-072,Nutrition / IYCF
+KD-072-R1,KD-072,Malaria Case Management
+KD-073-R1,KD-073,Modified Life Saving Skills
+KD-073-R1,KD-073,Family Planning (Short term)
+KD-073-R1,KD-073,RI Refresher Training Modules
+KD-073-R1,KD-073,IMCI
+KD-073-R1,KD-073,Nutrition / IYCF
+KD-073-R1,KD-073,Data Management (DHIS2)
+KD-074-R1,KD-074,Life Saving Skills
+KD-074-R1,KD-074,Post Abortion Care
+KD-074-R1,KD-074,Family Planning (Short term)
+KD-074-R1,KD-074,RI Refresher Training Modules
+KD-074-R1,KD-074,Nutrition / IYCF
+KD-074-R1,KD-074,Data Management (DHIS2)
+KD-076-R1,KD-076,Life Saving Skills
+KD-076-R1,KD-076,Post Abortion Care
+KD-077-R1,KD-077,Life Saving Skills
+KD-077-R1,KD-077,Basic Emergency Obstetric and Newborn Care
+KD-077-R1,KD-077,Family Planning (Short term)
+KD-077-R1,KD-077,RI Refresher Training Modules
+KD-077-R1,KD-077,Malaria Case Management
+KD-078-R1,KD-078,Life Saving Skills
+KD-078-R1,KD-078,Modified Life Saving Skills
+KD-078-R1,KD-078,Family Planning (Short term)
+KD-078-R1,KD-078,Postpartum Family Planning
+KD-078-R1,KD-078,RI Refresher Training Modules
+KD-078-R1,KD-078,Vaccine Management
+KD-078-R1,KD-078,IMCI
+KD-078-R1,KD-078,Malaria Case Management
+KD-079-R1,KD-079,Modified Life Saving Skills
+KD-079-R1,KD-079,RI Refresher Training Modules
+KD-079-R1,KD-079,IMCI
+KD-081-R1,KD-081,Postpartum Family Planning
+KD-081-R1,KD-081,"New Vaccine Introduction (HPV, MR)"
+KD-081-R1,KD-081,Data Management (DHIS2)
+KD-084-R1,KD-084,Life Saving Skills
+KD-084-R1,KD-084,Post Abortion Care
+KD-084-R1,KD-084,Postpartum Family Planning
+KD-084-R1,KD-084,"New Vaccine Introduction (HPV, MR)"
+KD-086-R1,KD-086,IMCI
+KD-087-R1,KD-087,Basic Emergency Obstetric and Newborn Care
+KD-087-R1,KD-087,Modified Life Saving Skills
+KD-087-R1,KD-087,Post Abortion Care
+KD-087-R1,KD-087,Postpartum Family Planning
+KD-087-R1,KD-087,Vaccine Management
+KD-087-R1,KD-087,"New Vaccine Introduction (HPV, MR)"
+KD-087-R1,KD-087,IMCI
+KD-087-R1,KD-087,Nutrition / IYCF
+KD-087-R1,KD-087,Malaria Case Management
+KD-087-R1,KD-087,Data Management (DHIS2)
+KD-087-R1,KD-087,Infection Prevention and Control
+KD-088-R1,KD-088,Life Saving Skills
+KD-088-R1,KD-088,Family Planning (LARC)
+KD-088-R1,KD-088,Postpartum Family Planning
+KD-088-R1,KD-088,Malaria Case Management
+KD-090-R1,KD-090,Modified Life Saving Skills
+KD-090-R1,KD-090,Post Abortion Care
+KD-091-R1,KD-091,Life Saving Skills
+KD-091-R1,KD-091,Basic Emergency Obstetric and Newborn Care
+KD-091-R1,KD-091,Family Planning (LARC)
+KD-091-R1,KD-091,Nutrition / IYCF
+KD-092-R1,KD-092,Family Planning (LARC)
+KD-092-R1,KD-092,Postpartum Family Planning
+KD-092-R1,KD-092,"New Vaccine Introduction (HPV, MR)"
+KD-093-R1,KD-093,Basic Emergency Obstetric and Newborn Care
+KD-095-R1,KD-095,Family Planning (LARC)
+KD-095-R1,KD-095,Family Planning (Short term)
+KD-095-R1,KD-095,Postpartum Family Planning
+KD-095-R1,KD-095,Vaccine Management
+KD-095-R1,KD-095,IMCI
+KD-095-R1,KD-095,Malaria Case Management
+KD-095-R1,KD-095,Data Management (DHIS2)
+KD-097-R1,KD-097,Family Planning (Short term)
+KD-097-R1,KD-097,Postpartum Family Planning
+KD-097-R1,KD-097,Vaccine Management
+KD-097-R1,KD-097,IMCI
+KD-097-R1,KD-097,Malaria Case Management
+KD-097-R1,KD-097,Data Management (DHIS2)
+KD-098-R1,KD-098,Life Saving Skills
+KD-098-R1,KD-098,Basic Emergency Obstetric and Newborn Care
+KD-098-R1,KD-098,Modified Life Saving Skills
+KD-098-R1,KD-098,Family Planning (LARC)
+KD-098-R1,KD-098,Postpartum Family Planning
+KD-099-R1,KD-099,Basic Emergency Obstetric and Newborn Care
+KD-099-R1,KD-099,Family Planning (Short term)
+KD-099-R1,KD-099,"New Vaccine Introduction (HPV, MR)"
+KD-099-R1,KD-099,IMCI
+KD-100-R1,KD-100,Life Saving Skills
+KD-100-R1,KD-100,Modified Life Saving Skills
+KD-100-R1,KD-100,Vaccine Management
+KD-101-R1,KD-101,Basic Emergency Obstetric and Newborn Care
+KD-101-R1,KD-101,Post Abortion Care
+KD-101-R1,KD-101,Family Planning (Short term)
+KD-101-R1,KD-101,RI Refresher Training Modules
+KD-101-R1,KD-101,Malaria Case Management
+KD-102-R1,KD-102,Life Saving Skills
+KD-102-R1,KD-102,Post Abortion Care
+KD-102-R1,KD-102,IMCI
+KD-102-R1,KD-102,Nutrition / IYCF
+KD-102-R1,KD-102,Data Management (DHIS2)
+KD-102-R1,KD-102,Infection Prevention and Control
+KD-103-R1,KD-103,Family Planning (Short term)
+KD-103-R1,KD-103,"New Vaccine Introduction (HPV, MR)"
+KD-104-R1,KD-104,Life Saving Skills
+KD-104-R1,KD-104,Nutrition / IYCF
+KD-104-R1,KD-104,Data Management (DHIS2)
+KD-105-R1,KD-105,RI Refresher Training Modules
+KD-105-R1,KD-105,Vaccine Management
+KD-107-R1,KD-107,Life Saving Skills
+KD-107-R1,KD-107,Postpartum Family Planning
+KD-107-R1,KD-107,Infection Prevention and Control
+KD-108-R1,KD-108,Post Abortion Care
+KD-108-R1,KD-108,Vaccine Management
+KD-108-R1,KD-108,Data Management (DHIS2)
+KD-108-R1,KD-108,Infection Prevention and Control
+KD-109-R1,KD-109,IMCI
+KD-109-R1,KD-109,Data Management (DHIS2)
+KD-109-R1,KD-109,Infection Prevention and Control
+KD-111-R1,KD-111,Postpartum Family Planning
+KD-111-R1,KD-111,Data Management (DHIS2)
+KD-112-R1,KD-112,"New Vaccine Introduction (HPV, MR)"
+KD-113-R1,KD-113,Basic Emergency Obstetric and Newborn Care
+KD-113-R1,KD-113,Family Planning (LARC)
+KD-113-R1,KD-113,Malaria Case Management
+KD-113-R1,KD-113,Infection Prevention and Control
+KD-115-R1,KD-115,Life Saving Skills
+KD-115-R1,KD-115,Basic Emergency Obstetric and Newborn Care
+KD-115-R1,KD-115,Family Planning (Short term)
+KD-115-R1,KD-115,IMCI
+KD-115-R1,KD-115,Infection Prevention and Control
+KD-116-R1,KD-116,Nutrition / IYCF
+KD-116-R1,KD-116,Malaria Case Management
+KD-118-R1,KD-118,Family Planning (Short term)
+KD-118-R1,KD-118,Postpartum Family Planning
+KD-118-R1,KD-118,"New Vaccine Introduction (HPV, MR)"
+KD-118-R1,KD-118,IMCI
+KD-118-R1,KD-118,Malaria Case Management
+KD-118-R1,KD-118,Data Management (DHIS2)
+KD-119-R1,KD-119,Life Saving Skills
+KD-119-R1,KD-119,Family Planning (Short term)
+KD-119-R1,KD-119,Postpartum Family Planning
+KD-119-R1,KD-119,"New Vaccine Introduction (HPV, MR)"
+KD-119-R1,KD-119,IMCI
+KD-119-R1,KD-119,Nutrition / IYCF
+KD-120-R1,KD-120,Family Planning (LARC)
+KD-120-R1,KD-120,Family Planning (Short term)
+KD-120-R1,KD-120,Malaria Case Management
+KD-120-R1,KD-120,Data Management (DHIS2)
+KD-122-R1,KD-122,Basic Emergency Obstetric and Newborn Care
+KD-122-R1,KD-122,"New Vaccine Introduction (HPV, MR)"
+KD-123-R1,KD-123,Life Saving Skills
+KD-123-R1,KD-123,Post Abortion Care
+KD-123-R1,KD-123,Malaria Case Management
+KD-123-R1,KD-123,Data Management (DHIS2)
+KD-124-R1,KD-124,Family Planning (LARC)
+KD-124-R1,KD-124,Family Planning (Short term)
+KD-124-R1,KD-124,Malaria Case Management
+KD-125-R1,KD-125,Vaccine Management
+KD-125-R1,KD-125,"New Vaccine Introduction (HPV, MR)"
+KD-126-R1,KD-126,RI Refresher Training Modules
+KD-126-R1,KD-126,"New Vaccine Introduction (HPV, MR)"
+KD-126-R1,KD-126,Data Management (DHIS2)
+KD-127-R1,KD-127,Post Abortion Care
+KD-127-R1,KD-127,Family Planning (LARC)
+KD-127-R1,KD-127,IMCI
+KD-127-R1,KD-127,Nutrition / IYCF
+KD-127-R1,KD-127,Malaria Case Management
+KD-130-R1,KD-130,Life Saving Skills
+KD-130-R1,KD-130,Post Abortion Care
+KD-130-R1,KD-130,RI Refresher Training Modules
+KD-130-R1,KD-130,"New Vaccine Introduction (HPV, MR)"
+KD-130-R1,KD-130,Data Management (DHIS2)
+KD-130-R1,KD-130,Infection Prevention and Control
+KD-131-R1,KD-131,Life Saving Skills
+KD-131-R1,KD-131,Modified Life Saving Skills
+KD-131-R1,KD-131,Post Abortion Care
+KD-131-R1,KD-131,Family Planning (LARC)
+KD-131-R1,KD-131,RI Refresher Training Modules
+KD-131-R1,KD-131,IMCI
+KD-131-R1,KD-131,Malaria Case Management
+KD-132-R1,KD-132,Life Saving Skills
+KD-132-R1,KD-132,Nutrition / IYCF
+KD-132-R1,KD-132,Infection Prevention and Control
+KD-134-R1,KD-134,Family Planning (LARC)
+KD-134-R1,KD-134,RI Refresher Training Modules
+KD-134-R1,KD-134,Vaccine Management
+KD-134-R1,KD-134,Malaria Case Management
+KD-134-R1,KD-134,Infection Prevention and Control
+KD-136-R1,KD-136,Life Saving Skills
+KD-136-R1,KD-136,Modified Life Saving Skills
+KD-136-R1,KD-136,Vaccine Management
+KD-136-R1,KD-136,IMCI
+KD-136-R1,KD-136,Data Management (DHIS2)
+KD-138-R1,KD-138,Life Saving Skills
+KD-138-R1,KD-138,Family Planning (Short term)
+KD-138-R1,KD-138,"New Vaccine Introduction (HPV, MR)"
+KD-138-R1,KD-138,Nutrition / IYCF
+KD-139-R1,KD-139,Postpartum Family Planning
+KD-139-R1,KD-139,RI Refresher Training Modules
+KD-139-R1,KD-139,"New Vaccine Introduction (HPV, MR)"
+KD-140-R1,KD-140,RI Refresher Training Modules
+KD-140-R1,KD-140,Vaccine Management
+KD-141-R1,KD-141,RI Refresher Training Modules
+KD-141-R1,KD-141,Malaria Case Management
+KD-141-R1,KD-141,Infection Prevention and Control
+KD-142-R1,KD-142,Post Abortion Care
+KD-142-R1,KD-142,"New Vaccine Introduction (HPV, MR)"
+KD-142-R1,KD-142,Data Management (DHIS2)
+KD-143-R1,KD-143,IMCI
+KD-145-R1,KD-145,Life Saving Skills
+KD-145-R1,KD-145,Postpartum Family Planning
+KD-145-R1,KD-145,Nutrition / IYCF
+KD-145-R1,KD-145,Data Management (DHIS2)
+KD-146-R1,KD-146,Post Abortion Care
+KD-146-R1,KD-146,Postpartum Family Planning
+KD-146-R1,KD-146,RI Refresher Training Modules
+KD-146-R1,KD-146,Vaccine Management
+KD-147-R1,KD-147,Life Saving Skills
+KD-147-R1,KD-147,Modified Life Saving Skills
+KD-147-R1,KD-147,Data Management (DHIS2)
+KD-148-R1,KD-148,Life Saving Skills
+KD-148-R1,KD-148,Modified Life Saving Skills
+KD-148-R1,KD-148,Family Planning (LARC)
+KD-148-R1,KD-148,Family Planning (Short term)
+KD-148-R1,KD-148,RI Refresher Training Modules
+KD-148-R1,KD-148,IMCI
+KD-149-R1,KD-149,Basic Emergency Obstetric and Newborn Care
+KD-149-R1,KD-149,RI Refresher Training Modules
+KD-149-R1,KD-149,IMCI
+KD-149-R1,KD-149,Nutrition / IYCF
+KD-150-R1,KD-150,Basic Emergency Obstetric and Newborn Care
+KD-150-R1,KD-150,Modified Life Saving Skills
+KD-150-R1,KD-150,Postpartum Family Planning
+KD-150-R1,KD-150,Vaccine Management
+KD-150-R1,KD-150,"New Vaccine Introduction (HPV, MR)"
+KD-150-R1,KD-150,IMCI
+KD-151-R1,KD-151,Basic Emergency Obstetric and Newborn Care
+KD-151-R1,KD-151,Postpartum Family Planning
+KD-152-R1,KD-152,Life Saving Skills
+KD-152-R1,KD-152,Modified Life Saving Skills
+KD-152-R1,KD-152,Family Planning (LARC)
+KD-152-R1,KD-152,Vaccine Management
+KD-152-R1,KD-152,Malaria Case Management
+KD-152-R1,KD-152,Data Management (DHIS2)
+KD-153-R1,KD-153,Modified Life Saving Skills
+KD-153-R1,KD-153,Post Abortion Care
+KD-153-R1,KD-153,Family Planning (LARC)
+KD-153-R1,KD-153,Postpartum Family Planning
+KD-153-R1,KD-153,Vaccine Management
+KD-153-R1,KD-153,"New Vaccine Introduction (HPV, MR)"
+KD-153-R1,KD-153,IMCI
+KD-153-R1,KD-153,Nutrition / IYCF
+KD-153-R1,KD-153,Malaria Case Management
+KD-154-R1,KD-154,Basic Emergency Obstetric and Newborn Care
+KD-154-R1,KD-154,Modified Life Saving Skills
+KD-154-R1,KD-154,Family Planning (LARC)
+KD-154-R1,KD-154,Postpartum Family Planning
+KD-154-R1,KD-154,RI Refresher Training Modules
+KD-154-R1,KD-154,"New Vaccine Introduction (HPV, MR)"
+KD-154-R1,KD-154,IMCI
+KD-156-R1,KD-156,Life Saving Skills
+KD-156-R1,KD-156,Post Abortion Care
+KD-156-R1,KD-156,Family Planning (LARC)
+KD-156-R1,KD-156,Malaria Case Management
+KD-156-R1,KD-156,Data Management (DHIS2)
+KD-157-R1,KD-157,Basic Emergency Obstetric and Newborn Care
+KD-157-R1,KD-157,RI Refresher Training Modules
+KD-157-R1,KD-157,Nutrition / IYCF
+KD-157-R1,KD-157,Data Management (DHIS2)
+KD-157-R1,KD-157,Infection Prevention and Control
+KD-158-R1,KD-158,Postpartum Family Planning
+KD-158-R1,KD-158,Vaccine Management
+KD-158-R1,KD-158,Nutrition / IYCF
+KD-158-R1,KD-158,Malaria Case Management
+KD-159-R1,KD-159,Post Abortion Care
+KD-159-R1,KD-159,Postpartum Family Planning
+KD-159-R1,KD-159,RI Refresher Training Modules
+KD-159-R1,KD-159,"New Vaccine Introduction (HPV, MR)"
+KD-159-R1,KD-159,Data Management (DHIS2)
+KD-159-R1,KD-159,Infection Prevention and Control
+KD-160-R1,KD-160,Life Saving Skills
+KD-160-R1,KD-160,Basic Emergency Obstetric and Newborn Care
+KD-160-R1,KD-160,IMCI
+KD-161-R1,KD-161,Basic Emergency Obstetric and Newborn Care
+KD-161-R1,KD-161,Post Abortion Care
+KD-161-R1,KD-161,Postpartum Family Planning
+KD-161-R1,KD-161,Vaccine Management
+KD-161-R1,KD-161,Infection Prevention and Control
+KD-163-R1,KD-163,Life Saving Skills
+KD-163-R1,KD-163,Basic Emergency Obstetric and Newborn Care
+KD-163-R1,KD-163,Family Planning (LARC)
+KD-163-R1,KD-163,Malaria Case Management
+KD-163-R1,KD-163,Data Management (DHIS2)
+KD-166-R1,KD-166,Basic Emergency Obstetric and Newborn Care
+KD-166-R1,KD-166,Modified Life Saving Skills
+KD-166-R1,KD-166,Malaria Case Management
+KD-167-R1,KD-167,Modified Life Saving Skills
+KD-167-R1,KD-167,"New Vaccine Introduction (HPV, MR)"
+KD-167-R1,KD-167,IMCI
+KD-168-R1,KD-168,Family Planning (Short term)
+KD-168-R1,KD-168,RI Refresher Training Modules
+KD-168-R1,KD-168,"New Vaccine Introduction (HPV, MR)"
+KD-168-R1,KD-168,IMCI
+KD-168-R1,KD-168,Infection Prevention and Control
+KD-169-R1,KD-169,Life Saving Skills
+KD-169-R1,KD-169,Modified Life Saving Skills
+KD-169-R1,KD-169,Family Planning (LARC)
+KD-169-R1,KD-169,"New Vaccine Introduction (HPV, MR)"
+KD-169-R1,KD-169,Nutrition / IYCF
+KD-169-R1,KD-169,Malaria Case Management
+KD-169-R1,KD-169,Infection Prevention and Control
+KD-170-R1,KD-170,Life Saving Skills
+KD-170-R1,KD-170,Basic Emergency Obstetric and Newborn Care
+KD-170-R1,KD-170,Modified Life Saving Skills
+KD-170-R1,KD-170,Family Planning (Short term)
+KD-170-R1,KD-170,Nutrition / IYCF
+KD-170-R1,KD-170,Malaria Case Management
+KD-171-R1,KD-171,Postpartum Family Planning
+KD-171-R1,KD-171,"New Vaccine Introduction (HPV, MR)"
+KD-171-R1,KD-171,Nutrition / IYCF
+KD-171-R1,KD-171,Data Management (DHIS2)
+KD-173-R1,KD-173,Basic Emergency Obstetric and Newborn Care
+KD-173-R1,KD-173,Modified Life Saving Skills
+KD-173-R1,KD-173,Post Abortion Care
+KD-173-R1,KD-173,Family Planning (Short term)
+KD-173-R1,KD-173,Postpartum Family Planning
+KD-173-R1,KD-173,"New Vaccine Introduction (HPV, MR)"
+KD-173-R1,KD-173,Infection Prevention and Control
+KD-174-R1,KD-174,RI Refresher Training Modules
+KD-174-R1,KD-174,Infection Prevention and Control
+KD-175-R1,KD-175,Modified Life Saving Skills
+KD-175-R1,KD-175,Post Abortion Care
+KD-175-R1,KD-175,Family Planning (LARC)
+KD-175-R1,KD-175,Vaccine Management
+KD-176-R1,KD-176,Life Saving Skills
+KD-176-R1,KD-176,Basic Emergency Obstetric and Newborn Care
+KD-176-R1,KD-176,Post Abortion Care
+KD-176-R1,KD-176,Malaria Case Management
+KD-176-R1,KD-176,Data Management (DHIS2)
+KD-176-R1,KD-176,Infection Prevention and Control
+KD-177-R1,KD-177,Modified Life Saving Skills
+KD-177-R1,KD-177,Family Planning (LARC)
+KD-177-R1,KD-177,Postpartum Family Planning
+KD-177-R1,KD-177,Vaccine Management
+KD-177-R1,KD-177,IMCI
+KD-177-R1,KD-177,Malaria Case Management
+KD-177-R1,KD-177,Infection Prevention and Control
+KD-179-R1,KD-179,Life Saving Skills
+KD-179-R1,KD-179,Post Abortion Care
+KD-179-R1,KD-179,Family Planning (Short term)
+KD-179-R1,KD-179,Vaccine Management
+KD-179-R1,KD-179,Malaria Case Management
+KD-179-R1,KD-179,Data Management (DHIS2)
+KD-179-R1,KD-179,Infection Prevention and Control
+KD-180-R1,KD-180,Life Saving Skills
+KD-180-R1,KD-180,Basic Emergency Obstetric and Newborn Care
+KD-180-R1,KD-180,"New Vaccine Introduction (HPV, MR)"
+KD-181-R1,KD-181,Family Planning (LARC)
+KD-181-R1,KD-181,Vaccine Management
+KD-181-R1,KD-181,Nutrition / IYCF
+KD-181-R1,KD-181,Malaria Case Management
+KD-181-R1,KD-181,Data Management (DHIS2)
+KD-183-R1,KD-183,Life Saving Skills
+KD-183-R1,KD-183,Post Abortion Care
+KD-183-R1,KD-183,RI Refresher Training Modules
+KD-183-R1,KD-183,Vaccine Management
+KD-183-R1,KD-183,"New Vaccine Introduction (HPV, MR)"
+KD-183-R1,KD-183,IMCI
+KD-183-R1,KD-183,Data Management (DHIS2)
+KD-184-R1,KD-184,Life Saving Skills
+KD-184-R1,KD-184,Modified Life Saving Skills
+KD-184-R1,KD-184,Post Abortion Care
+KD-184-R1,KD-184,Postpartum Family Planning
+KD-184-R1,KD-184,IMCI
+KD-184-R1,KD-184,Nutrition / IYCF

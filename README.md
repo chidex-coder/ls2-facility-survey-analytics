@@ -1,0 +1,92 @@
+# LS 2.0 Facility Survey Analytics
+
+End-to-end analytics for the **LS 2.0 health facility questionnaire** — a bi-weekly
+monitoring instrument for primary health care facilities in Kaduna State, Nigeria.
+The questionnaire covers three modules:
+
+| Module | What it captures |
+|---|---|
+| 1. General facility information | opening hours, open-on-arrival checks, emergency referral, cold chain equipment, services offered, planned sessions delivered, staff training |
+| 2. Human resources for health | attendance registers and duty rosters, headcount by cadre and employment type, staff present today, reasons for absence, salary timeliness and its effect on service delivery |
+| 3. Supply chain | requisition cycle (submitted → complete → received → documented), 23 tracer medicines and commodities (stock-outs, reasons, balance vs minimum stock, supplier, physical verification), 11 vaccines (opening/closing balance, doses used, source) |
+
+The repository turns that instrument into a working decision system:
+
+```
+questionnaire (xlsx) ──▶ survey workbook ──▶ ETL ──▶ SQLite warehouse ──▶ 30 answered questions (SQL + Plotly)
+                                                             │
+                                                             ├──▶ predictive models (stock-out risk, at-risk facilities, attendance drivers, segments)
+                                                             └──▶ interactive HTML dashboard with filters and sliders
+```
+
+**Live dashboard:** open `docs/index.html` (or the GitHub Pages site for this repository).
+
+## What you can decide with it
+
+* **Where to send supportive supervision next fortnight** — facilities ranked by the probability of dropping below readiness 65 at the next visit.
+* **Which facility × commodity pairs need emergency resupply** — stock-out risk scores for the next visit, driven by stock adequacy vs minimum stock, receipts and requisition behaviour.
+* **How much attendance a salary or roster fix would buy** — counterfactual expected attendance per facility if salaries are paid on time or rosters are kept current.
+* **Which LGAs, cadres, commodities and vaccines are the weakest links** — every cut is filterable by LGA, facility type, urban/rural, security-risk status, visit round and readiness band.
+
+See [`docs/DECISION_BRIEF.md`](docs/DECISION_BRIEF.md) for the headline findings and recommended actions, and
+[`docs/ANALYSIS.md`](docs/ANALYSIS.md) for all thirty questions with their SQL.
+
+## Repository layout
+
+```
+data/raw/LS_2.0_Questionnaire.xlsx      the instrument (question text, options, skip logic, enumerator notes)
+data/survey/ls2_survey_responses.xlsx   populated survey workbook (10 sheets, incl. a data dictionary) + CSV copies
+src/config.py                           vocabularies lifted from the questionnaire (cadres, commodities, vaccines, option lists)
+src/generate_survey_data.py             builds the survey workbook from the questionnaire structure
+src/etl/                                extract (workbook) → transform (clean, flags, derived indicators, readiness score) → load (SQLite + views)
+src/analysis/questions.py               30 decision questions answered with SQL, each with a Plotly figure
+src/ml/predict.py                       stock-out risk, at-risk facility, attendance driver and segmentation models
+src/dashboard/                          builder + template for the self-contained interactive dashboard
+outputs/ls2_survey.db                   SQLite warehouse (16 tables, 6 analytic views, ETL log)
+outputs/figures/*.html                  one interactive figure per question / model
+outputs/ml/                             metrics, predictions (facility and commodity level), fitted models
+docs/index.html                         the dashboard (GitHub Pages)
+tests/                                  smoke tests for ETL and warehouse
+```
+
+## Run it
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python run_pipeline.py          # ~1 minute end to end
+python -m pytest -q             # optional smoke tests
+```
+
+Individual stages can be run on their own (`python src/etl/pipeline.py`, `python src/analysis/questions.py`, …).
+To use real survey exports, drop a workbook with the same sheet layout into `data/survey/` and run with `--skip-generate`.
+
+## About the data
+
+The file we were given is the *questionnaire*, not a response export, so `src/generate_survey_data.py` produces a
+response dataset that follows the instrument exactly — 184 facilities across all 23 LGAs, visited at baseline and
+five bi-weekly rounds (1,104 visits), with per-cadre staffing, per-commodity stock and per-vaccine stock tables.
+Facility quality, LGA security context, level of care and a state-wide salary delay in one round shape the outcomes
+so that the analysis and models have real structure to find. Every row is synthetic; no facility, person or phone
+number is real.
+
+## Data model
+
+`facility_visits` is the fact table (one row per facility per round, 69 questionnaire fields plus derived indicators
+such as `attendance_rate`, `stockout_rate`, `vaccine_availability_rate`, `session_completion_rate`, `cce_functionality_rate`
+and the composite `readiness_score`). Long tables hang off it by `visit_id`: `staffing_by_cadre`, `absence_reasons`,
+`commodity_stock`, `vaccine_stock`, `service_sessions`, `cold_chain_equipment`, plus exploded multi-select answers
+(`visit_services`, `visit_cce_types`, `visit_salary_issues`, …). Views `v_visits`, `v_commodity`, `v_staffing`,
+`v_absence`, `v_vaccine` and `v_sessions` pre-join facility context for analysis.
+
+## Models
+
+| Model | Target | Validation | Result |
+|---|---|---|---|
+| Stock-out risk | commodity stocked out at next visit | train rounds 1–4→2–5, test round 5→6 | ROC AUC 0.86, AP 0.72 (base rate 39%) |
+| At-risk facility | readiness < 65 at next visit | same time split | ROC AUC 0.87, AP 0.78 (base rate 32%) |
+| Attendance drivers | permanent-staff attendance under observed conditions | GroupKFold by facility | R² 0.26 (0.40 headcount-weighted); +3.6 pts expected if salary on time |
+| Segmentation | k-means on readiness pillars | silhouette | 3 segments: High performers / Stock-constrained / Multi-constraint |
+
+Next-round attendance is deliberately *not* forecast: with 5–15 scheduled staff per facility, a single visit's
+attendance swings ±12 points by chance, so the driver model is used for what-if scenarios instead.

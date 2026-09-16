@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LS 2.0 Facility Dashboard</title>
+<meta name="description" content="Interactive decision dashboard for the LS 2.0 bi-weekly health facility survey: access, human resources, supply chain, vaccines and predictive risk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-3.1.0.min.js" charset="utf-8"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f4f1; --surface: #ffffff; --surface-2: #f8f8f6; --border: #e3e2dd;
+  --text: #0b0b0b; --text-2: #52514e; --text-3: #8a8985; --grid: #e6e5e1;
+  --accent: #2a78d6; --accent-soft: #e4efFB;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7; --s8: #e34948;
+  --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  --radius: 14px; --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --surface-2: #222220; --border: #2e2e2b;
+    --text: #ffffff; --text-2: #c3c2b7; --text-3: #8b8a83; --grid: #2e2e2b;
+    --accent: #3987e5; --accent-soft: #1c2f47;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+    --shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211; --surface: #1a1a19; --surface-2: #222220; --border: #2e2e2b;
+  --text: #ffffff; --text-2: #c3c2b7; --text-3: #8b8a83; --grid: #2e2e2b;
+  --accent: #3987e5; --accent-soft: #1c2f47;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  --shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.45; }
+a { color: var(--accent); }
+header.top { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+.top-inner { max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px; }
+.brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+.brand small { color: var(--text-3); font-weight: 500; font-size: 12px; }
+nav.tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
+nav.tabs button { border: 0; background: transparent; color: var(--text-2); padding: 8px 12px; border-radius: 999px; font: inherit; font-weight: 500; cursor: pointer; }
+nav.tabs button:hover { background: var(--surface-2); }
+nav.tabs button.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.theme-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text-2); border-radius: 999px; padding: 6px 12px; cursor: pointer; font: inherit; }
+main { max-width: 1440px; margin: 0 auto; padding: 16px; }
+.filters { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px 16px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.filters label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); font-weight: 600; margin-bottom: 4px; }
+.filters select, .filters input[type=range] { width: 100%; }
+.filters select { font: inherit; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; }
+.filters select[multiple] { height: 92px; }
+.range-row { display: flex; align-items: center; gap: 8px; }
+.range-row output { min-width: 48px; text-align: right; font-variant-numeric: tabular-nums; color: var(--text-2); font-weight: 600; }
+.filters .actions { display: flex; align-items: end; gap: 8px; }
+.btn { font: inherit; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); border-radius: 8px; padding: 7px 12px; cursor: pointer; font-weight: 500; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.summary-line { color: var(--text-2); margin: 0 0 12px 2px; font-size: 13px; }
+.summary-line b { color: var(--text); }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+.kpi .label { font-size: 12px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.kpi .value { font-size: 26px; font-weight: 700; margin: 4px 0 2px; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.kpi .sub { font-size: 12px; color: var(--text-2); }
+.kpi .value.good { color: var(--good); } .kpi .value.warn { color: var(--serious); } .kpi .value.bad { color: var(--critical); }
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px 8px; box-shadow: var(--shadow); grid-column: span 6; min-width: 0; }
+.card.w4 { grid-column: span 4; } .card.w8 { grid-column: span 8; } .card.w12 { grid-column: span 12; }
+.card h3 { margin: 0 0 2px; font-size: 15px; font-weight: 600; }
+.card p.hint { margin: 0 0 6px; color: var(--text-3); font-size: 12px; }
+.card .ctl { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 4px 0 6px; font-size: 12px; color: var(--text-2); }
+.card .ctl select, .card .ctl input[type=range] { font: inherit; font-size: 12px; }
+.card .ctl select { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 3px 6px; }
+.chart { width: 100%; height: 360px; }
+.chart.tall { height: 460px; } .chart.xtall { height: 560px; }
+section.panel { display: none; }
+section.panel.active { display: block; }
+h2.section { font-size: 18px; margin: 20px 0 10px; }
+.note { background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 10px; padding: 10px 14px; color: var(--text-2); font-size: 13px; margin-bottom: 14px; }
+table.data { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.data th, table.data td { padding: 7px 8px; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+table.data th { position: sticky; top: 0; background: var(--surface); color: var(--text-3); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; cursor: pointer; user-select: none; }
+table.data th.sorted::after { content: " ▾"; color: var(--accent); }
+table.data th.sorted.asc::after { content: " ▴"; }
+table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.table-wrap { max-height: 520px; overflow: auto; border: 1px solid var(--border); border-radius: 10px; }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+.pill.Strong { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+.pill.Fair { background: color-mix(in srgb, var(--s1) 18%, transparent); color: var(--s1); }
+.pill.Weak { background: color-mix(in srgb, var(--serious) 22%, transparent); color: var(--serious); }
+.pill.Critical { background: color-mix(in srgb, var(--critical) 18%, transparent); color: var(--critical); }
+.bar { display: inline-block; height: 8px; border-radius: 4px; background: var(--s1); vertical-align: middle; margin-right: 6px; }
+.qa { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surface); }
+.qa summary { padding: 10px 14px; cursor: pointer; font-weight: 600; list-style: none; display: flex; gap: 10px; align-items: baseline; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary .id { color: var(--text-3); font-weight: 600; font-size: 12px; min-width: 32px; }
+.qa .body { padding: 0 14px 12px 56px; color: var(--text-2); }
+.qa .body a { font-size: 12px; }
+.qa .tag { font-size: 11px; color: var(--text-3); font-weight: 500; margin-left: auto; }
+.models { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.model { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+.model h4 { margin: 0 0 6px; font-size: 14px; }
+.model .m { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; border-bottom: 1px dashed var(--border); }
+.model .m b { font-variant-numeric: tabular-nums; }
+.model .desc { color: var(--text-3); font-size: 12px; margin-top: 6px; }
+footer { color: var(--text-3); font-size: 12px; text-align: center; padding: 24px 0 32px; }
+@media (max-width: 1024px) { .card, .card.w4, .card.w8 { grid-column: span 12; } }
+@media (max-width: 640px) { main { padding: 12px 16px; } .kpi .value { font-size: 22px; } .chart { height: 320px; } nav.tabs { margin-left: 0; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand"><span class="dot"></span><div>LS 2.0 Facility Dashboard<br><small>Bi-weekly PHC monitoring · Kaduna State</small></div></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="overview" class="active">Overview</button>
+      <button data-tab="access">Access &amp; readiness</button>
+      <button data-tab="hrh">Human resources</button>
+      <button data-tab="supply">Supply chain</button>
+      <button data-tab="vaccines">Vaccines</button>
+      <button data-tab="predict">Predictions</button>
+      <button data-tab="insights">Insights</button>
+      <button data-tab="data">Data</button>
+    </nav>
+    <button class="theme-btn" id="themeBtn" title="Toggle light/dark">◐ Theme</button>
+  </div>
+</header>
+<main>
+  <div class="filters" id="filters">
+    <div><label>LGA</label><select id="fLga" multiple></select></div>
+    <div><label>Facility type</label><select id="fType" multiple></select></div>
+    <div><label>Setting</label><select id="fSetting"><option value="">All</option><option>Urban</option><option>Rural</option></select>
+         <label style="margin-top:8px">Security-risk LGA</label><select id="fSecurity"><option value="">All</option><option value="1">Security-risk only</option><option value="0">Other LGAs only</option></select></div>
+    <div><label>Round from</label><div class="range-row"><input type="range" id="fRoundFrom" min="1" max="6" value="1"><output id="oRoundFrom">1</output></div>
+         <label style="margin-top:8px">Round to</label><div class="range-row"><input type="range" id="fRoundTo" min="1" max="6" value="6"><output id="oRoundTo">6</output></div></div>
+    <div><label>Min readiness score</label><div class="range-row"><input type="range" id="fReadMin" min="0" max="100" value="0"><output id="oReadMin">0</output></div>
+         <label style="margin-top:8px">Max readiness score</label><div class="range-row"><input type="range" id="fReadMax" min="0" max="100" value="100"><output id="oReadMax">100</output></div></div>
+    <div class="actions"><button class="btn" id="resetBtn">Reset filters</button><button class="btn primary" id="csvBtn">Export CSV</button></div>
+  </div>
+  <p class="summary-line" id="summaryLine"></p>
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="panel active" id="tab-overview">
+    <div class="kpis" id="kpis"></div>
+    <div class="grid">
+      <div class="card w8"><h3>Readiness score trend by round</h3><p class="hint">Composite of six pillars: open on arrival, attendance, stock availability, vaccine availability, session completion, cold chain. Hover for the pillars.</p><div id="c_trend" class="chart"></div></div>
+      <div class="card w4"><h3>Readiness band distribution</h3><p class="hint">Share of filtered visits in each band.</p><div id="c_bands" class="chart"></div></div>
+      <div class="card w6"><h3>Readiness by LGA</h3><p class="hint">Mean composite score; dotted line is the filtered average.</p><div id="c_lga_readiness" class="chart tall"></div></div>
+      <div class="card w6"><h3>Facility map</h3><p class="hint">Colour = readiness, size = stock-out rate. Hover a facility for its profile.</p><div id="c_map" class="chart tall"></div></div>
+      <div class="card w12"><h3>Readiness pillars by facility type</h3><p class="hint">Each pillar is a 0-100% rate; a differentiated support package by level of care is warranted when gaps differ by type.</p><div id="c_pillars" class="chart"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ ACCESS ============ -->
+  <section class="panel" id="tab-access">
+    <div class="grid">
+      <div class="card w6"><h3>Open on arrival, by LGA</h3><p class="hint">Share of visits where the facility was already open when the data champion arrived.</p><div id="c_open_lga" class="chart tall"></div></div>
+      <div class="card w6"><h3>Why facilities were closed</h3><p class="hint">Reasons recorded when the facility was closed on arrival.</p><div id="c_closed_reasons" class="chart tall"></div></div>
+      <div class="card w4"><h3>Hours of operation</h3><p class="hint">By facility type (unique facilities).</p><div id="c_hours" class="chart"></div></div>
+      <div class="card w4"><h3>Emergency referral capacity</h3><p class="hint">Can refer obstetric emergencies; transport available when needed in last 2 weeks.</p><div id="c_referral" class="chart"></div></div>
+      <div class="card w4"><h3>Cold chain equipment</h3><p class="hint">Availability vs functionality where available.</p><div id="c_cce" class="chart"></div></div>
+      <div class="card w6"><h3>Service availability &amp; session completion</h3><p class="hint">Offered = facility provides the service; completion = all planned sessions last week conducted.</p><div id="c_services" class="chart tall"></div></div>
+      <div class="card w6"><h3>Why planned sessions were missed</h3><div class="ctl"><span>Service</span><select id="sSessionService"><option value="">All services</option></select></div><div id="c_session_reasons" class="chart tall"></div></div>
+      <div class="card w12"><h3>Training coverage (past 2 years)</h3><p class="hint">Share of filtered facilities with at least one staff member trained, by training type.</p><div id="c_training" class="chart tall"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ HRH ============ -->
+  <section class="panel" id="tab-hrh">
+    <div class="grid">
+      <div class="card w6"><h3>Attendance of scheduled permanent staff, by cadre</h3><p class="hint">Present ÷ scheduled (morning + afternoon + evening shifts).</p><div id="c_att_cadre" class="chart tall"></div></div>
+      <div class="card w6"><h3>Attendance by LGA</h3><div id="c_att_lga" class="chart tall"></div></div>
+      <div class="card w6"><h3>Why permanent staff were absent</h3><div class="ctl"><span>Cadre</span><select id="sAbsCadre"><option value="">All cadres</option></select><span>Top</span><input type="range" id="sAbsTop" min="5" max="20" value="10"><output id="oAbsTop">10</output></div><div id="c_absence" class="chart tall"></div></div>
+      <div class="card w6"><h3>Workforce composition by cadre</h3><p class="hint">Permanent, ad hoc/seconded (A: BHCPF/IMPACT-funded; B: NYSC/students) and volunteers.</p><div id="c_workforce" class="chart tall"></div></div>
+      <div class="card w6"><h3>Salary timeliness &amp; attendance by round</h3><p class="hint">Bi-weekly 3 (round 4) shows what happens to attendance when salaries are late.</p><div id="c_salary_trend" class="chart"></div></div>
+      <div class="card w6"><h3>Attendance by salary timeliness and roster practice</h3><div id="c_salary_roster" class="chart"></div></div>
+      <div class="card w6"><h3>How often staff leave the post to access salary</h3><div id="c_leave_salary" class="chart"></div></div>
+      <div class="card w6"><h3>Attendance vs distance to LGA headquarters</h3><p class="hint">Each point is a facility (mean over filtered rounds).</p><div id="c_att_distance" class="chart"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ SUPPLY ============ -->
+  <section class="panel" id="tab-supply">
+    <div class="grid">
+      <div class="card w6"><h3>Stock-out rate by commodity</h3><div class="ctl"><span>Category</span><select id="sComCat"><option value="">All categories</option></select></div><div id="c_stockout_com" class="chart xtall"></div></div>
+      <div class="card w6"><h3>Stock-out heatmap: LGA × commodity</h3><p class="hint">Darker = higher share of visits with a stock-out since the previous visit.</p><div id="c_stockout_heat" class="chart xtall"></div></div>
+      <div class="card w6"><h3>Main reasons for stock-outs</h3><div class="ctl"><span>Commodity</span><select id="sSoCommodity"><option value="">All commodities</option></select></div><div id="c_stockout_reasons" class="chart tall"></div></div>
+      <div class="card w6"><h3>Requisition funnel</h3><p class="hint">Submitted → complete &amp; on time → fully received → delivery documented.</p><div id="c_funnel" class="chart tall"></div></div>
+      <div class="card w4"><h3>Stock-out rate by supplier</h3><div id="c_supplier" class="chart"></div></div>
+      <div class="card w4"><h3>Requisition behaviour vs stock-outs</h3><p class="hint">Requisition submitted × knows minimum-stock calculation.</p><div id="c_req_behaviour" class="chart"></div></div>
+      <div class="card w4"><h3>Below minimum stock (early warning)</h3><div class="ctl"><span>Show items ≥</span><input type="range" id="sMinRate" min="0" max="100" value="0"><output id="oMinRate">0%</output></div><div id="c_below_min" class="chart"></div></div>
+      <div class="card w12"><h3>Stock-out trend by category and round</h3><div id="c_stockout_trend" class="chart"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ VACCINES ============ -->
+  <section class="panel" id="tab-vaccines">
+    <div class="grid">
+      <div class="card w6"><h3>Vaccine availability (facilities that stock vaccines)</h3><div id="c_vac_avail" class="chart tall"></div></div>
+      <div class="card w6"><h3>Doses used, by vaccine</h3><div id="c_vac_doses" class="chart tall"></div></div>
+      <div class="card w4"><h3>Vaccine stocking status</h3><p class="hint">Unique facilities in the filter.</p><div id="c_vac_status" class="chart"></div></div>
+      <div class="card w4"><h3>Availability by cold chain status</h3><div id="c_vac_cce" class="chart"></div></div>
+      <div class="card w4"><h3>Cold chain interruption reasons</h3><div id="c_cc_reasons" class="chart"></div></div>
+      <div class="card w12"><h3>Vaccine availability by LGA and round</h3><div id="c_vac_heat" class="chart tall"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ PREDICT ============ -->
+  <section class="panel" id="tab-predict">
+    <div class="note">Models are trained on what was observed at one visit to predict the next one, so they can be re-run after each bi-weekly round. Scores below are for the <b>latest round</b> of each facility in the current LGA / type filter (round sliders do not apply here).</div>
+    <div class="models" id="models"></div>
+    <div class="grid">
+      <div class="card w12"><h3>Facilities at risk of dropping below readiness 65 at the next visit</h3>
+        <div class="ctl"><span>Risk threshold</span><input type="range" id="sRiskThr" min="0" max="100" value="50"><output id="oRiskThr">50%</output><span id="riskCount"></span></div>
+        <div class="table-wrap"><table class="data" id="riskTable"></table></div></div>
+      <div class="card w6"><h3>Commodity stock-out risk at next visit</h3><div class="ctl"><span>Min risk</span><input type="range" id="sSoRisk" min="0" max="100" value="60"><output id="oSoRisk">60%</output></div><p class="hint">Facility × commodity pairs above the threshold, ranked. Use for targeted emergency resupply.</p><div id="c_so_risk" class="chart xtall"></div></div>
+      <div class="card w6"><h3>Expected attendance gain if salary is paid on time</h3><p class="hint">Counterfactual from the attendance driver model, per facility (latest round). Facilities with late salary show the gain; on-time facilities show zero.</p><div id="c_cf_salary" class="chart xtall"></div></div>
+      <div class="card w6"><h3>Stock-out model: what matters</h3><div id="c_ml_so_imp" class="chart tall"></div></div>
+      <div class="card w6"><h3>Stock-out model: ROC (held-out round)</h3><div id="c_ml_so_roc" class="chart tall"></div></div>
+      <div class="card w6"><h3>At-risk model: what matters</h3><div id="c_ml_risk_imp" class="chart tall"></div></div>
+      <div class="card w6"><h3>Attendance driver model: what matters</h3><div id="c_ml_att_imp" class="chart tall"></div></div>
+      <div class="card w12"><h3>Facility segments</h3><p class="hint">K-means on the mean readiness pillars per facility; use segments to tailor the support package.</p><div id="c_segments" class="chart tall"></div></div>
+    </div>
+  </section>
+
+  <!-- ============ INSIGHTS ============ -->
+  <section class="panel" id="tab-insights">
+    <div class="note">Thirty decision questions answered with SQL against the survey warehouse (full network, all rounds). Each links to its standalone interactive figure. The tabs above let you re-cut the same metrics by LGA, facility type and round.</div>
+    <div id="qa"></div>
+  </section>
+
+  <!-- ============ DATA ============ -->
+  <section class="panel" id="tab-data">
+    <div class="note">Filtered visit-level records (<span id="dataCount"></span> rows). Click a header to sort; use <b>Export CSV</b> above to download the current selection.</div>
+    <div class="table-wrap" style="max-height:70vh"><table class="data" id="dataTable"></table></div>
+  </section>
+  <footer id="footer"></footer>
+</main>
+
+<script id="payload" type="application/json">/*__DATA__*/</script>
+<script>
+(function () {
+'use strict';
+const D = JSON.parse(document.getElementById('payload').textContent);
+const $ = (id) => document.getElementById(id);
+
+// ---------- helpers ----------
+function rows(col) { // columnar -> array of objects
+  const keys = Object.keys(col); const n = col[keys[0]].length; const out = new Array(n);
+  for (let i = 0; i < n; i++) { const o = {}; for (const k of keys) o[k] = col[k][i]; out[i] = o; }
+  return out;
+}
+const V = rows(D.visits), COM = rows(D.commodities), STF = rows(D.staffing), ABS = rows(D.absences), VAC = rows(D.vaccines),
+      SES = rows(D.sessions), CCE = rows(D.cce), TRN = rows(D.trainings), FPRED = rows(D.facility_pred), CPRED = rows(D.commodity_pred);
+const facilityById = {}; V.forEach(v => { facilityById[v.facility_id] = v; });
+const mean = (a) => { const b = a.filter(x => x !== null && x !== undefined && !Number.isNaN(x)); return b.length ? b.reduce((s, x) => s + x, 0) / b.length : null; };
+const sum = (a) => a.reduce((s, x) => s + (x || 0), 0);
+const pct = (x, d = 1) => x === null || x === undefined ? '–' : (100 * x).toFixed(d) + '%';
+const fmt = (x, d = 1) => x === null || x === undefined ? '–' : Number(x).toFixed(d);
+function groupBy(arr, keyFn) { const m = new Map(); for (const r of arr) { const k = keyFn(r); if (!m.has(k)) m.set(k, []); m.get(k).push(r); } return m; }
+function rate(arr, f) { return mean(arr.map(f)); }
+function sortBy(arr, f, desc = false) { return arr.slice().sort((a, b) => (desc ? -1 : 1) * ((f(a) ?? -Infinity) - (f(b) ?? -Infinity))); }
+function fillSelect(sel, values, multiple) { for (const v of values) { const o = document.createElement('option'); o.value = v; o.textContent = v; if (multiple) o.selected = false; sel.appendChild(o); } }
+function selected(sel) { return Array.from(sel.selectedOptions).map(o => o.value).filter(v => v !== ''); }
+
+// ---------- theme ----------
+function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function palette() { return [1,2,3,4,5,6,7,8].map(i => css('--s' + i)); }
+function merge(a, b) { const o = Object.assign({}, a); for (const k in b) { o[k] = (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k] && typeof a[k] === 'object') ? merge(a[k], b[k]) : b[k]; } return o; }
+function baseLayout(extra) {
+  return merge({
+    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', colorway: palette(),
+    font: { family: 'Inter, -apple-system, Segoe UI, Helvetica, Arial, sans-serif', size: 12, color: css('--text') },
+    margin: { l: 56, r: 20, t: 16, b: 48 },
+    xaxis: { gridcolor: css('--grid'), zerolinecolor: css('--grid'), linecolor: css('--grid'), tickcolor: css('--grid'), automargin: true, title: { font: { color: css('--text-2') } } },
+    yaxis: { gridcolor: css('--grid'), zerolinecolor: css('--grid'), linecolor: css('--grid'), tickcolor: css('--grid'), automargin: true, title: { font: { color: css('--text-2') } } },
+    legend: { orientation: 'h', y: 1.08, x: 0, font: { color: css('--text-2') } },
+    hoverlabel: { bgcolor: css('--surface'), bordercolor: css('--border'), font: { color: css('--text') } },
+    bargap: 0.35, hovermode: 'closest',
+  }, extra || {});
+}
+const CFG = { displayModeBar: false, responsive: true };
+function plot(id, traces, layout) { Plotly.react($(id), traces, baseLayout(layout), CFG); }
+function hbar(id, labels, values, opts = {}) {
+  const o = Object.assign({ fmt: '.0%', color: css('--s1'), xrange: null, height: null, hover: '%{y}: %{x:.1%}<extra></extra>', text: true, tickformat: '.0%', line: null }, opts);
+  const traces = [{ type: 'bar', orientation: 'h', x: values, y: labels, marker: { color: o.color, line: { width: 0 } }, width: 0.62,
+    text: o.text ? values.map(v => v === null ? '' : (o.fmt === '.0%' ? pct(v, 0) : o.fmt === '.1%' ? pct(v, 1) : o.fmt === ',' ? Math.round(v).toLocaleString() : o.fmt === '.3f' ? fmt(v, 3) : fmt(v, 1))) : undefined,
+    textposition: 'outside', cliponaxis: false, textfont: { color: css('--text-2'), size: 11 }, hovertemplate: o.hover }];
+  const layout = { xaxis: { tickformat: o.tickformat, range: o.xrange, gridcolor: css('--grid') }, yaxis: { automargin: true }, margin: { l: 10, r: 60, t: 10, b: 40 } };
+  if (o.line !== null && o.line !== undefined) layout.shapes = [{ type: 'line', x0: o.line, x1: o.line, y0: -0.5, y1: labels.length - 0.5, line: { color: css('--text-3'), dash: 'dot', width: 1.5 } }];
+  plot(id, traces, layout);
+}
+function groupedBar(id, cats, series, opts = {}) { // series: [{name, values}]
+  const o = Object.assign({ fmt: '.0%', horizontal: false, stacked: false, tickformat: '.0%', yrange: null, hover: null }, opts);
+  const pal = palette();
+  const traces = series.map((s, i) => ({ type: 'bar', name: s.name, orientation: o.horizontal ? 'h' : 'v', x: o.horizontal ? s.values : cats, y: o.horizontal ? cats : s.values,
+    marker: { color: pal[i % 8], line: { color: css('--surface'), width: o.stacked ? 2 : 0 } },
+    text: o.fmt ? s.values.map(v => v === null ? '' : (o.fmt === '.0%' ? pct(v, 0) : o.fmt === ',' ? Math.round(v).toLocaleString() : o.fmt === '.3f' ? fmt(v, 3) : fmt(v, 1))) : undefined,
+    textposition: o.stacked ? 'inside' : 'outside', cliponaxis: false, textfont: { size: 10, color: o.stacked ? '#fff' : css('--text-2') },
+    hovertemplate: o.hover || (s.name + ' · %{x}: %{y' + (o.tickformat === '.0%' ? ':.1%' : '') + '}<extra></extra>') }));
+  const layout = { barmode: o.stacked ? 'stack' : 'group', bargroupgap: 0.08 };
+  if (o.horizontal) { layout.xaxis = { tickformat: o.tickformat }; layout.yaxis = { automargin: true }; layout.margin = { l: 10, r: 50, t: 30, b: 40 }; }
+  else { layout.yaxis = { tickformat: o.tickformat, range: o.yrange }; layout.margin = { l: 50, r: 16, t: 30, b: 60 }; }
+  plot(id, traces, layout);
+}
+const SEQ = [[0, '#cde2fb'], [0.33, '#86b6ef'], [0.66, '#3987e5'], [1, '#0d366b']];
+const SEQ_R = [[0, '#0d366b'], [0.33, '#3987e5'], [0.66, '#86b6ef'], [1, '#cde2fb']];
+
+// ---------- filters ----------
+fillSelect($('fLga'), D.meta.lgas, true); fillSelect($('fType'), D.meta.facility_types, true);
+fillSelect($('sSessionService'), D.meta.services); fillSelect($('sAbsCadre'), D.meta.cadres); fillSelect($('sComCat'), D.meta.categories); fillSelect($('sSoCommodity'), D.meta.commodities);
+const roundName = {}; D.meta.rounds.forEach(r => { roundName[r.round_number] = r.round_name; });
+$('fRoundFrom').max = D.meta.rounds.length; $('fRoundTo').max = D.meta.rounds.length; $('fRoundTo').value = D.meta.rounds.length; $('oRoundTo').textContent = D.meta.rounds.length;
+
+let F = {}; // current filtered state
+function applyFilters() {
+  const lgas = new Set(selected($('fLga'))), types = new Set(selected($('fType')));
+  const setting = $('fSetting').value, sec = $('fSecurity').value;
+  let r0 = +$('fRoundFrom').value, r1 = +$('fRoundTo').value; if (r0 > r1) [r0, r1] = [r1, r0];
+  let s0 = +$('fReadMin').value, s1 = +$('fReadMax').value; if (s0 > s1) [s0, s1] = [s1, s0];
+  const visits = V.filter(v => (!lgas.size || lgas.has(v.lga)) && (!types.size || types.has(v.facility_type)) && (!setting || v.urban_rural === setting) &&
+    (sec === '' || (sec === '1') === !!v.security_risk_lga) && v.round_number >= r0 && v.round_number <= r1 && v.readiness_score >= s0 && v.readiness_score <= s1);
+  const ids = new Set(visits.map(v => v.visit_id)); const fids = new Set(visits.map(v => v.facility_id));
+  const byId = {}; visits.forEach(v => { byId[v.visit_id] = v; });
+  F = { visits, ids, fids, byId, lgas, types, setting, sec, r0, r1,
+    com: COM.filter(r => ids.has(r.visit_id)), stf: STF.filter(r => ids.has(r.visit_id)), abs: ABS.filter(r => ids.has(r.visit_id)),
+    vac: VAC.filter(r => ids.has(r.visit_id)), ses: SES.filter(r => ids.has(r.visit_id)), cce: CCE.filter(r => ids.has(r.visit_id)),
+    trn: TRN.filter(r => fids.has(r.facility_id)),
+    fpred: FPRED.filter(r => fids.has(r.facility_id)), cpred: CPRED.filter(r => fids.has(r.facility_id)) };
+  $('summaryLine').innerHTML = `Showing <b>${visits.length.toLocaleString()}</b> visits to <b>${fids.size}</b> facilities · rounds <b>${r0}–${r1}</b> (${roundName[r0]} → ${roundName[r1]}) · ${lgas.size ? lgas.size + ' LGA(s)' : 'all 23 LGAs'} · ${types.size ? Array.from(types).join(', ') : 'all facility types'}`;
+  renderAll();
+}
+['fLga', 'fType', 'fSetting', 'fSecurity'].forEach(id => $(id).addEventListener('change', applyFilters));
+[['fRoundFrom', 'oRoundFrom', ''], ['fRoundTo', 'oRoundTo', ''], ['fReadMin', 'oReadMin', ''], ['fReadMax', 'oReadMax', '']].forEach(([i, o]) => {
+  $(i).addEventListener('input', () => { $(o).textContent = $(i).value; }); $(i).addEventListener('change', applyFilters); });
+$('resetBtn').addEventListener('click', () => { ['fLga', 'fType'].forEach(id => Array.from($(id).options).forEach(o => o.selected = false)); $('fSetting').value = ''; $('fSecurity').value = '';
+  $('fRoundFrom').value = 1; $('fRoundTo').value = D.meta.rounds.length; $('fReadMin').value = 0; $('fReadMax').value = 100;
+  $('oRoundFrom').textContent = 1; $('oRoundTo').textContent = D.meta.rounds.length; $('oReadMin').textContent = 0; $('oReadMax').textContent = 100; applyFilters(); });
+
+// ---------- tabs ----------
+let activeTab = 'overview';
+$('tabs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; activeTab = b.dataset.tab;
+  document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('active', x === b));
+  document.querySelectorAll('section.panel').forEach(s => s.classList.toggle('active', s.id === 'tab-' + activeTab)); renderAll(); window.scrollTo({ top: 0 }); });
+$('themeBtn').addEventListener('click', () => { const cur = document.documentElement.getAttribute('data-theme');
+  const dark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark'); try { localStorage.setItem('ls2-theme', dark ? 'light' : 'dark'); } catch (e) {} renderAll(); });
+try { const t = localStorage.getItem('ls2-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+
+// ---------- renderers ----------
+function kpis() {
+  const v = F.visits; const k = [];
+  const open = rate(v, x => x.open_flag), att = sum(v.map(x => x.permanent_present_today)) / Math.max(1, sum(v.map(x => x.permanent_scheduled_today)));
+  const so = sum(F.com.map(c => c.stockout_flag)) / Math.max(1, F.com.length), vac = rate(F.vac, x => x.in_stock_flag), ready = rate(v, x => x.readiness_score);
+  const cc = rate(v.filter(x => x.has_cce), x => x.cc_interruption), sal = rate(v, x => x.salary_on_time), ses = rate(v, x => x.session_completion_rate);
+  const cls = (x, good, bad, invert) => { if (x === null) return ''; const g = invert ? x <= good : x >= good, b = invert ? x >= bad : x <= bad; return g ? 'good' : b ? 'bad' : 'warn'; };
+  k.push(['Visits', v.length.toLocaleString(), `${F.fids.size} facilities`, '']);
+  k.push(['Mean readiness', fmt(ready, 1), 'composite score /100', cls(ready, 75, 60)]);
+  k.push(['Open on arrival', pct(open), 'share of visits', cls(open, 0.85, 0.7)]);
+  k.push(['Staff attendance', pct(att), 'permanent staff present ÷ scheduled', cls(att, 0.8, 0.65)]);
+  k.push(['Stock-out rate', pct(so), 'tracer items stocked out since last visit', cls(so, 0.2, 0.35, true)]);
+  k.push(['Vaccine availability', pct(vac), 'antigens in stock (stocking facilities)', cls(vac, 0.8, 0.6)]);
+  k.push(['Sessions completed', pct(ses), 'planned sessions fully delivered', cls(ses, 0.85, 0.7)]);
+  k.push(['Cold chain interruptions', pct(cc), 'facilities with CCE', cls(cc, 0.1, 0.25, true)]);
+  k.push(['Salary on time', pct(sal), 'paid 25th–month end, last 3 months', cls(sal, 0.8, 0.5)]);
+  $('kpis').innerHTML = k.map(([l, val, s, c]) => `<div class="kpi"><div class="label">${l}</div><div class="value ${c}">${val}</div><div class="sub">${s}</div></div>`).join('');
+}
+
+function overview() {
+  kpis();
+  const byRound = groupBy(F.visits, v => v.round_number); const rs = Array.from(byRound.keys()).sort((a, b) => a - b);
+  const pillars = [['readiness_score', 'Readiness', 1], ['open_flag', 'Open on arrival', 100], ['attendance_rate', 'Attendance', 100], ['stockout_rate', 'Stock-out rate', 100], ['vaccine_availability_rate', 'Vaccine availability', 100], ['session_completion_rate', 'Session completion', 100]];
+  plot('c_trend', pillars.map(([k, name, m], i) => ({ type: 'scatter', mode: 'lines+markers', name, x: rs.map(r => roundName[r]), y: rs.map(r => { const a = rate(byRound.get(r), v => v[k]); return a === null ? null : a * m; }),
+      line: { width: i === 0 ? 3 : 2 }, marker: { size: 8 }, visible: i === 0 ? true : 'legendonly', hovertemplate: name + ': %{y:.1f}<extra></extra>' })),
+    { hovermode: 'x unified', yaxis: { title: { text: 'Score / rate (0-100)' }, rangemode: 'tozero' }, margin: { t: 40 } });
+  const bands = ['Strong', 'Fair', 'Weak', 'Critical']; const bc = groupBy(F.visits, v => v.readiness_band);
+  plot('c_bands', [{ type: 'pie', hole: 0.55, labels: bands, values: bands.map(b => (bc.get(b) || []).length), sort: false, marker: { colors: [css('--good'), css('--s1'), css('--serious'), css('--critical')], line: { color: css('--surface'), width: 2 } },
+    textinfo: 'label+percent', textfont: { size: 11 }, hovertemplate: '%{label}: %{value} visits (%{percent})<extra></extra>' }], { showlegend: false, margin: { l: 10, r: 10, t: 10, b: 10 } });
+  const byL = sortBy(Array.from(groupBy(F.visits, v => v.lga)).map(([l, a]) => ({ l, r: rate(a, v => v.readiness_score) })), x => x.r);
+  hbar('c_lga_readiness', byL.map(x => x.l), byL.map(x => x.r), { fmt: '.1f', tickformat: '', hover: '%{y}: %{x:.1f}<extra></extra>', line: rate(F.visits, v => v.readiness_score), xrange: [0, 100] });
+  const byF = Array.from(groupBy(F.visits, v => v.facility_id)).map(([id, a]) => ({ id, n: a[0].facility_name, lga: a[0].lga, t: a[0].facility_type, lat: a[0].latitude, lon: a[0].longitude, r: rate(a, v => v.readiness_score), so: rate(a, v => v.stockout_rate), att: rate(a, v => v.attendance_rate) }));
+  plot('c_map', [{ type: 'scattermap', lat: byF.map(f => f.lat), lon: byF.map(f => f.lon), mode: 'markers',
+      marker: { size: byF.map(f => 7 + 18 * (f.so || 0)), color: byF.map(f => f.r), colorscale: SEQ, cmin: 40, cmax: 95, colorbar: { title: { text: 'Readiness' }, thickness: 10, len: 0.6, tickfont: { color: css('--text-2') } }, opacity: 0.85 },
+      text: byF.map(f => `<b>${f.n}</b><br>${f.lga} · ${f.t}<br>Readiness ${fmt(f.r)} · Stock-out ${pct(f.so)} · Attendance ${pct(f.att)}`), hovertemplate: '%{text}<extra></extra>' }],
+    { map: { style: document.documentElement.getAttribute('data-theme') === 'dark' || (!document.documentElement.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches) ? 'carto-darkmatter' : 'carto-positron', center: { lat: 10.35, lon: 7.7 }, zoom: 6.4 }, margin: { l: 0, r: 0, t: 0, b: 0 } });
+  const types = D.meta.facility_types.filter(t => F.visits.some(v => v.facility_type === t)); const byT = groupBy(F.visits, v => v.facility_type);
+  const pl = [['open_flag', 'Open on arrival'], ['attendance_rate', 'Attendance'], ['stockout_rate', 'Stock availability', true], ['vaccine_availability_rate', 'Vaccine availability'], ['session_completion_rate', 'Session completion'], ['cce_functionality_rate', 'Cold chain functional']];
+  groupedBar('c_pillars', pl.map(p => p[1]), types.map(t => ({ name: t, values: pl.map(([k, , inv]) => { const a = rate(byT.get(t), v => v[k]); return a === null ? null : inv ? 1 - a : a; }) })), { yrange: [0, 1.08] });
+}
+
+function access() {
+  const byL = sortBy(Array.from(groupBy(F.visits, v => v.lga)).map(([l, a]) => ({ l, r: rate(a, v => v.open_flag) })), x => x.r);
+  hbar('c_open_lga', byL.map(x => x.l), byL.map(x => x.r), { line: rate(F.visits, v => v.open_flag), xrange: [0, 1.1] });
+  const closed = F.visits.filter(v => !v.open_flag); const cr = sortBy(Array.from(groupBy(closed, v => v.reason_closed_on_arrival || 'Not recorded')).map(([k, a]) => ({ k, s: a.length / Math.max(1, closed.length), n: a.length })), x => x.s);
+  hbar('c_closed_reasons', cr.map(x => x.k), cr.map(x => x.s), { color: css('--s2'), hover: '%{y}: %{x:.1%}<extra></extra>', xrange: [0, Math.max(0.1, ...cr.map(x => x.s)) * 1.25] });
+  const first = Array.from(groupBy(F.visits, v => v.facility_id).values()).map(a => a[0]); const hours = ['24 hours', '12 hours', '6-8 hours', '<5 hours'];
+  const types = D.meta.facility_types.filter(t => first.some(v => v.facility_type === t));
+  groupedBar('c_hours', types, hours.map(h => ({ name: h, values: types.map(t => first.filter(v => v.facility_type === t && v.hours_of_operation === h).length) })), { stacked: true, fmt: null, tickformat: '', hover: '%{fullData.name} · %{x}: %{y} facilities<extra></extra>' });
+  const refer = rate(F.visits, v => v.refer_flag), transport = rate(F.visits.filter(v => v.refer_flag), v => v.transport_flag);
+  hbar('c_referral', ['Can refer emergencies', 'Transport available when needed'], [refer, transport], { xrange: [0, 1.15], color: css('--s3') });
+  const cceT = Array.from(groupBy(F.cce, c => c.cce_type)).map(([k, a]) => ({ k, av: rate(a, c => c.available_flag), fn: rate(a.filter(c => c.available_flag), c => c.functional_flag) }));
+  groupedBar('c_cce', cceT.map(x => x.k), [{ name: 'Available', values: cceT.map(x => x.av) }, { name: 'Functional (where available)', values: cceT.map(x => x.fn) }], { horizontal: true, fmt: null });
+  const sv = D.meta.services.map(s => { const a = F.ses.filter(x => x.service === s); return { s, off: rate(a, x => x.offered_flag), done: rate(a.filter(x => x.offered_flag), x => x.all_conducted_flag) }; });
+  groupedBar('c_services', sv.map(x => x.s), [{ name: 'Offered', values: sv.map(x => x.off) }, { name: 'All planned sessions conducted', values: sv.map(x => x.done) }], { horizontal: true, fmt: null });
+  const svc = $('sSessionService').value; const missed = F.ses.filter(x => x.all_conducted_flag === 0 && (!svc || x.service === svc));
+  const mr = sortBy(Array.from(groupBy(missed, x => x.reason_not_conducted || 'Not recorded')).map(([k, a]) => ({ k, s: a.length / Math.max(1, missed.length) })), x => x.s);
+  hbar('c_session_reasons', mr.map(x => x.k), mr.map(x => x.s), { color: css('--s2'), xrange: [0, Math.max(0.1, ...mr.map(x => x.s)) * 1.25] });
+  const nF = Math.max(1, F.fids.size); const tr = sortBy(Array.from(groupBy(F.trn, t => t.training)).map(([k, a]) => ({ k, s: new Set(a.map(x => x.facility_id)).size / nF })), x => x.s);
+  hbar('c_training', tr.map(x => x.k), tr.map(x => x.s), { color: css('--s7'), xrange: [0, Math.max(0.1, ...tr.map(x => x.s)) * 1.25] });
+}
+
+function hrh() {
+  const byC = D.meta.cadres.map(c => { const a = F.stf.filter(s => s.cadre === c); const sch = sum(a.map(s => s.scheduled)); return { c, r: sch ? sum(a.map(s => s.present)) / sch : null, sch }; }).filter(x => x.sch > 0);
+  const sc = sortBy(byC, x => x.r); const overall = sum(F.stf.map(s => s.present)) / Math.max(1, sum(F.stf.map(s => s.scheduled)));
+  hbar('c_att_cadre', sc.map(x => x.c), sc.map(x => x.r), { line: overall, xrange: [0, 1.1], fmt: '.1%' });
+  const byL = sortBy(Array.from(groupBy(F.stf, s => F.byId[s.visit_id].lga)).map(([l, a]) => ({ l, r: sum(a.map(s => s.present)) / Math.max(1, sum(a.map(s => s.scheduled))) })), x => x.r);
+  hbar('c_att_lga', byL.map(x => x.l), byL.map(x => x.r), { line: overall, xrange: [0, 1.1] });
+  const cad = $('sAbsCadre').value, top = +$('sAbsTop').value; $('oAbsTop').textContent = top;
+  const ab = F.abs.filter(a => !cad || a.cadre === cad); const tot = sum(ab.map(a => a.staff_count));
+  const ar = sortBy(Array.from(groupBy(ab, a => a.reason)).map(([k, a]) => ({ k, s: sum(a.map(x => x.staff_count)) / Math.max(1, tot) })), x => x.s, true).slice(0, top).reverse();
+  hbar('c_absence', ar.map(x => x.k), ar.map(x => x.s), { color: css('--s2'), fmt: '.1%', xrange: [0, Math.max(0.05, ...ar.map(x => x.s)) * 1.3] });
+  const firstR = F.r0; const base = F.stf.filter(s => F.byId[s.visit_id].round_number === firstR); const cads = D.meta.cadres.slice().reverse();
+  groupedBar('c_workforce', cads, [['permanent', 'Permanent'], ['adhoc_a', 'Ad hoc A'], ['adhoc_b', 'Ad hoc B'], ['volunteer', 'Volunteer']].map(([k, n]) => ({ name: n, values: cads.map(c => sum(base.filter(s => s.cadre === c).map(s => s[k]))) })), { horizontal: true, stacked: true, fmt: null, tickformat: '', hover: '%{fullData.name} · %{y}: %{x}<extra></extra>' });
+  const byR = groupBy(F.visits, v => v.round_number); const rs = Array.from(byR.keys()).sort((a, b) => a - b);
+  plot('c_salary_trend', [['salary_on_time', 'Salary paid on time'], ['attendance_rate', 'Staff attendance'], ['session_completion_rate', 'Sessions completed']].map(([k, n]) => ({ type: 'scatter', mode: 'lines+markers', name: n, x: rs.map(r => roundName[r]), y: rs.map(r => rate(byR.get(r), v => v[k])), line: { width: 2 }, marker: { size: 8 }, hovertemplate: n + ': %{y:.1%}<extra></extra>' })),
+    { hovermode: 'x unified', yaxis: { tickformat: '.0%', range: [0, 1] }, margin: { t: 40 } });
+  const cells = [['Salary on time', v => v.salary_on_time === 1], ['Salary delayed', v => v.salary_on_time === 0]]; const rost = [['Roster updated this week', v => v.roster_updated === 1], ['Roster not updated', v => v.roster_updated !== 1]];
+  groupedBar('c_salary_roster', cells.map(c => c[0]), rost.map(([n, rf]) => ({ name: n, values: cells.map(([, sf]) => { const a = F.visits.filter(v => sf(v) && rf(v)); const s = sum(a.map(v => v.permanent_scheduled_today)); return s ? sum(a.map(v => v.permanent_present_today)) / s : null; }) })), { yrange: [0, 1] });
+  const freqs = ['Never', 'Once a month', '2-3 times a month', 'Weekly']; const sets = ['Urban', 'Rural'];
+  groupedBar('c_leave_salary', freqs, sets.map(s => { const a = F.visits.filter(v => v.urban_rural === s); return { name: s, values: freqs.map(f => a.length ? a.filter(v => v.leave_for_salary === f).length / a.length : null) }; }), { yrange: [0, 0.7] });
+  const byF = Array.from(groupBy(F.visits, v => v.facility_id).values()).map(a => ({ n: a[0].facility_name, lga: a[0].lga, d: a[0].distance_to_lga_hq_km, att: rate(a, v => v.attendance_rate), hw: a[0].total_health_workers, t: a[0].facility_type }));
+  plot('c_att_distance', [{ type: 'scatter', mode: 'markers', x: byF.map(f => f.d), y: byF.map(f => f.att), marker: { size: byF.map(f => 6 + Math.sqrt(f.hw)), color: css('--s1'), opacity: 0.6, line: { color: css('--surface'), width: 1 } },
+      text: byF.map(f => `<b>${f.n}</b><br>${f.lga} · ${f.t}<br>${f.d} km · ${f.hw} health workers`), hovertemplate: '%{text}<br>Attendance %{y:.1%}<extra></extra>' }],
+    { xaxis: { title: { text: 'Distance to LGA HQ (km)' } }, yaxis: { tickformat: '.0%', title: { text: 'Mean attendance' }, range: [0, 1.05] } });
+}
+
+function supply() {
+  const cat = $('sComCat').value; const com = F.com.filter(c => !cat || c.category === cat);
+  const byC = sortBy(Array.from(groupBy(com, c => c.commodity)).map(([k, a]) => ({ k, s: rate(a, c => c.stockout_flag), cat: a[0].category })), x => x.s);
+  const catColor = { Maternal: css('--s2'), Child: css('--s3'), General: css('--s1'), 'Family Planning': css('--s7') };
+  plot('c_stockout_com', Object.keys(catColor).filter(cc => byC.some(x => x.cat === cc)).map(cc => ({ type: 'bar', orientation: 'h', name: cc, x: byC.filter(x => x.cat === cc).map(x => x.s), y: byC.filter(x => x.cat === cc).map(x => x.k), marker: { color: catColor[cc] }, width: 0.62,
+      text: byC.filter(x => x.cat === cc).map(x => pct(x.s, 0)), textposition: 'outside', cliponaxis: false, textfont: { size: 10, color: css('--text-2') }, hovertemplate: '%{y}: %{x:.1%}<extra></extra>' })),
+    { barmode: 'overlay', xaxis: { tickformat: '.0%', range: [0, Math.max(0.2, ...byC.map(x => x.s)) * 1.2] }, yaxis: { categoryorder: 'array', categoryarray: byC.map(x => x.k), automargin: true }, margin: { l: 10, r: 40, t: 30, b: 40 }, legend: { y: 1.04 } });
+  const lgas = Array.from(new Set(F.visits.map(v => v.lga))).sort(); const coms = byC.map(x => x.k);
+  const byLC = groupBy(com, c => F.byId[c.visit_id].lga + '|' + c.commodity);
+  plot('c_stockout_heat', [{ type: 'heatmap', x: coms, y: lgas, z: lgas.map(l => coms.map(c => rate(byLC.get(l + '|' + c) || [], x => x.stockout_flag))), colorscale: SEQ, zmin: 0, zmax: 0.7, xgap: 2, ygap: 2, colorbar: { tickformat: '.0%', thickness: 10, tickfont: { color: css('--text-2') } }, hovertemplate: '%{y} · %{x}: %{z:.0%}<extra></extra>' }],
+    { xaxis: { tickangle: -45, tickfont: { size: 10 } }, yaxis: { tickfont: { size: 10 }, autorange: 'reversed' }, margin: { l: 10, r: 10, t: 10, b: 120 } });
+  const soc = $('sSoCommodity').value; const so = F.com.filter(c => c.stockout_flag === 1 && (!soc || c.commodity === soc));
+  const sr = sortBy(Array.from(groupBy(so, c => c.stockout_reason || 'Not recorded')).map(([k, a]) => ({ k, s: a.length / Math.max(1, so.length) })), x => x.s);
+  hbar('c_stockout_reasons', sr.map(x => x.k), sr.map(x => x.s), { color: css('--s2'), xrange: [0, Math.max(0.1, ...sr.map(x => x.s)) * 1.3] });
+  const v = F.visits; const sub = v.filter(x => x.req_submitted === 1); const rec = sub.filter(x => x.requisition_receipt_status);
+  const funnel = [['Submitted requisition', rate(v, x => x.req_submitted)], ['Complete & on time', rate(sub, x => x.req_on_time)], ['Fully received', rec.length ? rec.filter(x => x.requisition_receipt_status === 'Yes, all items received').length / rec.length : null], ['Delivery documented', rate(rec.filter(x => x.requisition_receipt_status !== 'No, none received yet'), x => x.documented)]];
+  plot('c_funnel', [{ type: 'funnel', y: funnel.map(f => f[0]), x: funnel.map(f => f[1]), textinfo: 'value', texttemplate: '%{value:.0%}', marker: { color: [css('--s1'), css('--s3'), css('--s4'), css('--s7')] }, connector: { fillcolor: css('--surface-2') }, hovertemplate: '%{y}: %{x:.1%}<extra></extra>' }], { margin: { l: 10, r: 10, t: 10, b: 10 }, xaxis: { visible: false } });
+  const sup = sortBy(Array.from(groupBy(F.com.filter(c => c.supplier), c => c.supplier)).filter(([, a]) => a.length >= 30).map(([k, a]) => ({ k, s: rate(a, c => c.stockout_flag), n: a.length })), x => x.s);
+  hbar('c_supplier', sup.map(x => x.k), sup.map(x => x.s), { xrange: [0, Math.max(0.2, ...sup.map(x => x.s)) * 1.25], hover: '%{y}: %{x:.1%}<extra></extra>' });
+  const kn = ['Yes, I know how to calculate', 'Yes, someone else is assigned to calculate', 'No']; const knLabel = ['Knows calculation', 'Someone else calculates', 'Nobody calculates'];
+  groupedBar('c_req_behaviour', knLabel, [['Requisition submitted', 1], ['No requisition', 0]].map(([n, f]) => ({ name: n, values: kn.map(k => rate(F.com.filter(c => { const vv = F.byId[c.visit_id]; return vv.knows_min_stock_calculation === k && vv.req_submitted === f; }), c => c.stockout_flag)) })), { yrange: [0, 0.6] });
+  const minThr = +$('sMinRate').value / 100; $('oMinRate').textContent = $('sMinRate').value + '%';
+  const bm = sortBy(Array.from(groupBy(F.com.filter(c => c.below_min_stock_flag !== null), c => c.commodity)).map(([k, a]) => ({ k, s: rate(a, c => c.below_min_stock_flag) })).filter(x => x.s >= minThr), x => x.s);
+  hbar('c_below_min', bm.map(x => x.k), bm.map(x => x.s), { color: css('--s4'), xrange: [0, 1.15] });
+  const byR = groupBy(F.com, c => F.byId[c.visit_id].round_number); const rs = Array.from(byR.keys()).sort((a, b) => a - b);
+  plot('c_stockout_trend', D.meta.categories.map(cc => ({ type: 'scatter', mode: 'lines+markers', name: cc, x: rs.map(r => roundName[r]), y: rs.map(r => rate(byR.get(r).filter(c => c.category === cc), c => c.stockout_flag)), line: { width: 2 }, marker: { size: 8 }, hovertemplate: cc + ': %{y:.1%}<extra></extra>' })), { hovermode: 'x unified', yaxis: { tickformat: '.0%', rangemode: 'tozero' }, margin: { t: 40 } });
+}
+
+function vaccines() {
+  const byV = sortBy(D.meta.vaccines.map(vn => { const a = F.vac.filter(x => x.vaccine === vn); return { vn, r: rate(a, x => x.in_stock_flag), d: sum(a.map(x => x.doses_used)) }; }).filter(x => x.r !== null), x => x.r);
+  hbar('c_vac_avail', byV.map(x => x.vn), byV.map(x => x.r), { xrange: [0, 1.15], line: rate(F.vac, x => x.in_stock_flag) });
+  const byD = sortBy(byV, x => x.d); hbar('c_vac_doses', byD.map(x => x.vn), byD.map(x => x.d), { fmt: ',', tickformat: ',', color: css('--s3'), hover: '%{y}: %{x:,} doses<extra></extra>' });
+  const first = Array.from(groupBy(F.visits, v => v.facility_id).values()).map(a => a[0]); const st = ['Yes', 'No, the facility does not stock vaccines but offers Immunization services', 'No, the facility does not stock vaccines and does not offer Immunization services'];
+  plot('c_vac_status', [{ type: 'pie', hole: 0.55, labels: ['Stocks vaccines', 'Immunises, no stock', 'No immunisation'], values: st.map(s => first.filter(v => v.vaccine_stock_status === s).length), sort: false, marker: { colors: [css('--s1'), css('--s4'), css('--s8')], line: { color: css('--surface'), width: 2 } }, textinfo: 'label+percent', textfont: { size: 11 }, hovertemplate: '%{label}: %{value} facilities<extra></extra>' }], { showlegend: false, margin: { l: 10, r: 10, t: 10, b: 10 } });
+  const cells = [['Working fridge', v => v.fridge_ok === 1], ['No working fridge', v => v.fridge_ok !== 1]]; const ints = [['No interruption', v => v.cc_interruption !== 1], ['Interruption since last visit', v => v.cc_interruption === 1]];
+  groupedBar('c_vac_cce', cells.map(c => c[0]), ints.map(([n, f]) => ({ name: n, values: cells.map(([, g]) => rate(F.vac.filter(x => { const vv = F.byId[x.visit_id]; return f(vv) && g(vv); }), x => x.in_stock_flag)) })), { yrange: [0, 1] });
+  const ccr = sortBy(Array.from(groupBy(F.visits.filter(v => v.cc_interruption === 1), v => v.cold_chain_interruption_reason || 'Not recorded')).map(([k, a]) => ({ k, n: a.length })), x => x.n);
+  hbar('c_cc_reasons', ccr.map(x => x.k), ccr.map(x => x.n), { fmt: ',', tickformat: ',', color: css('--s2'), hover: '%{y}: %{x} visits<extra></extra>' });
+  const lgas = Array.from(new Set(F.visits.map(v => v.lga))).sort(); const rs = Array.from(new Set(F.visits.map(v => v.round_number))).sort((a, b) => a - b);
+  const byLR = groupBy(F.vac, x => F.byId[x.visit_id].lga + '|' + F.byId[x.visit_id].round_number);
+  plot('c_vac_heat', [{ type: 'heatmap', x: rs.map(r => roundName[r]), y: lgas, z: lgas.map(l => rs.map(r => rate(byLR.get(l + '|' + r) || [], x => x.in_stock_flag))), colorscale: SEQ, zmin: 0.3, zmax: 1, xgap: 2, ygap: 2, colorbar: { tickformat: '.0%', thickness: 10, tickfont: { color: css('--text-2') } }, hovertemplate: '%{y} · %{x}: %{z:.0%}<extra></extra>' }], { yaxis: { autorange: 'reversed', tickfont: { size: 10 } }, margin: { l: 10, r: 10, t: 10, b: 40 } });
+}
+
+function predict() {
+  const m = D.ml;
+  const cards = [
+    { h: m.stockout.name, rows: [['Best model', m.stockout.best_model.replace('_', ' ')], ['ROC AUC (held-out round)', fmt(m.stockout.candidates[m.stockout.best_model].roc_auc, 3)], ['Average precision', fmt(m.stockout.candidates[m.stockout.best_model].avg_precision, 3)], ['Base rate', pct(m.stockout.positive_rate_test)], ['Training rows', m.stockout.train_rows.toLocaleString()]], d: 'Predicts, per facility × commodity, whether a stock-out will be recorded at the next visit from current balance, adequacy vs minimum, receipts, requisition behaviour, supplier and facility context.' },
+    { h: m.at_risk.name, rows: [['Model', 'random forest'], ['ROC AUC (held-out round)', fmt(m.at_risk.metrics.roc_auc, 3)], ['Average precision', fmt(m.at_risk.metrics.avg_precision, 3)], ['Base rate', pct(m.at_risk.metrics.positive_rate_test)], ['Training rows', m.at_risk.train_rows.toLocaleString()]], d: 'Flags facilities likely to fall into the Weak/Critical bands next round so supportive supervision can be scheduled before the drop.' },
+    { h: m.attendance.name, rows: [['Model', 'gradient boosting'], ['R² (grouped CV, unseen facilities)', fmt(m.attendance.metrics.grouped_cv_r2, 2)], ['R² weighted by headcount', fmt(m.attendance.metrics.grouped_cv_r2_headcount_weighted, 2)], ['MAE vs naive mean', fmt(m.attendance.metrics.grouped_cv_mae, 3) + ' vs ' + fmt(m.attendance.metrics.naive_global_mean_mae, 3)], ['Gain if salary on time', '+' + pct(m.attendance.metrics.mean_gain_salary_on_time)]], d: 'Explains expected attendance from salary timeliness, roster practice, distance, size and security; used for what-if scenarios rather than point forecasts (small headcounts make next-round attendance noisy).' },
+    { h: 'Facility segmentation', rows: [['Method', 'k-means (k=' + m.segmentation.k + ')'], ['Silhouette', fmt(m.segmentation.silhouette, 2)], ...Object.entries(m.segmentation.segment_sizes).map(([k, v]) => [k, v + ' facilities'])], d: 'Groups facilities by their mean profile across the readiness pillars; a weak silhouette means segments overlap and should guide, not dictate, the support package.' },
+  ];
+  $('models').innerHTML = cards.map(c => `<div class="model"><h4>${c.h}</h4>${c.rows.map(r => `<div class="m"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}<div class="desc">${c.d}</div></div>`).join('');
+  const thr = +$('sRiskThr').value / 100; $('oRiskThr').textContent = $('sRiskThr').value + '%';
+  const fp = sortBy(F.fpred, r => r.at_risk_probability, true); const flagged = fp.filter(r => r.at_risk_probability >= thr);
+  $('riskCount').textContent = `${flagged.length} of ${fp.length} facilities flagged`;
+  const cols = [['facility_name', 'Facility'], ['lga', 'LGA'], ['facility_type', 'Type'], ['segment', 'Segment'], ['readiness_score', 'Readiness (latest)', 'n1'], ['at_risk_probability', 'At-risk prob.', 'p'], ['mean_stockout_risk', 'Mean stock-out risk', 'p'], ['attendance_rate', 'Attendance (latest)', 'p'], ['expected_attendance_if_salary_on_time', 'Expected att. if salary on time', 'p'], ['stockout_rate', 'Stock-out rate (latest)', 'p']];
+  $('riskTable').innerHTML = '<thead><tr>' + cols.map(c => `<th>${c[1]}</th>`).join('') + '</tr></thead><tbody>' + flagged.slice(0, 60).map(r => '<tr>' + cols.map(c => { const val = r[c[0]]; if (c[2] === 'p') return `<td class="num"><span class="bar" style="width:${Math.round(40 * val)}px;background:${c[0] === 'at_risk_probability' ? css('--critical') : css('--s1')}"></span>${pct(val, 0)}</td>`; if (c[2] === 'n1') return `<td class="num">${fmt(val, 1)}</td>`; return `<td>${val ?? '–'}</td>`; }).join('') + '</tr>').join('') + '</tbody>';
+  const soThr = +$('sSoRisk').value / 100; $('oSoRisk').textContent = $('sSoRisk').value + '%';
+  const cp = sortBy(F.cpred.filter(r => r.stockout_risk >= soThr), r => r.stockout_risk, true).slice(0, 30).reverse();
+  hbar('c_so_risk', cp.map(r => `${facilityById[r.facility_id].facility_name} · ${r.commodity}`), cp.map(r => r.stockout_risk), { color: css('--critical'), xrange: [0, 1.15], hover: '%{y}<br>Risk %{x:.0%}<extra></extra>' });
+  const cf = sortBy(F.fpred.map(r => ({ n: r.facility_name + ' (' + r.lga + ')', g: r.expected_attendance_if_salary_on_time - r.expected_attendance })).filter(x => x.g > 0.005), x => x.g, true).slice(0, 30).reverse();
+  hbar('c_cf_salary', cf.map(x => x.n), cf.map(x => x.g), { color: css('--good'), fmt: '.1%', xrange: [0, Math.max(0.05, ...cf.map(x => x.g)) * 1.25], hover: '%{y}<br>+%{x:.1%} attendance<extra></extra>' });
+  const imp = (id, list) => { const l = list.slice(0, 12).reverse(); hbar(id, l.map(x => x.feature.replace(/_/g, ' ')), l.map(x => x.importance), { fmt: '.3f', tickformat: '', color: css('--s7'), hover: '%{y}: %{x:.3f}<extra></extra>', xrange: [0, Math.max(0.01, ...l.map(x => x.importance)) * 1.3] }); };
+  imp('c_ml_so_imp', m.stockout.importance); imp('c_ml_risk_imp', m.at_risk.importance); imp('c_ml_att_imp', m.attendance.importance);
+  const roc = D.ml_figs.stockout_roc; plot('c_ml_so_roc', roc.data.map((t, i) => ({ type: 'scatter', mode: 'lines', name: t.name, x: t.x, y: t.y, line: { width: i === 0 ? 2.5 : 1.5, dash: i === 0 ? 'solid' : 'dot', color: i === 0 ? css('--s1') : css('--text-3') } })), { xaxis: { title: { text: 'False positive rate' }, range: [0, 1] }, yaxis: { title: { text: 'True positive rate' }, range: [0, 1.02] }, margin: { t: 40 } });
+  const cen = m.segmentation.centres; const segCols = Object.keys(cen[0]).filter(k => k !== 'segment_id');
+  groupedBar('c_segments', segCols.map(k => k.replace(/_flag|_rate/g, '').replace(/_/g, ' ')), cen.map(c => ({ name: c.segment_id, values: segCols.map(k => c[k]) })), { yrange: [0, 1.1] });
+}
+
+function insights() {
+  if ($('qa').children.length) return;
+  const secs = groupBy(D.analysis, a => a.section);
+  $('qa').innerHTML = Array.from(secs).map(([s, items]) => `<h2 class="section">${s}</h2>` + items.map(a => `<details class="qa"><summary><span class="id">${a.id}</span><span>${a.question}</span><span class="tag">${s}</span></summary><div class="body"><p>${a.answer}</p><a href="${a.figure_file}" target="_blank" rel="noopener">Open interactive figure ↗</a></div></details>`).join('')).join('');
+}
+
+let sortKey = 'readiness_score', sortDesc = true;
+const DATA_COLS = [['facility_name', 'Facility'], ['lga', 'LGA'], ['facility_type', 'Type'], ['round_name', 'Round'], ['visit_date', 'Date'], ['readiness_score', 'Readiness', 'n1'], ['readiness_band', 'Band', 'band'], ['open_flag', 'Open', 'yn'], ['attendance_rate', 'Attendance', 'p'], ['stockout_rate', 'Stock-out', 'p'], ['vaccine_availability_rate', 'Vaccines', 'p'], ['session_completion_rate', 'Sessions', 'p'], ['cce_functionality_rate', 'Cold chain', 'p'], ['salary_on_time', 'Salary on time', 'yn'], ['req_submitted', 'Requisition', 'yn'], ['total_health_workers', 'Health workers', 'n0']];
+function dataTable() {
+  const rowsS = sortBy(F.visits, v => typeof v[sortKey] === 'number' ? v[sortKey] : null, sortDesc); const rowsF = typeof F.visits[0]?.[sortKey] === 'string' ? F.visits.slice().sort((a, b) => (sortDesc ? -1 : 1) * String(a[sortKey]).localeCompare(String(b[sortKey]))) : rowsS;
+  $('dataCount').textContent = F.visits.length.toLocaleString();
+  const cell = (v, c) => { const x = v[c[0]]; switch (c[2]) { case 'p': return `<td class="num">${pct(x)}</td>`; case 'n1': return `<td class="num">${fmt(x, 1)}</td>`; case 'n0': return `<td class="num">${x ?? '–'}</td>`; case 'yn': return `<td>${x === 1 ? 'Yes' : x === 0 ? 'No' : '–'}</td>`; case 'band': return `<td><span class="pill ${x}">${x}</span></td>`; default: return `<td>${x ?? '–'}</td>`; } };
+  $('dataTable').innerHTML = '<thead><tr>' + DATA_COLS.map(c => `<th data-k="${c[0]}" class="${c[0] === sortKey ? 'sorted' + (sortDesc ? '' : ' asc') : ''}">${c[1]}</th>`).join('') + '</tr></thead><tbody>' + rowsF.slice(0, 500).map(v => '<tr>' + DATA_COLS.map(c => cell(v, c)).join('') + '</tr>').join('') + '</tbody>';
+}
+$('dataTable').addEventListener('click', (e) => { const th = e.target.closest('th'); if (!th) return; if (sortKey === th.dataset.k) sortDesc = !sortDesc; else { sortKey = th.dataset.k; sortDesc = true; } dataTable(); });
+$('csvBtn').addEventListener('click', () => { const keys = Object.keys(D.visits); const esc = (x) => x === null || x === undefined ? '' : /[",\n]/.test(String(x)) ? '"' + String(x).replace(/"/g, '""') + '"' : String(x);
+  const csv = [keys.join(',')].concat(F.visits.map(v => keys.map(k => esc(v[k])).join(','))).join('\n'); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'ls2_filtered_visits.csv'; a.click(); });
+
+['sSessionService'].forEach(id => $(id).addEventListener('change', access));
+$('sAbsCadre').addEventListener('change', hrh); $('sAbsTop').addEventListener('input', hrh);
+$('sComCat').addEventListener('change', supply); $('sSoCommodity').addEventListener('change', supply); $('sMinRate').addEventListener('input', supply);
+$('sRiskThr').addEventListener('input', predict); $('sSoRisk').addEventListener('input', predict);
+
+function renderAll() {
+  if (!F.visits) return;
+  if (!F.visits.length) { $('summaryLine').innerHTML += ' · <b>No visits match these filters.</b>'; }
+  ({ overview, access, hrh, supply, vaccines, predict, insights, data: dataTable })[activeTab]();
+}
+$('footer').innerHTML = `LS 2.0 facility survey analytics · dataset generated from the questionnaire structure (${D.visits.visit_id.length.toLocaleString()} visits, ${D.meta.lgas.length} LGAs) · built ${D.generated}`;
+applyFilters();
+})();
+</script>
+</body>
+</html>

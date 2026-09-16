@@ -1,0 +1,185 @@
+facility_id,facility_name,facility_alternate_name,lga,ward,facility_type,urban_rural,security_risk_lga,latitude,longitude,distance_to_lga_hq_km,facility_phone,data_champion
+KD-001,Kudan Rimi PHC,Kasuwan Clinic,Birnin Gwari,Sabon Kanawa,Primary Health Centre,Rural,True,10.77593,6.49,9.9,08199076254,Bala Danladi
+KD-002,Maraban Sarki PHC,Angwan Clinic,Birnin Gwari,Sabon Kanawa,Primary Health Centre,Rural,True,10.59711,6.74291,3.0,08012126918,Aisha Ochigbo
+KD-003,Badarawa Fada PHC,None,Birnin Gwari,Dutsen Gari,Primary Health Centre,Rural,True,10.66516,6.58189,4.3,08125521525,Danjuma Lawal
+KD-004,Tudun Kanawa GH,Rafin Clinic,Birnin Gwari,Dutsen Gari,General Hospital,Rural,True,10.84299,6.50559,7.6,07023065633,Musa Ishaya
+KD-005,Kudan Kaji PHC,None,Birnin Gwari,Sabon Kanawa,Primary Health Centre,Rural,True,10.70655,6.58386,3.7,08117551844,Halima Ishaya
+KD-006,Rigasa Dan Gama BHC,None,Birnin Gwari,Dutsen Gari,Basic Health Centre,Rural,True,10.76067,6.49875,14.6,09040234736,Rahila Tanko
+KD-007,Maraban Sarki GH,None,Birnin Gwari,Angwan Kaji,General Hospital,Rural,True,10.73367,6.40816,4.0,08146842492,Ruth Yakubu
+KD-008,Kudan Wada PHC,Kofar Clinic,Birnin Gwari,Dutsen Gari,Primary Health Centre,Rural,True,10.79974,6.67944,13.5,09070118192,Ruth Danladi
+KD-009,Zango Gari BHC,None,Chikun,Tudun Kanawa,Basic Health Centre,Urban,True,10.58972,7.21717,3.2,08072009776,Bala Ochigbo
+KD-010,Narayi Wada GH,Kasuwan Clinic,Chikun,Tudun Fada,General Hospital,Urban,True,10.3539,7.47305,4.8,08072043756,Musa Haruna
+KD-011,Sabon Fada BHC,None,Chikun,Sabon Gari,Basic Health Centre,Urban,True,10.31696,7.40203,1.4,09175021455,Ibrahim Zakari
+KD-012,Kofar Dan Gama PHC,None,Chikun,Sabon Gari,Primary Health Centre,Urban,True,10.36496,7.33703,2.4,09011885035,Ruth Yakubu
+KD-013,Badarawa Kaji PHC,None,Chikun,Tudun Kanawa,Primary Health Centre,Urban,True,10.25325,7.30559,3.0,08067964757,Yusuf Ochigbo
+KD-014,Kwanar Dan Gama PHC,Gidan Clinic,Chikun,Sabon Gari,Primary Health Centre,Urban,True,10.28503,7.19816,1.0,09159176240,Halima Tanko
+KD-015,Ungwan Rimi PHC,None,Chikun,Sabon Gari,Primary Health Centre,Rural,True,10.57841,7.38814,8.1,07094044924,Hauwa Mohammed
+KD-016,Kudan Kaji GH,None,Chikun,Sabon Gari,General Hospital,Rural,True,10.36557,7.19532,6.5,09115198177,Halima Usman
+KD-017,Zango Gari PHC,Kasuwan Clinic,Giwa,Gidan Kaji,Primary Health Centre,Rural,True,11.18711,7.38947,0.5,09073263916,Sani Lawal
+KD-018,Kudan Wada PHC,None,Giwa,Angwan Kaji,Primary Health Centre,Rural,True,10.92294,7.63245,10.8,08140212737,Abdullahi Ishaya
+KD-019,Rafin Gari PHC,Angwan Clinic,Giwa,Maigana Gari,Primary Health Centre,Rural,True,11.07419,7.68648,2.2,07027385297,Ibrahim Haruna
+KD-020,Gwaraji Kaji PHC,Kofar Clinic,Giwa,Angwan Kanawa,Primary Health Centre,Rural,True,10.95487,7.39529,5.3,08083497965,Hauwa Garba
+KD-021,Narayi Fada PHC,Angwan Clinic,Giwa,Gidan Kaji,Primary Health Centre,Rural,True,11.0761,7.37113,5.3,09123234188,Bala Mohammed
+KD-022,Kudan Gari BHC,Sabon Clinic,Giwa,Angwan Kaji,Basic Health Centre,Rural,True,11.00991,7.47963,3.3,08069433539,Musa Kure
+KD-023,Rigasa Kanawa PHC,Rafin Clinic,Giwa,Angwan Kanawa,Primary Health Centre,Rural,True,10.84273,7.5118,6.9,08099451566,Yusuf Ochigbo
+KD-024,Tudun Madaki PHC,None,Giwa,Gidan Kaji,Primary Health Centre,Rural,True,10.99774,7.35419,1.8,08025481465,Rahila Abubakar
+KD-025,Dutse Rimi GH,None,Igabi,Unguwan Gari,General Hospital,Rural,True,10.78856,7.63021,9.4,08165631766,Abdullahi Lawal
+KD-026,Tudun Dan Gama BHC,Dutsen Clinic,Igabi,Rafin Sarki,Basic Health Centre,Rural,True,10.55503,7.40162,3.0,08088259639,Joseph Ishaya
+KD-027,Rafin Kaji HP,None,Igabi,Rafin Sarki,Health Post,Rural,True,10.89861,7.58346,2.2,08190009523,Ibrahim Garba
+KD-028,Dutse Rimi PHC,Unguwan Clinic,Igabi,Gidan Gari,Primary Health Centre,Rural,True,10.72551,7.59423,17.6,07010658056,Abdullahi Nuhu
+KD-029,Dutse Madaki PHC,Sabon Clinic,Igabi,Gidan Fada,Primary Health Centre,Rural,True,10.81465,7.81679,2.7,08041412544,Zainab Kure
+KD-030,Narayi Kaji PHC,None,Igabi,Rafin Sarki,Primary Health Centre,Rural,True,10.9223,7.59254,5.5,09193662075,Sani Haruna
+KD-031,Badarawa Fada BHC,None,Igabi,Gidan Fada,Basic Health Centre,Rural,True,10.75057,7.66002,5.2,07079192665,Joseph Garba
+KD-032,Rigasa Sarki HP,None,Igabi,Gidan Gari,Health Post,Rural,True,10.88315,7.56735,6.7,08054693652,Maryam Usman
+KD-033,Kasuwan Madaki BHC,None,Ikara,Unguwan Kaji,Basic Health Centre,Rural,False,11.22752,8.11646,1.9,09178986878,Joseph Tanko
+KD-034,Dutse Kanawa PHC,None,Ikara,Rafin Kaji,Primary Health Centre,Rural,False,11.05028,8.27799,9.4,08120374227,Fatima Nuhu
+KD-035,Gidan Sarki BHC,None,Ikara,Unguwan Kaji,Basic Health Centre,Rural,False,11.17844,8.51126,7.1,09170400557,Blessing Ishaya
+KD-036,Narayi Dan Gama HP,Kasuwan Clinic,Ikara,Unguwan Gari,Health Post,Rural,False,11.16933,8.26809,10.9,07024053565,Abdullahi Zakari
+KD-037,Tudun Rimi PHC,Dutsen Clinic,Ikara,Unguwan Gari,Primary Health Centre,Rural,False,11.1126,8.22196,9.3,08152767624,Umar Nuhu
+KD-038,Maraban Wada HP,Angwan Clinic,Ikara,Unguwan Gari,Health Post,Rural,False,11.14539,8.04969,10.0,09165094370,Emmanuel Kure
+KD-039,Dutse Madaki PHC,None,Ikara,Dutsen Madaki,Primary Health Centre,Rural,False,11.19435,8.04496,1.7,09121583151,Grace Yakubu
+KD-040,Narayi Gari HP,None,Ikara,Dutsen Madaki,Health Post,Rural,False,11.16082,8.25843,11.2,09051675218,Aisha Ishaya
+KD-041,Gidan Abba BHC,None,Jaba,Rafin Madaki,Basic Health Centre,Rural,False,9.46883,8.15032,5.5,07050839538,Grace Sule
+KD-042,Ungwan Wada HP,Unguwan Clinic,Jaba,Rafin Madaki,Health Post,Rural,False,9.40108,8.02635,3.5,07062547254,Grace Ishaya
+KD-043,Kofar Fada HP,None,Jaba,Rafin Madaki,Health Post,Rural,False,9.42298,8.10747,20.7,07035102754,Musa Haruna
+KD-044,Badarawa Kaji PHC,None,Jaba,Rafin Madaki,Primary Health Centre,Rural,False,9.57461,8.01646,5.1,07096179115,Hauwa Sule
+KD-045,Zango Wada HP,Rafin Clinic,Jaba,Rafin Madaki,Health Post,Rural,False,9.53332,8.00396,8.5,07061466091,Grace Garba
+KD-046,Kudan Kanawa PHC,Unguwan Clinic,Jaba,Rafin Gari,Primary Health Centre,Rural,False,9.42625,8.09869,6.1,07017182934,Fatima Lawal
+KD-047,Dutse Dan Gama BHC,None,Jaba,Rafin Madaki,Basic Health Centre,Rural,False,9.40893,8.00458,0.9,09126244660,Bala Danladi
+KD-048,Dutse Madaki PHC,None,Jaba,Rafin Madaki,Primary Health Centre,Rural,False,9.56528,8.03755,17.8,07069721801,Aisha Ochigbo
+KD-049,Gwaraji Kaji GH,None,Jema'a,Gidan Rimi,General Hospital,Rural,False,9.44884,8.26096,10.9,09072240206,Danjuma Lawal
+KD-050,Gidan Gari PHC,None,Jema'a,Kasuwan Kanawa,Primary Health Centre,Rural,False,9.41707,8.23064,19.5,09120670775,Musa Ishaya
+KD-051,Narayi Rimi BHC,Gidan Clinic,Jema'a,Rafin Abba,Basic Health Centre,Rural,False,9.4562,8.296,1.6,07090462564,Halima Ishaya
+KD-052,Ungwan Sarki GH,Maigana Clinic,Jema'a,Maigana Madaki,General Hospital,Rural,False,9.5651,8.31888,8.6,08160700200,Rahila Tanko
+KD-053,Badarawa Kaji BHC,None,Jema'a,Gidan Rimi,Basic Health Centre,Rural,False,9.35388,8.43644,2.1,09023517450,Ruth Yakubu
+KD-054,Kwanar Dan Gama BHC,None,Jema'a,Kasuwan Kanawa,Basic Health Centre,Rural,False,9.42478,8.26963,4.7,08180633376,Ruth Danladi
+KD-055,Gidan Dan Gama PHC,Sabon Clinic,Jema'a,Rafin Abba,Primary Health Centre,Rural,False,9.48449,8.30444,3.5,08022823346,Bala Ochigbo
+KD-056,Zango Kanawa HP,None,Jema'a,Kasuwan Kanawa,Health Post,Rural,False,9.50082,8.34692,2.5,08195539803,Musa Haruna
+KD-057,Gidan Kanawa PHC,None,Kachia,Kofar Dan Gama,Primary Health Centre,Rural,True,9.93411,7.99735,7.7,07090188940,Ibrahim Zakari
+KD-058,Rigasa Dan Gama BHC,None,Kachia,Angwan Dan Gama,Basic Health Centre,Rural,True,9.85643,7.78978,10.9,08147666970,Ruth Yakubu
+KD-059,Rafin Abba PHC,None,Kachia,Gidan Sarki,Primary Health Centre,Rural,True,9.84457,7.86539,0.7,07082884179,Yusuf Ochigbo
+KD-060,Zango Wada BHC,None,Kachia,Kofar Dan Gama,Basic Health Centre,Rural,True,9.98237,8.10567,5.6,08080202257,Halima Tanko
+KD-061,Dutse Abba PHC,None,Kachia,Kofar Dan Gama,Primary Health Centre,Rural,True,9.75881,8.02937,3.2,09180989391,Hauwa Mohammed
+KD-062,Narayi Rimi BHC,Unguwan Clinic,Kachia,Kofar Dan Gama,Basic Health Centre,Rural,True,9.9346,7.79812,6.6,07041362409,Halima Usman
+KD-063,Narayi Wada PHC,None,Kachia,Gidan Sarki,Primary Health Centre,Rural,True,9.92211,8.12742,2.7,09053801909,Sani Lawal
+KD-064,Sabon Fada HP,None,Kachia,Angwan Dan Gama,Health Post,Rural,True,9.80851,7.97207,3.0,09046167167,Abdullahi Ishaya
+KD-065,Gidan Sarki BHC,None,Kaduna North,Maigana Kaji,Basic Health Centre,Urban,False,10.54978,7.42616,0.2,09137458129,Ibrahim Haruna
+KD-066,Kudan Rimi BHC,Kofar Clinic,Kaduna North,Gidan Gari,Basic Health Centre,Rural,False,10.59183,7.41383,3.2,09091930895,Hauwa Garba
+KD-067,Ungwan Abba PHC,Unguwan Clinic,Kaduna North,Gidan Gari,Primary Health Centre,Urban,False,10.53321,7.20689,1.0,07033137457,Bala Mohammed
+KD-068,Rafin Kanawa HP,None,Kaduna North,Maigana Kaji,Health Post,Urban,False,10.55956,7.44847,3.3,09042930256,Musa Kure
+KD-069,Kasuwan Rimi HP,None,Kaduna North,Maigana Kaji,Health Post,Urban,False,10.69669,7.55915,0.3,07044058576,Yusuf Ochigbo
+KD-070,Tudun Madaki HP,None,Kaduna North,Maigana Kaji,Health Post,Urban,False,10.76443,7.31519,1.2,08137693080,Rahila Abubakar
+KD-071,Kofar Kanawa PHC,None,Kaduna North,Maigana Kaji,Primary Health Centre,Urban,False,10.60577,7.51527,2.9,08035656625,Abdullahi Lawal
+KD-072,Rigasa Sarki GH,Rafin Clinic,Kaduna North,Tudun Kaji,General Hospital,Urban,False,10.4199,7.46261,1.1,08062797584,Joseph Ishaya
+KD-073,Zango Rimi PHC,None,Kaduna South,Rafin Abba,Primary Health Centre,Urban,False,10.48996,7.34575,0.5,08123892478,Ibrahim Garba
+KD-074,Tudun Kaji HP,None,Kaduna South,Rafin Dan Gama,Health Post,Urban,False,10.40752,7.36066,1.3,09064130437,Abdullahi Nuhu
+KD-075,Kudan Gari PHC,None,Kaduna South,Rafin Dan Gama,Primary Health Centre,Urban,False,10.60006,7.46086,1.8,09168512197,Zainab Kure
+KD-076,Kwanar Fada BHC,None,Kaduna South,Rafin Abba,Basic Health Centre,Urban,False,10.4662,7.41705,0.2,09054550954,Sani Haruna
+KD-077,Sabon Rimi BHC,Rafin Clinic,Kaduna South,Kofar Dan Gama,Basic Health Centre,Urban,False,10.33847,7.50558,3.3,08154645925,Joseph Garba
+KD-078,Kofar Rimi GH,None,Kaduna South,Rafin Abba,General Hospital,Urban,False,10.51184,7.36462,1.0,09059167667,Maryam Usman
+KD-079,Dutse Kaji HP,None,Kaduna South,Rafin Abba,Health Post,Urban,False,10.33899,7.34897,1.5,08098307587,Joseph Tanko
+KD-080,Ungwan Rimi BHC,None,Kaduna South,Rafin Dan Gama,Basic Health Centre,Urban,False,10.53217,7.49954,2.9,07089434968,Fatima Nuhu
+KD-081,Kofar Madaki PHC,Sabon Clinic,Kagarko,Angwan Kaji,Primary Health Centre,Rural,False,9.49843,7.60507,1.4,08136824214,Blessing Ishaya
+KD-082,Rafin Gari GH,None,Kagarko,Angwan Kaji,General Hospital,Rural,False,9.39486,7.70957,5.3,09036947050,Abdullahi Zakari
+KD-083,Kwanar Abba PHC,None,Kagarko,Rafin Kaji,Primary Health Centre,Rural,False,9.51942,7.64298,3.6,09083828766,Umar Nuhu
+KD-084,Narayi Sarki GH,None,Kagarko,Rafin Kaji,General Hospital,Rural,False,9.45666,7.57904,3.4,09178484455,Emmanuel Kure
+KD-085,Ungwan Kaji PHC,Gidan Clinic,Kagarko,Angwan Kaji,Primary Health Centre,Rural,False,9.4435,7.71844,4.8,08130971068,Grace Yakubu
+KD-086,Ungwan Fada BHC,Kasuwan Clinic,Kagarko,Rafin Kaji,Basic Health Centre,Rural,False,9.38085,7.45684,7.8,08042819593,Aisha Ishaya
+KD-087,Badarawa Kaji BHC,None,Kagarko,Rafin Kaji,Basic Health Centre,Rural,False,9.50202,7.79799,5.2,08157116087,Grace Sule
+KD-088,Kofar Dan Gama PHC,None,Kagarko,Unguwan Rimi,Primary Health Centre,Rural,False,9.39944,7.68181,7.1,08146792372,Grace Ishaya
+KD-089,Gidan Kanawa BHC,None,Kajuru,Rafin Kanawa,Basic Health Centre,Rural,True,10.44393,7.51285,6.6,09055368792,Musa Haruna
+KD-090,Dutse Madaki PHC,Angwan Clinic,Kajuru,Sabon Wada,Primary Health Centre,Rural,True,10.37677,7.72101,6.7,09170202915,Hauwa Sule
+KD-091,Narayi Gari GH,None,Kajuru,Sabon Wada,General Hospital,Rural,True,10.2558,7.59203,2.4,08125322775,Grace Garba
+KD-092,Rigasa Sarki HP,None,Kajuru,Kofar Sarki,Health Post,Rural,True,10.4018,7.72062,2.4,07017664531,Fatima Lawal
+KD-093,Dutse Kaji HP,None,Kajuru,Sabon Wada,Health Post,Rural,True,10.33077,7.69667,3.3,09017924084,Bala Danladi
+KD-094,Rigasa Dan Gama PHC,None,Kajuru,Kofar Sarki,Primary Health Centre,Rural,True,10.29153,7.61288,3.9,08088750836,Aisha Ochigbo
+KD-095,Dutse Rimi HP,Unguwan Clinic,Kajuru,Kofar Sarki,Health Post,Rural,True,10.2137,7.58924,10.6,09084099685,Danjuma Lawal
+KD-096,Sabon Dan Gama HP,None,Kajuru,Tudun Wada,Health Post,Rural,True,10.08827,7.74144,5.1,08111979101,Musa Ishaya
+KD-097,Kwanar Rimi HP,None,Kaura,Kofar Sarki,Health Post,Rural,False,9.6353,8.29256,12.1,09160063244,Halima Ishaya
+KD-098,Gwaraji Kaji BHC,None,Kaura,Gidan Fada,Basic Health Centre,Rural,False,9.55943,8.37499,1.4,09039633285,Rahila Tanko
+KD-099,Rafin Dan Gama PHC,Maigana Clinic,Kaura,Gidan Fada,Primary Health Centre,Rural,False,9.51565,8.37415,2.2,08073709878,Ruth Yakubu
+KD-100,Rafin Rimi HP,Kofar Clinic,Kaura,Kofar Sarki,Health Post,Rural,False,9.58862,8.46296,8.4,08154039860,Ruth Danladi
+KD-101,Kwanar Abba PHC,None,Kaura,Gidan Fada,Primary Health Centre,Rural,False,9.51493,8.5271,1.0,09130161258,Bala Ochigbo
+KD-102,Kofar Wada PHC,None,Kaura,Rafin Dan Gama,Primary Health Centre,Rural,False,9.54598,8.40927,9.0,09117962560,Musa Haruna
+KD-103,Rafin Wada BHC,None,Kaura,Kasuwan Kanawa,Basic Health Centre,Rural,False,9.78324,8.41728,1.8,08069277019,Ibrahim Zakari
+KD-104,Zango Sarki BHC,None,Kaura,Rafin Dan Gama,Basic Health Centre,Rural,False,9.66945,8.39604,3.5,08017924709,Ruth Yakubu
+KD-105,Sabon Kanawa HP,None,Kauru,Sabon Fada,Health Post,Rural,False,10.30291,8.2325,6.0,08163599825,Yusuf Ochigbo
+KD-106,Kudan Wada PHC,None,Kauru,Gidan Kanawa,Primary Health Centre,Rural,False,10.30563,8.08057,7.0,08036139929,Halima Tanko
+KD-107,Kudan Kanawa PHC,None,Kauru,Gidan Kanawa,Primary Health Centre,Rural,False,10.12041,8.14536,8.4,08029768941,Hauwa Mohammed
+KD-108,Badarawa Dan Gama PHC,None,Kauru,Kasuwan Kaji,Primary Health Centre,Rural,False,10.1073,8.22762,2.9,09044800293,Halima Usman
+KD-109,Gidan Wada PHC,None,Kauru,Gidan Kanawa,Primary Health Centre,Rural,False,10.12769,8.17623,3.9,08052448758,Sani Lawal
+KD-110,Kudan Rimi PHC,Kasuwan Clinic,Kauru,Dutsen Sarki,Primary Health Centre,Rural,False,10.1577,7.98676,9.8,07016955778,Abdullahi Ishaya
+KD-111,Gwaraji Dan Gama BHC,None,Kauru,Dutsen Sarki,Basic Health Centre,Rural,False,10.05465,8.08478,1.1,07099556405,Ibrahim Haruna
+KD-112,Kofar Abba BHC,Kofar Clinic,Kauru,Dutsen Sarki,Basic Health Centre,Rural,False,10.2351,8.27139,4.4,08146927851,Hauwa Garba
+KD-113,Sabon Abba BHC,Gidan Clinic,Kubau,Maigana Wada,Basic Health Centre,Rural,False,10.7214,8.34342,6.3,07047412799,Bala Mohammed
+KD-114,Gwaraji Kaji PHC,None,Kubau,Dutsen Abba,Primary Health Centre,Rural,False,10.94697,8.11859,4.9,08038960474,Musa Kure
+KD-115,Kasuwan Wada GH,None,Kubau,Maigana Wada,General Hospital,Rural,False,10.7787,8.24981,3.5,08097317830,Yusuf Ochigbo
+KD-116,Kudan Gari BHC,Unguwan Clinic,Kubau,Dutsen Abba,Basic Health Centre,Rural,False,10.71865,8.09091,4.9,08070401925,Rahila Abubakar
+KD-117,Narayi Gari PHC,None,Kubau,Maigana Abba,Primary Health Centre,Rural,False,10.69719,8.21599,7.6,09089550725,Abdullahi Lawal
+KD-118,Gidan Fada BHC,None,Kubau,Kasuwan Rimi,Basic Health Centre,Rural,False,10.90528,8.13563,8.7,09091165503,Joseph Ishaya
+KD-119,Kudan Abba PHC,None,Kubau,Maigana Abba,Primary Health Centre,Rural,False,10.79753,8.27284,2.9,08082870832,Ibrahim Garba
+KD-120,Rigasa Kanawa HP,None,Kubau,Dutsen Abba,Health Post,Rural,False,10.87191,8.27961,9.9,09165270161,Abdullahi Nuhu
+KD-121,Kwanar Kaji PHC,None,Kudan,Gidan Fada,Primary Health Centre,Rural,False,11.1328,7.54183,2.4,07056665357,Zainab Kure
+KD-122,Zango Kaji PHC,None,Kudan,Maigana Rimi,Primary Health Centre,Rural,False,11.25406,7.77946,1.3,07066377182,Sani Haruna
+KD-123,Ungwan Kaji PHC,None,Kudan,Maigana Rimi,Primary Health Centre,Rural,False,11.40198,7.75173,6.5,08172321785,Joseph Garba
+KD-124,Badarawa Rimi HP,Sabon Clinic,Kudan,Sabon Sarki,Health Post,Rural,False,11.15063,7.84696,2.5,09149059844,Maryam Usman
+KD-125,Kofar Gari HP,None,Kudan,Maigana Rimi,Health Post,Rural,False,11.20634,7.74395,6.2,09163658005,Joseph Tanko
+KD-126,Ungwan Abba GH,Dutsen Clinic,Kudan,Gidan Wada,General Hospital,Rural,False,11.12567,7.75605,7.1,09010823908,Fatima Nuhu
+KD-127,Kasuwan Fada PHC,None,Kudan,Gidan Fada,Primary Health Centre,Rural,False,11.27256,7.58109,6.2,08197393289,Blessing Ishaya
+KD-128,Tudun Sarki HP,Unguwan Clinic,Kudan,Sabon Sarki,Health Post,Rural,False,11.13844,7.70313,23.3,09055368625,Abdullahi Zakari
+KD-129,Kasuwan Fada BHC,None,Lere,Kofar Sarki,Basic Health Centre,Rural,False,10.28895,8.64196,2.1,07098886385,Umar Nuhu
+KD-130,Rafin Wada PHC,None,Lere,Maigana Gari,Primary Health Centre,Rural,False,10.48573,8.42962,0.8,09115577424,Emmanuel Kure
+KD-131,Gidan Wada PHC,None,Lere,Kofar Sarki,Primary Health Centre,Rural,False,10.37702,8.56501,7.1,08161457732,Grace Yakubu
+KD-132,Dutse Wada PHC,None,Lere,Kofar Sarki,Primary Health Centre,Rural,False,10.30468,8.44109,0.5,08186796170,Aisha Ishaya
+KD-133,Rigasa Fada HP,None,Lere,Kasuwan Wada,Health Post,Rural,False,10.33433,8.67298,1.8,08177187041,Grace Sule
+KD-134,Rigasa Wada PHC,None,Lere,Maigana Gari,Primary Health Centre,Rural,False,10.305,8.57492,3.8,09126501115,Grace Ishaya
+KD-135,Kudan Sarki PHC,None,Lere,Kofar Sarki,Primary Health Centre,Rural,False,10.4778,8.57135,6.7,08165396502,Musa Haruna
+KD-136,Kudan Kanawa BHC,Angwan Clinic,Lere,Kasuwan Wada,Basic Health Centre,Rural,False,10.3602,8.48324,4.7,08012381920,Hauwa Sule
+KD-137,Gwaraji Rimi PHC,None,Makarfi,Sabon Kaji,Primary Health Centre,Rural,False,11.29548,7.94291,3.4,08154395918,Grace Garba
+KD-138,Kasuwan Fada PHC,None,Makarfi,Sabon Kaji,Primary Health Centre,Rural,False,11.3841,7.90422,3.3,08122726826,Fatima Lawal
+KD-139,Zango Wada HP,None,Makarfi,Dutsen Madaki,Health Post,Rural,False,11.23841,7.88776,8.5,09029664629,Bala Danladi
+KD-140,Narayi Rimi BHC,None,Makarfi,Kasuwan Dan Gama,Basic Health Centre,Rural,False,11.23768,7.81554,5.0,09019612917,Aisha Ochigbo
+KD-141,Gwaraji Sarki BHC,None,Makarfi,Kasuwan Dan Gama,Basic Health Centre,Rural,False,11.23261,7.84775,10.9,08080700272,Danjuma Lawal
+KD-142,Narayi Kanawa PHC,Kofar Clinic,Makarfi,Sabon Kaji,Primary Health Centre,Rural,False,11.48814,7.80513,9.3,09047981524,Musa Ishaya
+KD-143,Rigasa Kaji BHC,None,Makarfi,Sabon Kaji,Basic Health Centre,Rural,False,11.27207,7.9009,3.0,07078546968,Halima Ishaya
+KD-144,Kasuwan Madaki PHC,Sabon Clinic,Makarfi,Unguwan Fada,Primary Health Centre,Rural,False,11.31037,7.80018,2.4,09011658792,Rahila Tanko
+KD-145,Narayi Abba PHC,Gidan Clinic,Sabon Gari,Kofar Rimi,Primary Health Centre,Urban,False,11.10805,7.76455,1.2,08158339536,Ruth Yakubu
+KD-146,Kofar Fada BHC,None,Sabon Gari,Sabon Kanawa,Basic Health Centre,Urban,False,11.16805,7.73065,0.5,07053182884,Ruth Danladi
+KD-147,Maraban Abba GH,None,Sabon Gari,Sabon Kanawa,General Hospital,Rural,False,11.06756,7.68266,3.9,08110874460,Bala Ochigbo
+KD-148,Kofar Fada PHC,None,Sabon Gari,Kofar Rimi,Primary Health Centre,Urban,False,11.18901,7.81027,4.0,07093982504,Musa Haruna
+KD-149,Zango Fada BHC,Sabon Clinic,Sabon Gari,Unguwan Wada,Basic Health Centre,Urban,False,11.2714,7.83491,1.5,08015134033,Ibrahim Zakari
+KD-150,Sabon Abba PHC,Angwan Clinic,Sabon Gari,Kasuwan Madaki,Primary Health Centre,Urban,False,11.0948,7.77161,3.0,09051667776,Ruth Yakubu
+KD-151,Sabon Wada HP,Kasuwan Clinic,Sabon Gari,Unguwan Wada,Health Post,Rural,False,11.13149,7.83344,4.4,08189459479,Yusuf Ochigbo
+KD-152,Sabon Sarki PHC,None,Sabon Gari,Kofar Rimi,Primary Health Centre,Rural,False,11.15916,7.57806,4.4,08132198710,Halima Tanko
+KD-153,Sabon Kaji GH,None,Sanga,Angwan Madaki,General Hospital,Rural,False,9.3824,8.56715,7.0,09115957755,Hauwa Mohammed
+KD-154,Rigasa Fada BHC,None,Sanga,Rafin Kanawa,Basic Health Centre,Rural,False,9.31772,8.37052,14.5,08077840435,Halima Usman
+KD-155,Kudan Wada PHC,None,Sanga,Angwan Madaki,Primary Health Centre,Rural,False,9.41025,8.49725,0.9,07011733153,Sani Lawal
+KD-156,Kofar Wada GH,Gidan Clinic,Sanga,Angwan Madaki,General Hospital,Rural,False,9.17312,8.46895,14.9,07050733665,Abdullahi Ishaya
+KD-157,Badarawa Dan Gama PHC,None,Sanga,Unguwan Abba,Primary Health Centre,Rural,False,9.43129,8.47162,2.6,08023246961,Ibrahim Haruna
+KD-158,Rafin Gari BHC,None,Sanga,Rafin Kanawa,Basic Health Centre,Rural,False,9.30548,8.48635,6.1,07072705219,Hauwa Garba
+KD-159,Sabon Rimi GH,Tudun Clinic,Sanga,Angwan Madaki,General Hospital,Rural,False,9.41114,8.67671,9.7,07050785842,Bala Mohammed
+KD-160,Kwanar Fada PHC,None,Sanga,Unguwan Abba,Primary Health Centre,Rural,False,9.35866,8.58129,2.3,08179294109,Musa Kure
+KD-161,Ungwan Kanawa PHC,Tudun Clinic,Soba,Unguwan Dan Gama,Primary Health Centre,Rural,False,11.02985,8.08078,4.2,09140507056,Yusuf Ochigbo
+KD-162,Kasuwan Sarki BHC,Gidan Clinic,Soba,Dutsen Fada,Basic Health Centre,Rural,False,10.938,8.00469,1.5,08084913837,Rahila Abubakar
+KD-163,Kasuwan Fada PHC,None,Soba,Dutsen Fada,Primary Health Centre,Rural,False,11.22335,7.93941,10.9,09081729329,Abdullahi Lawal
+KD-164,Rafin Dan Gama HP,None,Soba,Dutsen Fada,Health Post,Rural,False,11.03106,8.08166,6.2,09128612263,Joseph Ishaya
+KD-165,Tudun Kaji PHC,None,Soba,Unguwan Dan Gama,Primary Health Centre,Rural,False,10.92934,7.98419,0.7,09091295189,Ibrahim Garba
+KD-166,Ungwan Wada PHC,None,Soba,Dutsen Fada,Primary Health Centre,Rural,False,11.12418,8.00614,4.1,07098506377,Abdullahi Nuhu
+KD-167,Gwaraji Rimi BHC,None,Soba,Dutsen Fada,Basic Health Centre,Rural,False,11.01411,8.03878,2.4,09199634393,Zainab Kure
+KD-168,Kwanar Madaki PHC,Angwan Clinic,Soba,Unguwan Dan Gama,Primary Health Centre,Rural,False,10.96077,8.17771,4.2,09077631900,Sani Haruna
+KD-169,Ungwan Wada PHC,Kasuwan Clinic,Zangon Kataf,Angwan Fada,Primary Health Centre,Rural,False,9.63931,8.30425,4.9,08082199472,Joseph Garba
+KD-170,Kasuwan Kanawa BHC,None,Zangon Kataf,Unguwan Sarki,Basic Health Centre,Rural,False,9.60649,8.19076,2.7,09184413412,Maryam Usman
+KD-171,Kofar Sarki BHC,None,Zangon Kataf,Dutsen Abba,Basic Health Centre,Rural,False,9.84693,8.45463,3.3,08196877222,Joseph Tanko
+KD-172,Rigasa Fada HP,None,Zangon Kataf,Dutsen Abba,Health Post,Rural,False,9.87864,8.28455,4.8,09170807417,Fatima Nuhu
+KD-173,Rafin Madaki PHC,None,Zangon Kataf,Unguwan Sarki,Primary Health Centre,Rural,False,9.63763,8.13736,1.7,09055054989,Blessing Ishaya
+KD-174,Kwanar Fada HP,None,Zangon Kataf,Angwan Fada,Health Post,Rural,False,9.6758,8.27063,1.6,08027777736,Abdullahi Zakari
+KD-175,Badarawa Kaji BHC,None,Zangon Kataf,Dutsen Abba,Basic Health Centre,Rural,False,9.70664,8.22415,6.7,09024846825,Umar Nuhu
+KD-176,Maraban Sarki PHC,None,Zangon Kataf,Unguwan Sarki,Primary Health Centre,Rural,False,9.63559,8.28297,2.7,07034724755,Emmanuel Kure
+KD-177,Kudan Dan Gama BHC,None,Zaria,Unguwan Fada,Basic Health Centre,Urban,False,11.01589,7.63164,0.2,07057176904,Grace Yakubu
+KD-178,Dutse Fada PHC,None,Zaria,Kasuwan Abba,Primary Health Centre,Rural,False,11.14401,7.67631,3.8,09096158533,Aisha Ishaya
+KD-179,Rafin Abba PHC,None,Zaria,Kasuwan Abba,Primary Health Centre,Urban,False,11.21313,7.78163,2.8,07030448189,Grace Sule
+KD-180,Narayi Abba HP,None,Zaria,Unguwan Fada,Health Post,Rural,False,10.96791,7.60552,8.7,09198353679,Grace Ishaya
+KD-181,Gidan Fada PHC,None,Zaria,Kasuwan Abba,Primary Health Centre,Urban,False,10.897,7.7845,1.3,09048635985,Musa Haruna
+KD-182,Maraban Wada HP,None,Zaria,Kofar Dan Gama,Health Post,Urban,False,10.98117,7.69072,0.0,08158591457,Hauwa Sule
+KD-183,Zango Kanawa PHC,None,Zaria,Unguwan Fada,Primary Health Centre,Rural,False,11.10527,7.64926,2.1,09015501372,Grace Garba
+KD-184,Dutse Kaji BHC,None,Zaria,Kasuwan Wada,Basic Health Centre,Urban,False,11.10795,7.76388,0.7,08121061800,Fatima Lawal
