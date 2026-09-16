@@ -1,3 +1,14 @@
+---
+title: LS 2.0 Facility Dashboard (Dash)
+emoji: 🩺
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 8050
+pinned: false
+short_description: Kaduna PHC bi-weekly survey analytics - Dash edition
+---
+
 # LS 2.0 Facility Survey Analytics
 
 End-to-end analytics for the **LS 2.0 health facility questionnaire** — a bi-weekly
@@ -39,10 +50,24 @@ streamlit run streamlit_app.py            # Streamlit edition -> http://localhos
 | Edition | Host | Deploy |
 |---|---|---|
 | Streamlit | Streamlit Community Cloud (free) | one-click link below; needs only a GitHub sign-in |
-| Dash | Render free web service (or any container host via the `Dockerfile`) | [Deploy to Render](https://render.com/deploy?repo=https://github.com/chidex-coder/ls2-facility-survey-analytics) — the `render.yaml` blueprint sets everything up |
+| Dash | Hugging Face Spaces (free, Docker Space, no sleep on the free CPU tier) | `HF_TOKEN=hf_… python deploy/hf_space.py --owner <hf-username>` — creates the Space and uploads the repo; see below |
+| Dash | Render free web service | [Deploy to Render](https://render.com/deploy?repo=https://github.com/chidex-coder/ls2-facility-survey-analytics) — the `render.yaml` blueprint sets everything up |
 
 Set `STREAMLIT_APP_URL` on the Dash service (Render → Environment) and `DASH_APP_URL` on the Streamlit app (Settings → Secrets: `DASH_APP_URL = "https://…"`) and each app links to the other from its header/sidebar.
 The Dash app also runs anywhere that speaks WSGI: `gunicorn src.dashboard.dash_app:server --bind 0.0.0.0:$PORT` (see `Procfile`), or `docker build -t ls2-dash . && docker run -p 8050:8050 ls2-dash`.
+
+**Deploy the Dash edition to Hugging Face Spaces.** The YAML front matter at the top of this README is the Space
+configuration (`sdk: docker`, `app_port: 8050`) and the `Dockerfile` is the build. Two ways:
+
+```bash
+pip install huggingface_hub
+export HF_TOKEN=hf_...                                   # write-scoped token from https://huggingface.co/settings/tokens
+python deploy/hf_space.py --owner <your-hf-username> --streamlit-url https://<your-app>.streamlit.app
+```
+
+or add the repository secrets `HF_TOKEN` and `HF_SPACE` (`<owner>/<space-name>`) on GitHub and the
+`sync-hf-space` workflow pushes every commit on `main` to the Space. Alternatively create a Docker Space in the
+Hugging Face UI and `git push` this repository to it — the front matter and Dockerfile are all it needs.
 
 **Deploy the Streamlit edition** (Streamlit Community Cloud): sign in at https://share.streamlit.io with the GitHub account that
 owns this repository, choose *Create app → Deploy a public app from GitHub*, and point it at `chidex-coder/ls2-facility-survey-analytics`,
@@ -75,7 +100,9 @@ src/dashboard/charts.py                 shared filtering + Plotly figure builder
 src/dashboard/dash_app.py               the dashboard as a Plotly Dash application
 streamlit_app.py                        the dashboard as a Streamlit application (Streamlit Community Cloud entry point)
 .streamlit/config.toml                  Streamlit theme/server settings
-Dockerfile, render.yaml, Procfile       production packaging for the Dash edition (gunicorn; Render blueprint; any container host)
+Dockerfile, render.yaml, Procfile       production packaging for the Dash edition (gunicorn; Render blueprint; Hugging Face Docker Space)
+deploy/hf_space.py                      creates/updates the Hugging Face Space from this repository
+.github/workflows/sync-hf-space.yml     optional GitHub -> Space sync (needs HF_TOKEN + HF_SPACE secrets)
 outputs/ls2_survey.db                   SQLite warehouse (16 tables, 6 analytic views, ETL log)
 outputs/figures/*.html                  one interactive figure per question / model
 outputs/ml/                             metrics, predictions (facility and commodity level), fitted models

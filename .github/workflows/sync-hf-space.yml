@@ -1,0 +1,25 @@
+# Optional: keep the Hugging Face Space in sync with main.
+# Add repository secrets HF_TOKEN (write scope) and HF_SPACE (e.g. "your-username/ls2-facility-dashboard-dash"); the job skips itself when they are absent.
+name: Sync Dash edition to Hugging Face Space
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_SPACE: ${{ secrets.HF_SPACE }}
+    steps:
+      - uses: actions/checkout@v4
+        if: env.HF_TOKEN != '' && env.HF_SPACE != ''
+      - uses: actions/setup-python@v5
+        if: env.HF_TOKEN != '' && env.HF_SPACE != ''
+        with:
+          python-version: "3.12"
+      - name: Push snapshot to the Space
+        if: env.HF_TOKEN != '' && env.HF_SPACE != ''
+        run: |
+          pip install -q huggingface_hub
+          python deploy/hf_space.py --owner "${HF_SPACE%%/*}" --name "${HF_SPACE##*/}"
