@@ -82,7 +82,9 @@ st.caption(CH.summary_text(F, lgas, types, rounds))
 with st.sidebar:
     st.download_button("⬇ Export filtered visits (CSV)", F["v"].to_csv(index=False).encode(), "ls2_filtered_visits.csv", "text/csv", use_container_width=True)
 
-tabs = st.tabs(["Overview", "Access & readiness", "Human resources", "Supply chain", "Vaccines", "Predictions", "Insights", "Data"])
+tabs = st.tabs(["Overview", "Access & readiness", "Human resources", "Supply chain", "Vaccines", "Predictions", "Insights", "Notebook", "Data"])
+REPO_URL = "https://github.com/chidex-coder/ls2-facility-survey-analytics"
+PAGES_URL = "https://chidex-coder.github.io/ls2-facility-survey-analytics/"
 
 # ----------------------------------------------------------------------------
 with tabs[0]:
@@ -245,6 +247,21 @@ with tabs[6]:
 
 # ----------------------------------------------------------------------------
 with tabs[7]:
+    st.info("The full analysis as an executed Jupyter notebook: the thirty questions (SQL → table → figure → answer), the predictive models trained and evaluated step by step, and an in-notebook filterable dashboard.")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.link_button("View on GitHub ↗", f"{REPO_URL}/blob/main/notebooks/ls2_analysis.ipynb", use_container_width=True, type="primary")
+    c2.link_button("Open in nbviewer ↗", "https://nbviewer.org/github/chidex-coder/ls2-facility-survey-analytics/blob/main/notebooks/ls2_analysis.ipynb", use_container_width=True)
+    nb_path = ROOT / "notebooks" / "ls2_analysis.ipynb"
+    if nb_path.exists():
+        c3.download_button("Download .ipynb", nb_path.read_bytes(), "ls2_analysis.ipynb", "application/x-ipynb+json", use_container_width=True)
+    else:
+        c3.link_button("Download .ipynb", "https://raw.githubusercontent.com/chidex-coder/ls2-facility-survey-analytics/main/notebooks/ls2_analysis.ipynb", use_container_width=True)
+    c4.link_button("Open rendered page ↗", PAGES_URL + "notebook.html", use_container_width=True)
+    st.code(f"git clone {REPO_URL} && cd ls2-facility-survey-analytics && pip install -r requirements.txt && jupyter lab notebooks/ls2_analysis.ipynb", language="bash")
+    st.components.v1.iframe(PAGES_URL + "notebook.html", height=900, scrolling=True)
+
+# ----------------------------------------------------------------------------
+with tabs[8]:
     t = CH.data_table(F)
     st.caption(f"{len(t):,} filtered visit records — sort any column; the sidebar button exports the full selection as CSV.")
     st.dataframe(t, use_container_width=True, hide_index=True, height=600,

@@ -65,12 +65,18 @@ app = Dash(__name__, title="LS 2.0 Facility Dashboard")
 server = app.server  # WSGI entry point for gunicorn / Render / Docker: `gunicorn src.dashboard.dash_app:server`
 STREAMLIT_URL = os.environ.get("STREAMLIT_APP_URL", "")
 PAGES_URL = "https://chidex-coder.github.io/ls2-facility-survey-analytics/"
+REPO_URL = "https://github.com/chidex-coder/ls2-facility-survey-analytics"
+NB_LOCAL = C.DOCS_DIR / "notebook.html"   # rendered notebook produced by src/analysis/build_notebook.py
+NB_SRC = "/notebook" if NB_LOCAL.exists() else PAGES_URL + "notebook.html"
 app.index_string = """<!DOCTYPE html><html><head>{%metas%}<title>{%title%}</title>{%favicon%}{%css%}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>body{margin:0;background:#f4f4f1;color:#0b0b0b;font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px}
 .tab{padding:8px 14px!important;border:0!important;background:transparent!important;color:#52514e!important;font-weight:500;border-radius:999px}
 .tab--selected{background:#e4effb!important;color:#2a78d6!important;font-weight:600}
 .Select-control,.Select-menu-outer{border-color:#e3e2dd!important;border-radius:8px}
+.nb-btn{font-size:13px;font-weight:500;text-decoration:none;color:#0b0b0b;background:#f8f8f6;border:1px solid #e3e2dd;border-radius:8px;padding:7px 12px}
+.nb-btn.primary{background:#2a78d6;border-color:#2a78d6;color:#fff}
+.nb-cmd{flex-basis:100%;font-size:12px;background:#f8f8f6;border:1px solid #e3e2dd;border-radius:8px;padding:8px 10px;color:#52514e;overflow-x:auto;white-space:nowrap}
 @media (max-width:1024px){div[style*="span 4"],div[style*="span 6"],div[style*="span 8"]{grid-column:span 12!important}}</style>
 </head><body>{%app_entry%}<footer>{%config%}{%scripts%}{%renderer%}</footer></body></html>"""
 
@@ -136,6 +142,17 @@ tabs = dcc.Tabs(id="tabs", value="overview", parent_className="tabs", className=
               card("At-risk model: what matters", "g-ml-risk-imp", None, 6, height=440), card("Attendance driver model: what matters", "g-ml-att-imp", None, 6, height=440),
               card("Facility segments", "g-segments", "K-means on the mean readiness pillars per facility.", 12, height=440)])]),
     dcc.Tab(label="Insights", value="insights", className="tab", selected_className="tab--selected", children=[html.Div(style={"height": "14px"}), html.Div(id="qa")]),
+    dcc.Tab(label="Notebook", value="notebook", className="tab", selected_className="tab--selected", children=[html.Div(style={"height": "14px"}),
+        html.Div("The full analysis as an executed Jupyter notebook: the thirty questions (SQL → table → figure → answer), the predictive models trained and evaluated step by step, and an in-notebook filterable dashboard.",
+                 style={"background": "#e4effb", "border": "1px solid #bcd3f0", "borderRadius": "10px", "padding": "10px 14px", "color": "#52514e", "fontSize": "13px", "marginBottom": "12px"}),
+        html.Div([html.A("View on GitHub ↗", href=f"{REPO_URL}/blob/main/notebooks/ls2_analysis.ipynb", target="_blank", className="nb-btn primary"),
+                  html.A("Open in nbviewer ↗", href="https://nbviewer.org/github/chidex-coder/ls2-facility-survey-analytics/blob/main/notebooks/ls2_analysis.ipynb", target="_blank", className="nb-btn"),
+                  html.A("Download .ipynb", href="https://raw.githubusercontent.com/chidex-coder/ls2-facility-survey-analytics/main/notebooks/ls2_analysis.ipynb", target="_blank", className="nb-btn"),
+                  html.A("Open rendered page in a new tab ↗", href=NB_SRC, target="_blank", className="nb-btn"),
+                  html.Code(f"git clone {REPO_URL} && cd ls2-facility-survey-analytics && pip install -r requirements.txt && jupyter lab notebooks/ls2_analysis.ipynb", className="nb-cmd")],
+                 style={"display": "flex", "flexWrap": "wrap", "gap": "8px", "alignItems": "center", "marginBottom": "12px"}),
+        html.Div(html.Iframe(id="nb-frame", title="LS 2.0 analytics notebook", style={"width": "100%", "height": "calc(100vh - 260px)", "minHeight": "600px", "border": 0, "background": "#fff", "display": "block"}),
+                 style={**CARD, "padding": 0, "overflow": "hidden"})]),
     dcc.Tab(label="Data", value="data", className="tab", selected_className="tab--selected", children=[html.Div(style={"height": "14px"}),
         html.Div(id="data-count", style={"color": "#52514e", "marginBottom": "8px"}),
         dash_table.DataTable(id="data-table", page_size=25, sort_action="native", filter_action="native", style_table={"overflowX": "auto"},
@@ -249,6 +266,12 @@ def predict(tab, risk_thr, so_thr, *fv):
             o["so_imp"], o["roc"], o["risk_imp"], o["att_imp"], o["segments"])
 
 
+@app.callback(Output("nb-frame", "src"), Input("tabs", "value"))
+def notebook(tab):
+    # Load the (large) rendered notebook only when the tab is opened
+    return NB_SRC if tab == "notebook" else no_update
+
+
 @app.callback(Output("qa", "children"), Input("tabs", "value"))
 def insights(tab):
     if tab != "insights":
@@ -272,11 +295,17 @@ def data(tab, *fv):
     return v.to_dict("records"), cols, f"{len(v):,} filtered visit records (sort or filter any column; Export CSV downloads the full selection)"
 
 
-# Serve the standalone question figures alongside the app
+# Serve the standalone question figures and the rendered notebook alongside the app
 @app.server.route("/figures/<path:name>")
 def figure(name):
     from flask import send_from_directory
     return send_from_directory(C.FIGURE_DIR, name)
+
+
+@app.server.route("/notebook")
+def notebook_page():
+    from flask import send_from_directory
+    return send_from_directory(NB_LOCAL.parent, NB_LOCAL.name)
 
 
 if __name__ == "__main__":
