@@ -1,0 +1,14 @@
+# Render Blueprint: deploys the Dash edition as a free web service.
+# One click: https://render.com/deploy?repo=https://github.com/chidex-coder/ls2-facility-survey-analytics
+services:
+  - type: web
+    name: ls2-facility-dashboard-dash
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt gunicorn
+    startCommand: gunicorn src.dashboard.dash_app:server --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: STREAMLIT_APP_URL
+        sync: false

@@ -7,6 +7,7 @@ Run locally:  streamlit run streamlit_app.py
 """
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -68,6 +69,13 @@ with st.sidebar:
     rounds = st.slider("Visit rounds", 1, D["n_rounds"], (1, D["n_rounds"]), key="f_rounds")
     readiness = st.slider("Readiness score range", 0, 100, (0, 100), step=5, key="f_readiness")
     st.caption(f"Round {rounds[0]} = {D['round_name'][rounds[0]]}, round {rounds[1]} = {D['round_name'][rounds[1]]}")
+    st.markdown("---")
+    try:
+        dash_url = os.environ.get("DASH_APP_URL") or st.secrets.get("DASH_APP_URL", "")
+    except Exception:  # no secrets configured
+        dash_url = ""
+    st.caption("Other editions: " + (f"[Dash ↗]({dash_url}) · " if dash_url else "")
+               + "[Static (GitHub Pages) ↗](https://chidex-coder.github.io/ls2-facility-survey-analytics/)")
 
 F = CH.filtered(D, lgas, types, None if setting == "All" else setting, {"Security-risk only": "1", "Other LGAs only": "0"}.get(security), rounds, readiness)
 st.caption(CH.summary_text(F, lgas, types, rounds))

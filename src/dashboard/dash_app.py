@@ -11,8 +11,7 @@ Run:  python src/dashboard/dash_app.py            (http://127.0.0.1:8050)
 from __future__ import annotations
 
 import argparse
-import json
-import sqlite3
+import os
 import sys
 from pathlib import Path
 
@@ -63,6 +62,9 @@ def slider(id_, lo, hi, val, step=1, marks=None, **kw):
 
 
 app = Dash(__name__, title="LS 2.0 Facility Dashboard")
+server = app.server  # WSGI entry point for gunicorn / Render / Docker: `gunicorn src.dashboard.dash_app:server`
+STREAMLIT_URL = os.environ.get("STREAMLIT_APP_URL", "")
+PAGES_URL = "https://chidex-coder.github.io/ls2-facility-survey-analytics/"
 app.index_string = """<!DOCTYPE html><html><head>{%metas%}<title>{%title%}</title>{%favicon%}{%css%}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>body{margin:0;background:#f4f4f1;color:#0b0b0b;font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px}
@@ -144,7 +146,9 @@ tabs = dcc.Tabs(id="tabs", value="overview", parent_className="tabs", className=
 app.layout = html.Div([
     html.Div([html.Div([html.Span(style={"display": "inline-block", "width": "12px", "height": "12px", "borderRadius": "50%", "background": "#2a78d6", "marginRight": "10px"}),
                         html.Span("LS 2.0 Facility Dashboard", style={"fontWeight": 700, "fontSize": "16px"}),
-                        html.Span(" · Bi-weekly PHC monitoring · Kaduna State · pure-Python (Dash) edition", style={"color": "#8a8985", "fontSize": "12px"})],
+                        html.Span(" · Bi-weekly PHC monitoring · Kaduna State · Dash edition", style={"color": "#8a8985", "fontSize": "12px"}),
+                        html.Span([html.A("Streamlit edition ↗", href=STREAMLIT_URL, target="_blank") if STREAMLIT_URL else None, " · " if STREAMLIT_URL else "",
+                                   html.A("Static edition ↗", href=PAGES_URL, target="_blank")], style={"float": "right", "fontSize": "12px"})],
                        style={"maxWidth": "1440px", "margin": "0 auto", "padding": "12px 16px"})],
              style={"background": "#fff", "borderBottom": "1px solid #e3e2dd", "position": "sticky", "top": 0, "zIndex": 10}),
     html.Div([filters, html.P(id="summary", style={"color": "#52514e", "margin": "0 0 8px 2px", "fontSize": "13px"}), tabs,
@@ -277,6 +281,6 @@ def figure(name):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--host", default="127.0.0.1"); ap.add_argument("--port", type=int, default=8050); ap.add_argument("--debug", action="store_true")
+    ap.add_argument("--host", default="127.0.0.1"); ap.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8050))); ap.add_argument("--debug", action="store_true")
     a = ap.parse_args()
     app.run(host=a.host, port=a.port, debug=a.debug)

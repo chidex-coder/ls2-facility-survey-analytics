@@ -34,6 +34,16 @@ python src/dashboard/dash_app.py          # Dash edition      -> http://127.0.0.
 streamlit run streamlit_app.py            # Streamlit edition -> http://localhost:8501
 ```
 
+### Hosting the two Python editions side by side
+
+| Edition | Host | Deploy |
+|---|---|---|
+| Streamlit | Streamlit Community Cloud (free) | one-click link below; needs only a GitHub sign-in |
+| Dash | Render free web service (or any container host via the `Dockerfile`) | [Deploy to Render](https://render.com/deploy?repo=https://github.com/chidex-coder/ls2-facility-survey-analytics) — the `render.yaml` blueprint sets everything up |
+
+Set `STREAMLIT_APP_URL` on the Dash service (Render → Environment) and `DASH_APP_URL` on the Streamlit app (Settings → Secrets: `DASH_APP_URL = "https://…"`) and each app links to the other from its header/sidebar.
+The Dash app also runs anywhere that speaks WSGI: `gunicorn src.dashboard.dash_app:server --bind 0.0.0.0:$PORT` (see `Procfile`), or `docker build -t ls2-dash . && docker run -p 8050:8050 ls2-dash`.
+
 **Deploy the Streamlit edition** (Streamlit Community Cloud): sign in at https://share.streamlit.io with the GitHub account that
 owns this repository, choose *Create app → Deploy a public app from GitHub*, and point it at `chidex-coder/ls2-facility-survey-analytics`,
 branch `main`, main file `streamlit_app.py`. Everything the app needs (`outputs/ls2_survey.db`, model outputs, `requirements.txt`,
@@ -65,6 +75,7 @@ src/dashboard/charts.py                 shared filtering + Plotly figure builder
 src/dashboard/dash_app.py               the dashboard as a Plotly Dash application
 streamlit_app.py                        the dashboard as a Streamlit application (Streamlit Community Cloud entry point)
 .streamlit/config.toml                  Streamlit theme/server settings
+Dockerfile, render.yaml, Procfile       production packaging for the Dash edition (gunicorn; Render blueprint; any container host)
 outputs/ls2_survey.db                   SQLite warehouse (16 tables, 6 analytic views, ETL log)
 outputs/figures/*.html                  one interactive figure per question / model
 outputs/ml/                             metrics, predictions (facility and commodity level), fitted models
