@@ -102,6 +102,11 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .qa .body { padding: 0 14px 12px 56px; color: var(--text-2); }
 .qa .body a { font-size: 12px; }
 .qa .tag { font-size: 11px; color: var(--text-3); font-weight: 500; margin-left: auto; }
+.nb-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+.nb-links .btn { text-decoration: none; }
+.nb-cmd { flex-basis: 100%; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; color: var(--text-2); overflow-x: auto; white-space: nowrap; }
+.nb-frame-card { padding: 0; overflow: hidden; }
+.nb-frame { width: 100%; height: calc(100vh - 260px); min-height: 600px; border: 0; background: #fff; display: block; }
 .models { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 14px; }
 .model { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
 .model h4 { margin: 0 0 6px; font-size: 14px; }
@@ -125,6 +130,7 @@ footer { color: var(--text-3); font-size: 12px; text-align: center; padding: 24p
       <button data-tab="vaccines">Vaccines</button>
       <button data-tab="predict">Predictions</button>
       <button data-tab="insights">Insights</button>
+      <button data-tab="notebook">Notebook</button>
       <button data-tab="data">Data</button>
     </nav>
     <button class="theme-btn" id="themeBtn" title="Toggle light/dark">◐ Theme</button>
@@ -232,6 +238,19 @@ footer { color: var(--text-3); font-size: 12px; text-align: center; padding: 24p
   <section class="panel" id="tab-insights">
     <div class="note">Thirty decision questions answered with SQL against the survey warehouse (full network, all rounds). Each links to its standalone interactive figure. The tabs above let you re-cut the same metrics by LGA, facility type and round.</div>
     <div id="qa"></div>
+  </section>
+
+  <!-- ============ NOTEBOOK ============ -->
+  <section class="panel" id="tab-notebook">
+    <div class="note">The full analysis as an executed Jupyter notebook: the thirty questions (SQL → table → figure → answer), the predictive models trained and evaluated step by step, and an in-notebook filterable dashboard. It is rendered below; use the links to open it on GitHub or nbviewer, download it, or run it yourself.</div>
+    <div class="nb-links">
+      <a class="btn primary" href="https://github.com/chidex-coder/ls2-facility-survey-analytics/blob/main/notebooks/ls2_analysis.ipynb" target="_blank" rel="noopener">View on GitHub ↗</a>
+      <a class="btn" href="https://nbviewer.org/github/chidex-coder/ls2-facility-survey-analytics/blob/main/notebooks/ls2_analysis.ipynb" target="_blank" rel="noopener">Open in nbviewer ↗</a>
+      <a class="btn" href="https://raw.githubusercontent.com/chidex-coder/ls2-facility-survey-analytics/main/notebooks/ls2_analysis.ipynb" download="ls2_analysis.ipynb">Download .ipynb</a>
+      <a class="btn" href="notebook.html" target="_blank" rel="noopener">Open rendered page in a new tab ↗</a>
+      <code class="nb-cmd">git clone https://github.com/chidex-coder/ls2-facility-survey-analytics && cd ls2-facility-survey-analytics && pip install -r requirements.txt && jupyter lab notebooks/ls2_analysis.ipynb</code>
+    </div>
+    <div class="card w12 nb-frame-card"><iframe id="nbFrame" class="nb-frame" title="LS 2.0 analytics notebook" data-src="notebook.html" loading="lazy"></iframe></div>
   </section>
 
   <!-- ============ DATA ============ -->
@@ -508,6 +527,10 @@ function predict() {
   groupedBar('c_segments', segCols.map(k => k.replace(/_flag|_rate/g, '').replace(/_/g, ' ')), cen.map(c => ({ name: c.segment_id, values: segCols.map(k => c[k]) })), { yrange: [0, 1.1] });
 }
 
+function notebook() {
+  const f = $('nbFrame'); if (!f.src) f.src = f.dataset.src;
+}
+
 function insights() {
   if ($('qa').children.length) return;
   const secs = groupBy(D.analysis, a => a.section);
@@ -534,7 +557,7 @@ $('sRiskThr').addEventListener('input', predict); $('sSoRisk').addEventListener(
 function renderAll() {
   if (!F.visits) return;
   if (!F.visits.length) { $('summaryLine').innerHTML += ' · <b>No visits match these filters.</b>'; }
-  ({ overview, access, hrh, supply, vaccines, predict, insights, data: dataTable })[activeTab]();
+  ({ overview, access, hrh, supply, vaccines, predict, insights, notebook, data: dataTable })[activeTab]();
 }
 $('footer').innerHTML = `LS 2.0 facility survey analytics · dataset generated from the questionnaire structure (${D.visits.visit_id.length.toLocaleString()} visits, ${D.meta.lgas.length} LGAs) · built ${D.generated}`;
 applyFilters();

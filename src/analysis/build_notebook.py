@@ -24,6 +24,7 @@ import config as C  # noqa: E402
 from analysis import questions as Q  # noqa: E402
 
 NB_PATH = C.ROOT / "notebooks" / "ls2_analysis.ipynb"
+NB_HTML = C.DOCS_DIR / "notebook.html"  # rendered copy embedded in the dashboard's Notebook tab
 
 INTRO = """# LS 2.0 Facility Survey — Analytics & Visualisation
 
@@ -298,6 +299,18 @@ def build() -> nbformat.NotebookNode:
     return nb
 
 
+def export_html(nb) -> None:
+    """Render the executed notebook to a standalone HTML page for the dashboard's Notebook tab."""
+    from nbconvert import HTMLExporter
+    exporter = HTMLExporter(template_name="lab")
+    exporter.exclude_input_prompt = exporter.exclude_output_prompt = True
+    body, _ = exporter.from_notebook_node(nb)
+    body = body.replace("<title>Notebook</title>", "<title>LS 2.0 analytics notebook</title>")
+    C.DOCS_DIR.mkdir(exist_ok=True)
+    NB_HTML.write_text(body)
+    print(f"notebook rendered to {NB_HTML} ({NB_HTML.stat().st_size/1e6:.1f} MB)")
+
+
 def _keep_static_figures(nb) -> None:
     """Save figures as PNG only. Viewers such as GitHub prefer the HTML output but strip its scripts,
     which leaves a blank cell; with a single PNG representation every viewer shows the chart."""
@@ -329,6 +342,7 @@ def main():
         NotebookClient(nb, timeout=600, kernel_name="python3", resources={"metadata": {"path": str(NB_PATH.parent)}}).execute()
         _keep_static_figures(nb)
     nbformat.write(nb, NB_PATH)
+    export_html(nb)
     n_fig = sum(1 for c in nb.cells if c.cell_type == "code" for o in c.get("outputs", []) if "image/png" in o.get("data", {}))
     print(f"notebook written to {NB_PATH} ({NB_PATH.stat().st_size/1e6:.1f} MB, {len(nb.cells)} cells, {n_fig} figures rendered)")
 

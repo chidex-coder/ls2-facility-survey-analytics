@@ -111,7 +111,8 @@ deploy/hf_space.py                      creates/updates the Hugging Face Space f
 outputs/ls2_survey.db                   SQLite warehouse (16 tables, 6 analytic views, ETL log)
 outputs/figures/*.html                  one interactive figure per question / model
 outputs/ml/                             metrics, predictions (facility and commodity level), fitted models
-docs/index.html                         the dashboard (GitHub Pages)
+docs/index.html                         the dashboard (GitHub Pages); its Notebook tab embeds docs/notebook.html
+docs/notebook.html                      rendered copy of the analytics notebook
 tests/                                  smoke tests for ETL and warehouse
 ```
 
