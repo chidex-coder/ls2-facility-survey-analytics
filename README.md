@@ -98,7 +98,7 @@ To use real survey exports, drop a workbook with the same sheet layout into `dat
 
 ## About the data
 
-The file we were given is the *questionnaire*, not a response export, so `src/generate_survey_data.py` produces a
+The file is a *questionnaire*, not a response export, so `src/generate_survey_data.py` produces a
 response dataset that follows the instrument exactly — 184 facilities across all 23 LGAs, visited at baseline and
 five bi-weekly rounds (1,104 visits), with per-cadre staffing, per-commodity stock and per-vaccine stock tables.
 Facility quality, LGA security context, level of care and a state-wide salary delay in one round shape the outcomes
