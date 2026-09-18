@@ -21,13 +21,67 @@ The questionnaire covers three modules:
 | 2. Human resources for health | attendance registers and duty rosters, headcount by cadre and employment type, staff present today, reasons for absence, salary timeliness and its effect on service delivery |
 | 3. Supply chain | requisition cycle (submitted → complete → received → documented), 23 tracer medicines and commodities (stock-outs, reasons, balance vs minimum stock, supplier, physical verification), 11 vaccines (opening/closing balance, doses used, source) |
 
-The repository turns that instrument into a working decision system:
+The repository turns that instrument into a working decision system.
+
+## 🏗️ Solution Architecture
 
 ```
-questionnaire (xlsx) ──▶ survey workbook ──▶ ETL ──▶ SQLite warehouse ──▶ 30 answered questions (SQL + Plotly)
-                                                             │
-                                                             ├──▶ predictive models (stock-out risk, at-risk facilities, attendance drivers, segments)
-                                                             └──▶ interactive HTML dashboard with filters and sliders
+                         +-----------------------------+
+                         |   LS 2.0 Questionnaire      |
+                         |   (xlsx instrument)         |
+                         +--------------+--------------+
+                                        |
+                                        v
+                          Synthetic Survey Generator
+                     184 facilities x 6 bi-weekly rounds
+                  latent quality . security context . salary shock
+                                        |
+                                        v
+                             Survey Workbook (xlsx)
+              facility_visits . staffing . absences . commodities
+                    vaccines . sessions . cold chain . trainings
+                                        |
+                                        v
+                                  ETL Pipeline
+                Extract . Transform (flags, derived indicators,
+                readiness score) . Data-quality gate . Load
+                                        |
+                                        v
+                               SQLite Warehouse
+                     16 tables . 6 analytic views . ETL log
+                                        |
+              +-------------------------+-------------------------+
+              |                         |                         |
+              v                         v                         v
+      30 SQL Questions          Predictive Models          Pytest Smoke Tests
+      answer + Plotly figure    stock-out risk . at-risk     workbook . ETL gate
+      per question              facility . attendance        warehouse views
+                                drivers . k-means segments
+              |                         |
+              +------------+------------+
+                           |
+                           v
+                   Analysis Outputs
+          results.json . figures/*.html . ml/metrics.json
+          facility + commodity predictions . ANALYSIS.md
+                           |
+        +------------------+------------------+------------------+
+        |                  |                  |                  |
+        v                  v                  v                  v
+ Static Dashboard    Dash Edition     Streamlit Edition    Analytics Notebook
+ build_dashboard.py  dash_app.py      streamlit_app.py     build_notebook.py
+ data embedded,      Python callbacks Python widgets       questions . models .
+ charts in browser   via charts.py    via charts.py        in-notebook dashboard
+        |                  |                  |                  |
+        v                  v                  v                  v
+   GitHub Pages     Hugging Face Space   Streamlit Cloud    ls2_analysis.ipynb
+   docs/index.html  (Docker) / Render    share.streamlit.io + notebook.html
+                                                            (embedded in every
+                                                             dashboard's tab)
+                           |
+                           v
+                  Decision Brief (docs/DECISION_BRIEF.md)
+            owner . action . metric-to-watch for each finding
 ```
 
 **Live dashboard:** https://chidex-coder.github.io/ls2-facility-survey-analytics/ (the static build in `docs/index.html`).
